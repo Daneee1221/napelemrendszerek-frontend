@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "napelemrendszerek-frontend", "napelemrendszerek-frontend\napelemrendszerek-frontend.csproj", "{8DE7E533-07E8-4208-9507-58B0C930848E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DE7E533-07E8-4208-9507-58B0C930848E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE7E533-07E8-4208-9507-58B0C930848E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE7E533-07E8-4208-9507-58B0C930848E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE7E533-07E8-4208-9507-58B0C930848E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73647622-5B74-4F75-A4FC-BF9DFD5D9D5F}
+	EndGlobalSection
+EndGlobal
