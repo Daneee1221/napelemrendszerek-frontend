@@ -30,9 +30,11 @@ namespace napelemrendszerek_frontend
         public MainWindow()
         {
             InitializeComponent();
+            
+            FR_mainFrame.Source = new Uri("loginPage.xaml", UriKind.RelativeOrAbsolute);
 
-            Thread connThread = new Thread(StartClient);
-            connThread.Start();
+            //Thread connThread = new Thread(StartClient);
+            //connThread.Start();
         }
 
         private void StartClient()

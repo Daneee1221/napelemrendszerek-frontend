@@ -24,5 +24,13 @@ namespace napelemrendszerek_frontend
         {
             InitializeComponent();
         }
+
+        private void BTN_logInButton_Click(object sender, RoutedEventArgs e)
+        {
+            string username = TB_username.Text;
+            string password = PB_password.Password;
+
+            //TODO: Szerver kommunikáció
+        }
     }
 }

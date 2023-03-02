@@ -17,7 +17,7 @@
             <Label Content="Jelszó" FontSize="10" Width="200" FontWeight="Light" FontStyle="Italic" Margin="0 10 0 0" Padding="2 5 5 0"/>
             <PasswordBox x:Name="PB_password" Width="200"/>
 
-            <Button x:Name="BTN_logInButton" Width="200" Margin="20" Content="Belépés"/>
+            <Button x:Name="BTN_logInButton" Width="200" Margin="20" Content="Belépés" Click="BTN_logInButton_Click"/>
         </StackPanel>        
     </Grid>
 </Page>
