@@ -18,6 +18,7 @@
             <PasswordBox x:Name="PB_password" Width="200"/>
 
             <Button x:Name="BTN_logInButton" Width="200" Margin="20" Content="Belépés" Click="BTN_logInButton_Click"/>
+            <TextBlock x:Name="TB_Response" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Red"/>
         </StackPanel>        
     </Grid>
 </Page>

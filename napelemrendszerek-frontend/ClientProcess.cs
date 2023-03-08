@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Comm
@@ -16,6 +17,22 @@ namespace Comm
             Console.WriteLine("Sent request, waiting for response");
             Communication dResponse = tsResponse.Result;
             Console.WriteLine("Received response: " + dResponse);
+        }
+
+        public Communication Login(string username, string password)
+        {
+            Communication commObject = new Communication();
+            commObject.Message= "login";
+            Dictionary<string, string> loginData= new Dictionary<string, string>();
+            loginData.Add("username", username);
+            loginData.Add("password", password);
+            commObject.contentObject = loginData;
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = tsResponse.Result;
+
+            return dResponse;
         }
     }
 }

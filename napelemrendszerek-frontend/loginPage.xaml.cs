@@ -27,10 +27,23 @@ namespace napelemrendszerek_frontend
 
         private void BTN_logInButton_Click(object sender, RoutedEventArgs e)
         {
+            TB_Response.Text = string.Empty;
             string username = TB_username.Text;
             string password = PB_password.Password;
 
-            //TODO: Szerver kommunikáció
+            string response = ((MainWindow)Application.Current.MainWindow).StartLoginProcess(username, password);
+            
+            switch (response)
+            {
+                case "nodata":
+                    TB_Response.Text = "Nincs ilyen felhasználó!";
+                    break;
+                case "wrongpassword":
+                    TB_Response.Text = "Hibás jelszó!";
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

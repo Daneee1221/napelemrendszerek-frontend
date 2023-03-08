@@ -26,6 +26,9 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Communication responseObject = new Communication();
+        private int roleID = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,11 +39,29 @@ namespace napelemrendszerek_frontend
             //connThread.Start();
         }
 
-        public static void Login(string username, string password)
+        public string StartLoginProcess(string username, string password)
+        {
+            Thread connThread = new Thread(() => Login(username, password));
+            connThread.Start();
+            connThread.Join();
+
+            if(responseObject.Message == "successful")
+            {
+                //load next page
+                roleID = (int)responseObject.roleId;
+                return "";
+            }
+            else
+            {
+                return responseObject.Message;
+            }
+        }
+
+        public void Login(string username, string password)
         {
             SocketClient.StartClient();
             Process process = new Process();
-            process.ReadAndWrite();
+            responseObject = process.Login(username, password);
             SocketClient.Close();
         }
     }
