@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Comm
 {
     [Serializable]
-    class Communication
+    public class Communication
     {
         public string Message { get; set; }
         public DateTime Date { get; set; }

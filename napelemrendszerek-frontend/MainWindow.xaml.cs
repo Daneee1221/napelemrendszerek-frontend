@@ -1,8 +1,4 @@
-﻿using AsynchronousClient;
-using ClientProcess;
-using Communication;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 //using System.Diagnostics;
 using System.Linq;
@@ -19,6 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using Comm;
+using napelemrendszerek_backend.Models;
 
 namespace napelemrendszerek_frontend
 {
@@ -37,7 +36,7 @@ namespace napelemrendszerek_frontend
             //connThread.Start();
         }
 
-        private void StartClient()
+        public static void Login(string username, string password)
         {
             SocketClient.StartClient();
             Process process = new Process();

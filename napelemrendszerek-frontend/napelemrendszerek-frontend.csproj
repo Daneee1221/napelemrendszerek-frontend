@@ -56,6 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DBClasses\Roles.cs" />
+    <Compile Include="DBClasses\Users.cs" />
     <Page Include="loginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -71,6 +73,8 @@
     <Compile Include="AsynchronousClient.cs" />
     <Compile Include="ClientProcess.cs" />
     <Compile Include="CommObject.cs" />
+    <Compile Include="Communication.cs" />
+    <Compile Include="DBClasses\Compartment.cs" />
     <Compile Include="loginPage.xaml.cs">
       <DependentUpon>loginPage.xaml</DependentUpon>
     </Compile>
@@ -80,6 +84,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBClasses\Part.cs" />
+    <Compile Include="DBClasses\PartProjectConnection.cs" />
+    <Compile Include="DBClasses\PartStates.cs" />
+    <Compile Include="DBClasses\Project.cs" />
+    <Compile Include="DBClasses\ProjectHistory.cs" />
+    <Compile Include="DBClasses\ProjectStates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

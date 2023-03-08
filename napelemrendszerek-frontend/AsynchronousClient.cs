@@ -6,9 +6,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-using Communication;
 
-namespace AsynchronousClient
+namespace Comm
 {
     public class SocketClient
     {
@@ -51,7 +50,7 @@ namespace AsynchronousClient
             }
         }
 
-        public static async Task<CommObject> SendRequest(CommObject data)
+        public static async Task<Communication> SendRequest(Communication data)
         {
             try
             {
@@ -59,12 +58,12 @@ namespace AsynchronousClient
                 string requestData = serializer.Serialize(data);
                 await writer.WriteLineAsync(requestData);
                 string responseStr = await reader.ReadLineAsync();
-                CommObject response = serializer.Deserialize<CommObject>(responseStr);
+                Communication response = serializer.Deserialize<Communication>(responseStr);
                 return response;
             }
             catch (Exception ex)
             {
-                return new CommObject(ex.Message);
+                return new Communication();
             }
         }
     }
