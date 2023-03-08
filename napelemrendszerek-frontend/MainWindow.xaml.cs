@@ -1,8 +1,4 @@
-﻿using AsynchronousClient;
-using ClientProcess;
-using Communication;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 //using System.Diagnostics;
 using System.Linq;
@@ -20,6 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Comm;
+using napelemrendszerek_backend.Models;
+
 namespace napelemrendszerek_frontend
 {
     /// <summary>
@@ -27,19 +26,42 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Communication responseObject = new Communication();
+        private int roleID = 0;
+
         public MainWindow()
         {
             InitializeComponent();
+            
+            FR_mainFrame.Source = new Uri("loginPage.xaml", UriKind.RelativeOrAbsolute);
 
-            Thread connThread = new Thread(StartClient);
-            connThread.Start();
+            //Thread connThread = new Thread(StartClient);
+            //connThread.Start();
         }
 
-        private void StartClient()
+        public string StartLoginProcess(string username, string password)
+        {
+            Thread connThread = new Thread(() => Login(username, password));
+            connThread.Start();
+            connThread.Join();
+
+            if(responseObject.Message == "successful")
+            {
+                //load next page
+                roleID = (int)responseObject.roleId;
+                return "";
+            }
+            else
+            {
+                return responseObject.Message;
+            }
+        }
+
+        public void Login(string username, string password)
         {
             SocketClient.StartClient();
             Process process = new Process();
-            process.ReadAndWrite();
+            responseObject = process.Login(username, password);
             SocketClient.Close();
         }
     }

@@ -6,9 +6,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-using Communication;
+using Newtonsoft.Json;
 
-namespace AsynchronousClient
+namespace Comm
 {
     public class SocketClient
     {
@@ -51,20 +51,19 @@ namespace AsynchronousClient
             }
         }
 
-        public static async Task<CommObject> SendRequest(CommObject data)
+        public static async Task<Communication> SendRequest(Communication data)
         {
             try
             {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                string requestData = serializer.Serialize(data);
+                string requestData = JsonConvert.SerializeObject(data, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto });
                 await writer.WriteLineAsync(requestData);
                 string responseStr = await reader.ReadLineAsync();
-                CommObject response = serializer.Deserialize<CommObject>(responseStr);
+                Communication response = JsonConvert.DeserializeObject<Communication>(responseStr, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto });
                 return response;
             }
             catch (Exception ex)
             {
-                return new CommObject(ex.Message);
+                return new Communication() { Message = ex.Message };
             }
         }
     }

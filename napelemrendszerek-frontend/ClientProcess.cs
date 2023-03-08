@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using AsynchronousClient;
-using Communication;
 
-namespace ClientProcess
+namespace Comm
 {
     class Process
     {
@@ -12,12 +11,28 @@ namespace ClientProcess
         {
             //string data = Console.ReadLine();
             string data = "hardcodedData";
-            CommObject commObject = new CommObject(data);
+            Communication commObject = new Communication();
 
-            Task<CommObject> tsResponse = SocketClient.SendRequest(commObject);
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");
-            CommObject dResponse = tsResponse.Result;
+            Communication dResponse = tsResponse.Result;
             Console.WriteLine("Received response: " + dResponse);
+        }
+
+        public Communication Login(string username, string password)
+        {
+            Communication commObject = new Communication();
+            commObject.Message= "login";
+            Dictionary<string, string> loginData= new Dictionary<string, string>();
+            loginData.Add("username", username);
+            loginData.Add("password", password);
+            commObject.contentObject = loginData;
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = tsResponse.Result;
+
+            return dResponse;
         }
     }
 }
