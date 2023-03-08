@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace Comm
 {
@@ -54,16 +55,15 @@ namespace Comm
         {
             try
             {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                string requestData = serializer.Serialize(data);
+                string requestData = JsonConvert.SerializeObject(data, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto });
                 await writer.WriteLineAsync(requestData);
                 string responseStr = await reader.ReadLineAsync();
-                Communication response = serializer.Deserialize<Communication>(responseStr);
+                Communication response = JsonConvert.DeserializeObject<Communication>(responseStr, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto });
                 return response;
             }
             catch (Exception ex)
             {
-                return new Communication();
+                return new Communication() { Message = ex.Message };
             }
         }
     }
