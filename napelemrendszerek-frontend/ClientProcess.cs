@@ -23,10 +23,12 @@ namespace Comm
         {
             Communication commObject = new Communication();
             commObject.Message= "login";
-            Dictionary<string, string> loginData= new Dictionary<string, string>();
-            loginData.Add("username", username);
-            loginData.Add("password", password);
-            commObject.contentObject = loginData;
+            Dictionary<string, string> loginData = new Dictionary<string, string>
+            {
+                { "username", username },
+                { "password", password }
+            };
+            commObject.Content = loginData;
 
             Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");
