@@ -12,5 +12,26 @@ namespace napelemrendszerek_backend.Models
         public string Username { get; set; }
         public string UserPassword { get; set; }
         public int RoleId { get; set; }
+
+        #region DictionaryConverter
+        public Users(Dictionary<string, string> values)
+        {
+            Username = values["Username"];
+            UserPassword = values["UserPassword"];
+            RoleId = Convert.ToInt32(values["RoleId"]);
+        }
+
+        public Dictionary<string, string> GetValues()
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>
+            {
+                { "Username", Username },
+                { "UserPassword", UserPassword },
+                { "RoleId", RoleId.ToString() }
+            };
+
+            return values;
+        }
+        #endregion
     }
 }
