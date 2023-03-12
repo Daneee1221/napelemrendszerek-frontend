@@ -23,5 +23,48 @@ namespace napelemrendszerek_backend.Models
         public string ProjectDescription { get; set; }
         public int WorkFee { get; set; }
         public int EstimatedTimeInDays { get; set; }
+
+        #region DictionaryConverter
+        public Project(Dictionary<string, string> values)
+        {
+            ProjectId = Convert.ToInt32(values["ProjectId"]);
+            ProjectStateId = Convert.ToInt32(values["ProjectStateId"]);
+            CreatedBy = values["CreatedBy"];
+            CustomerName = values["CustomerName"];
+            CustomerAddress = values["CustomerAddress"];
+            CustomerPhone = values["CustomerPhone"];
+            CustomerEmail = values["CustomerEmail"];
+            StartDate = Convert.ToDateTime(values["StartDate"]);
+            LastModifiedDate = Convert.ToDateTime(values["LastModifiedDate"]);
+            ClosedDate = Convert.ToDateTime(values["ClosedDate"]);
+            ProjectLocation = values["ProjectLocation"];
+            ProjectDescription = values["ProjectDescription"];
+            WorkFee = Convert.ToInt32(values["WorkFee"]);
+            EstimatedTimeInDays = Convert.ToInt32(values["EstimatedTimeInDays"]);
+        }
+
+        public Dictionary<string, string> GetValues()
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>
+            {
+                { "ProjectId", ProjectId.ToString() },
+                { "ProjectStateId", ProjectStateId.ToString() },
+                { "CreatedBy", CreatedBy.ToString() },
+                { "CustomerName", CustomerName.ToString() },
+                { "CustomerAddress", CustomerAddress.ToString() },
+                { "CustomerPhone", CustomerPhone.ToString() },
+                { "CustomerEmail", CustomerEmail.ToString() },
+                { "StartDate", StartDate.ToString() },
+                { "LastModifiedDate", LastModifiedDate.ToString() },
+                { "ClosedDate", ClosedDate.ToString() },
+                { "ProjectLocation", ProjectLocation.ToString() },
+                { "ProjectDescription", ProjectDescription.ToString() },
+                { "WorkFee", WorkFee.ToString() },
+                { "EstimatedTimeInDays", EstimatedTimeInDays.ToString() },
+            };
+
+            return values;
+        }
+        #endregion
     }
 }

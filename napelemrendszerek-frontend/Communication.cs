@@ -1,5 +1,6 @@
 ﻿using napelemrendszerek_backend.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -11,18 +12,27 @@ namespace Comm
     {
         public string Message { get; set; }
         public DateTime Date { get; set; }
-        public object contentObject { get; set; }
-        public int? roleId { get; set; }
+        public List<Dictionary<string, string>> Content { get; set; }
+        public int? RoleId { get; set; }
 
-        public Communication() { }
-        public Communication(string request, object param, int roleId)
+        public Communication()
         {
-            this.Message = request;
-            this.Date = DateTime.Now;
-            this.contentObject = param;
-            this.roleId = roleId;
+            Message = String.Empty;
+            Content = new List<Dictionary<string, string>>();
+            Date = DateTime.Now;
         }
-        
+        public Communication(string message, List<Dictionary<string, string>> content, int roleId)
+        {
+            this.Message = message;
+            this.Date = DateTime.Now;
+            this.Content = content;
+            this.RoleId = roleId;
+        }
+
+        public void addItemToContent(Dictionary<string, string> newElement)
+        {
+            Content.Add(newElement);
+        }
 
         public override string ToString()
         {

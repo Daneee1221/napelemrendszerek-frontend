@@ -13,5 +13,28 @@ namespace napelemrendszerek_backend.Models
         public string PartName { get; set; }
         public int NumberReserved { get; set; }
         public int PartStateId { get; set; }
+
+        #region DictionaryConverter
+        public PartProjectConnection(Dictionary<string, string> values)
+        {
+            ProjectId = Convert.ToInt32(values["ProjectId"]);
+            PartName = values["PartName"];
+            NumberReserved = Convert.ToInt32(values["NumberReserved"]);
+            PartStateId = Convert.ToInt32(values["PartStateId"]);
+        }
+
+        public Dictionary<string, string> GetValues()
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>
+            {
+                { "ProjectId", ProjectId.ToString() },
+                { "PartName", PartName },
+                { "NumberReserved", NumberReserved.ToString() },
+                { "PartStateId", PartStateId.ToString() }
+            };
+
+            return values;
+        }
+        #endregion
     }
 }
