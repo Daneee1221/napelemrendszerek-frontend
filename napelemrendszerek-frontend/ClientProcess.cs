@@ -28,7 +28,7 @@ namespace Comm
                 { "username", username },
                 { "password", password }
             };
-            commObject.Content = loginData;
+            commObject.addItemToContent(loginData);
 
             Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");

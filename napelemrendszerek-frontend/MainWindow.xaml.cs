@@ -48,7 +48,7 @@ namespace napelemrendszerek_frontend
             if(responseObject.Message == "successful")
             {
                 //load next page
-                roleID = (int)responseObject.roleId;
+                roleID = (int)responseObject.RoleId;
                 return "";
             }
             else
