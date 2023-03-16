@@ -70,7 +70,12 @@ namespace napelemrendszerek_frontend
                 return;
             }
             Part newPart = new Part(TB_NewPartName.Text, Convert.ToInt32(TB_NewMaxNumberInBox.Text), Convert.ToInt32(TB_NewSellPrice.Text), 0);
-            //TODO: Küldés a backendnek
+            string response = mainWindow.StartAddPartProcess(newPart);
+
+            parts = mainWindow.StartGetPartsProcess(); //use local list?
+            LB_Parts.DataContext = parts;
+
+            //clear form
         }
 
         private void BTN_ClearNewPartForm_Click(object sender, RoutedEventArgs e)
