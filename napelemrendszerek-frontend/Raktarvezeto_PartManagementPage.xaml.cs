@@ -23,13 +23,14 @@ namespace napelemrendszerek_frontend
     public partial class Raktarvezeto_PartManagementPage : Page
     {
         private MainWindow mainWindow;
+        private List<Part> parts;
 
         public Raktarvezeto_PartManagementPage()
         {
             InitializeComponent();
             mainWindow = ((MainWindow)Application.Current.MainWindow);
 
-            List<Part> parts = mainWindow.StartGetPartsProcess();
+            parts = mainWindow.StartGetPartsProcess();
             LB_Parts.DataContext = parts;
         }
 
