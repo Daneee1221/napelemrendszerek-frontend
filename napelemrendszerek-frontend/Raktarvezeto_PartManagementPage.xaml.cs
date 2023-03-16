@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,6 +27,12 @@ namespace napelemrendszerek_frontend
             InitializeComponent();
             List<Part> parts = ((MainWindow)Application.Current.MainWindow).StartGetPartsProcess();
             LB_Parts.DataContext = parts;
+        }
+
+        private void NumberOnlyInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex numOnly = new Regex("[^0-9.-]+");
+            e.Handled = numOnly.IsMatch(e.Text);
         }
 
         private void LB_Parts_SelectionChanged(object sender, SelectionChangedEventArgs e)
