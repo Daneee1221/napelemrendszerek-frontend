@@ -61,6 +61,12 @@
     </ApplicationDefinition>
     <Compile Include="DBClasses\Roles.cs" />
     <Compile Include="DBClasses\Users.cs" />
+    <Compile Include="RaktarvezetoBasePage.xaml.cs">
+      <DependentUpon>RaktarvezetoBasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Raktarvezeto_PartManagementPage.xaml.cs">
+      <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="loginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +90,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RaktarvezetoBasePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Raktarvezeto_PartManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBClasses\Part.cs" />

@@ -65,11 +65,35 @@ namespace napelemrendszerek_frontend
             }
         }
 
+        public List<Part> StartGetPartsProcess()
+        {
+            List<Part> parts = new List<Part>();
+
+            Thread connThread = new Thread(() => GetParts());
+            connThread.Start();
+            connThread.Join();
+
+            foreach (Dictionary<string, string> pair in responseObject.Content)
+            {
+                parts.Add(new Part(pair));
+            }
+
+            return parts;
+        }
+
         public void Login(string username, string password)
         {
             SocketClient.StartClient();
             Process process = new Process();
             responseObject = process.Login(username, password);
+            SocketClient.Close();
+        }
+
+        public void GetParts()
+        {
+            SocketClient.StartClient();
+            Process process = new Process();
+            responseObject = process.GetParts(roleID);
             SocketClient.Close();
         }
     }

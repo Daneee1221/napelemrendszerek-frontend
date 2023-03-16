@@ -24,6 +24,12 @@ namespace napelemrendszerek_frontend
         public Raktarvezeto_PartManagementPage()
         {
             InitializeComponent();
+            List<Part> parts = ((MainWindow)Application.Current.MainWindow).StartGetPartsProcess();
+            LB_Parts.DataContext = parts;
+        }
+        private void LB_Parts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SP_ModifyPartData.DataContext = LB_Parts.SelectedItem;
         }
     }
 }
