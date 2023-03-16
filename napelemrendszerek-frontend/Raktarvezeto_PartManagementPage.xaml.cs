@@ -70,7 +70,7 @@ namespace napelemrendszerek_frontend
                 return;
             }
             Part newPart = new Part(TB_NewPartName.Text, Convert.ToInt32(TB_NewMaxNumberInBox.Text), Convert.ToInt32(TB_NewSellPrice.Text), 0);
-            string response = mainWindow.StartAddPartProcess(newPart);
+            string response = mainWindow.StartAddPartProcess(newPart); //switch-case -> display response to user
 
             parts = mainWindow.StartGetPartsProcess(); //use local list?
             LB_Parts.DataContext = parts;
