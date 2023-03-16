@@ -47,8 +47,16 @@ namespace napelemrendszerek_frontend
 
             if(responseObject.Message == "successful")
             {
-                //load next page
                 roleID = (int)responseObject.RoleId;
+                //load next page
+                switch (roleID)
+                {
+                    case 1:
+                        FR_mainFrame.Source = new Uri("RaktarvezetoBasePage.xaml", UriKind.RelativeOrAbsolute);
+                        break;
+                    default:
+                        break;
+                }
                 return "";
             }
             else
