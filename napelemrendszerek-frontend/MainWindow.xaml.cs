@@ -90,7 +90,7 @@ namespace napelemrendszerek_frontend
             return responseObject.Message;
         }
 
-        public void AddPart(Part newPart)
+        private void AddPart(Part newPart)
         {
             SocketClient.StartClient();
             Process process = new Process();
@@ -98,7 +98,7 @@ namespace napelemrendszerek_frontend
             SocketClient.Close();
         }
 
-        public void Login(string username, string password)
+        private void Login(string username, string password)
         {
             SocketClient.StartClient();
             Process process = new Process();
@@ -106,7 +106,7 @@ namespace napelemrendszerek_frontend
             SocketClient.Close();
         }
 
-        public void GetParts()
+        private void GetParts()
         {
             SocketClient.StartClient();
             Process process = new Process();
