@@ -64,8 +64,9 @@
     <Compile Include="RaktarvezetoBasePage.xaml.cs">
       <DependentUpon>RaktarvezetoBasePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Raktarvezeto_PartManagementPage.xaml.cs">
-      <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
+	  <Compile Include="Raktarvezeto_PartManagementPage.xaml.cs">
+		  <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
+	  </Compile>
     <Compile Include="Szakember.xaml.cs">
       <DependentUpon>Szakember.xaml</DependentUpon>
     </Compile>
@@ -112,6 +113,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Raktarvezeto_PartManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Szakember.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
