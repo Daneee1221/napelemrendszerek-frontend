@@ -14,6 +14,14 @@ namespace napelemrendszerek_backend.Models
         public int SellPrice { get; set; }
         public int NumberAvailable { get; set; }
 
+        public Part(string partName, int maxNumberInBox, int sellPrice, int numberAvailable)
+        {
+            PartName = partName;
+            MaxNumberInBox = maxNumberInBox;
+            SellPrice = sellPrice;
+            NumberAvailable = numberAvailable;
+        }
+
         #region DictionaryConverter
         public Part(Dictionary<string, string> values)
         {

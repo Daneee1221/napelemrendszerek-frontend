@@ -1,0 +1,85 @@
+﻿<Page x:Class="napelemrendszerek_frontend.Raktarvezeto_PartManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:napelemrendszerek_frontend"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="740"
+      Title="Raktarvezeto_PartManagementPage" Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2" Text="Nyilvántartott Alkatrészek Kezelése" FontSize="30" FontStyle="Italic" HorizontalAlignment="Center" Margin="0 5"/>
+        <Separator Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="20 0"/>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock Text="Ár és db/Rekesz Kezelése" FontSize="20" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center" Margin="0 5"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Width="250" Margin="10">
+                    <TextBlock Text="Alkatrészek:" Margin="5" FontSize="15" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
+                    <ListBox x:Name="LB_Parts" Height="300" ItemsSource="{Binding}" SelectionChanged="LB_Parts_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding PartName}" FontSize="15" FontWeight="Medium"/>
+                                    <TextBlock FontSize="12" FontFamily="Italic" Margin="5 5 0 2">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Max {0}db/rekesz">
+                                                <Binding Path="MaxNumberInBox"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock FontSize="12" FontWeight="Light" FontFamily="Italic" Margin="5 0 0 0">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Raktáron: {0}db">
+                                                <Binding Path="NumberAvailable"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <Separator Margin="5" Width="220"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+                <StackPanel x:Name="SP_ModifyPartData" Orientation="Vertical" Margin="10">
+                    <TextBlock Text="Adatmódosítás:" Margin="5" FontSize="15" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
+                    <Label Content="Eladási Ár" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
+                    <TextBox x:Name="TB_SellPrice" Width="150" Text="{Binding SellPrice}" PreviewTextInput="NumberOnlyInput"/>
+                    <Label Content="db/Rekesz" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
+                    <TextBox x:Name="TB_MaxNumberInBox" Width="150" Text="{Binding MaxNumberInBox}" PreviewTextInput="NumberOnlyInput"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="BTN_ModifyPart" Content="Módosítás" Margin="0 15 10 0" Width="120" Click="BTN_ModifyPart_Click"/>
+                        <Button x:Name="BTN_ClearModifyForm" Content="×" Margin="0 15 0 0" Width="20" FontWeight="Bold" Background="Red" ToolTip="Clear" Click="BTN_ClearModifyForm_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20" Grid.Row="1">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Új Alkatrész Felvétele" FontSize="20" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center" Margin="0 5 0 45"/>
+            <Label Content="Alkatrész Neve" Width="200" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
+            <TextBox x:Name="TB_NewPartName" Width="200"/>
+            <Label Content="Eladási Ár" Width="200" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
+            <TextBox x:Name="TB_NewSellPrice" Width="200" PreviewTextInput="NumberOnlyInput"/>
+            <Label Content="db/Rekesz" Width="200" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
+            <TextBox x:Name="TB_NewMaxNumberInBox" Width="200" PreviewTextInput="NumberOnlyInput"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="BTN_SaveNewPart" Content="Mentés" Margin="0 15 10 0" Width="170" Click="BTN_SaveNewPart_Click"/>
+                <Button x:Name="BTN_ClearNewPartForm" Content="×" Margin="0 15 0 0" Width="20" FontWeight="Bold" Background="Red" ToolTip="Clear" Click="BTN_ClearNewPartForm_Click"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Page>

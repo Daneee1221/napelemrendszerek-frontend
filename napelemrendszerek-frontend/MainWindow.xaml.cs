@@ -47,8 +47,16 @@ namespace napelemrendszerek_frontend
 
             if(responseObject.Message == "successful")
             {
-                //load next page
                 roleID = (int)responseObject.RoleId;
+                //load next page
+                switch (roleID)
+                {
+                    case 1:
+                        FR_mainFrame.Source = new Uri("RaktarvezetoBasePage.xaml", UriKind.RelativeOrAbsolute);
+                        break;
+                    default:
+                        break;
+                }
                 return "";
             }
             else
@@ -57,11 +65,69 @@ namespace napelemrendszerek_frontend
             }
         }
 
-        public void Login(string username, string password)
+        public List<Part> StartGetPartsProcess()
+        {
+            List<Part> parts = new List<Part>();
+
+            Thread connThread = new Thread(() => GetParts());
+            connThread.Start();
+            connThread.Join();
+
+            foreach (Dictionary<string, string> pair in responseObject.Content)
+            {
+                parts.Add(new Part(pair));
+            }
+
+            return parts;
+        }
+
+        public string StartAddPartProcess(Part newPart)
+        {
+            Thread connThread = new Thread(() => AddPart(newPart));
+            connThread.Start();
+            connThread.Join();
+
+            return responseObject.Message;
+        }
+
+        public string StartModifyPartProcess(Dictionary<string, string> newValues)
+        {
+            Thread connThread = new Thread(() => ModifyPart(newValues));
+            connThread.Start();
+            connThread.Join();
+
+            return responseObject.Message;
+        }
+
+        private void ModifyPart(Dictionary<string, string> newValues)
+        {
+            SocketClient.StartClient();
+            Process process = new Process();
+            responseObject = process.ModifyPart(newValues, roleID);
+            SocketClient.Close();
+        }
+
+        private void AddPart(Part newPart)
+        {
+            SocketClient.StartClient();
+            Process process = new Process();
+            responseObject = process.AddPart(newPart, roleID);
+            SocketClient.Close();
+        }
+
+        private void Login(string username, string password)
         {
             SocketClient.StartClient();
             Process process = new Process();
             responseObject = process.Login(username, password);
+            SocketClient.Close();
+        }
+
+        private void GetParts()
+        {
+            SocketClient.StartClient();
+            Process process = new Process();
+            responseObject = process.GetParts(roleID);
             SocketClient.Close();
         }
     }

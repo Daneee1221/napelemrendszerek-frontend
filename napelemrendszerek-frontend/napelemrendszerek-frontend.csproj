@@ -61,6 +61,11 @@
     </ApplicationDefinition>
     <Compile Include="DBClasses\Roles.cs" />
     <Compile Include="DBClasses\Users.cs" />
+    <Compile Include="RaktarvezetoBasePage.xaml.cs">
+      <DependentUpon>RaktarvezetoBasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Raktarvezeto_PartManagementPage.xaml.cs">
+      <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
     <Compile Include="Szakember.xaml.cs">
       <DependentUpon>Szakember.xaml</DependentUpon>
     </Compile>
@@ -102,6 +107,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RaktarvezetoBasePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Raktarvezeto_PartManagementPage.xaml">
     <Page Include="Szakember.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
