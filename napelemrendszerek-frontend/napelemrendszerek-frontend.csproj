@@ -66,6 +66,23 @@
     </Compile>
     <Compile Include="Raktarvezeto_PartManagementPage.xaml.cs">
       <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
+    <Compile Include="Szakember.xaml.cs">
+      <DependentUpon>Szakember.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SzakemberProjektek.xaml.cs">
+      <DependentUpon>SzakemberProjektek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SzakemberProjektekWaitScheduled.xaml.cs">
+      <DependentUpon>SzakemberProjektekWaitScheduled.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SzakemberProjektInProgress.xaml.cs">
+      <DependentUpon>SzakemberProjektInProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SzakemberProjektUj.xaml.cs">
+      <DependentUpon>SzakemberProjektUj.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SzakemberUgyfel.xaml.cs">
+      <DependentUpon>SzakemberUgyfel.xaml</DependentUpon>
     </Compile>
     <Page Include="loginPage.xaml">
       <SubType>Designer</SubType>
@@ -95,6 +112,27 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Raktarvezeto_PartManagementPage.xaml">
+    <Page Include="Szakember.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SzakemberProjektek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SzakemberProjektekWaitScheduled.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SzakemberProjektInProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SzakemberProjektUj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SzakemberUgyfel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
