@@ -42,7 +42,16 @@ namespace napelemrendszerek_frontend
 
         private void LB_Parts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SP_ModifyPartData.DataContext = LB_Parts.SelectedItem;
+            if (LB_Parts.SelectedIndex == -1)
+            {
+                TB_MaxNumberInBox.Text = "";
+                TB_SellPrice.Text = "";
+            }
+            else
+            {
+                TB_MaxNumberInBox.Text = (LB_Parts.SelectedItem as Part).MaxNumberInBox.ToString();
+                TB_SellPrice.Text = (LB_Parts.SelectedItem as Part).SellPrice.ToString();
+            }
         }
 
         private void BTN_ClearModifyForm_Click(object sender, RoutedEventArgs e)

@@ -54,9 +54,9 @@
                 <StackPanel x:Name="SP_ModifyPartData" Orientation="Vertical" Margin="10">
                     <TextBlock Text="Adatmódosítás:" Margin="5" FontSize="15" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
                     <Label Content="Eladási Ár" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
-                    <TextBox x:Name="TB_SellPrice" Width="150" Text="{Binding SellPrice}" PreviewTextInput="NumberOnlyInput"/>
+                    <TextBox x:Name="TB_SellPrice" Width="150" Text="" PreviewTextInput="NumberOnlyInput"/>
                     <Label Content="db/Rekesz" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
-                    <TextBox x:Name="TB_MaxNumberInBox" Width="150" Text="{Binding MaxNumberInBox}" PreviewTextInput="NumberOnlyInput"/>
+                    <TextBox x:Name="TB_MaxNumberInBox" Width="150" Text="" PreviewTextInput="NumberOnlyInput"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button x:Name="BTN_ModifyPart" Content="Módosítás" Margin="0 15 10 0" Width="120" Click="BTN_ModifyPart_Click"/>
                         <Button x:Name="BTN_ClearModifyForm" Content="×" Margin="0 15 0 0" Width="20" FontWeight="Bold" Background="Red" ToolTip="Clear" Click="BTN_ClearModifyForm_Click"/>
