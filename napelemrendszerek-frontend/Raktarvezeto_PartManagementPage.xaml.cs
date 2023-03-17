@@ -119,7 +119,10 @@ namespace napelemrendszerek_frontend
                 return;
             }
 
-            //TODO: küldés backendre
+            mainWindow.StartModifyPartProcess(newValues);
+
+            parts = mainWindow.StartGetPartsProcess(); //use local list?
+            LB_Parts.DataContext = parts;
         }
     }
 }

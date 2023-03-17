@@ -65,5 +65,19 @@ namespace Comm
 
             return dResponse;
         }
+
+        public Communication ModifyPart(Dictionary<string, string> newValues, int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "modifyPart";
+            commObject.addItemToContent(newValues);
+            commObject.RoleId = roleID;
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = tsResponse.Result;
+
+            return dResponse;
+        }
     }
 }

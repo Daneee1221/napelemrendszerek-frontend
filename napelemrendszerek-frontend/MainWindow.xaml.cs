@@ -90,6 +90,23 @@ namespace napelemrendszerek_frontend
             return responseObject.Message;
         }
 
+        public string StartModifyPartProcess(Dictionary<string, string> newValues)
+        {
+            Thread connThread = new Thread(() => ModifyPart(newValues));
+            connThread.Start();
+            connThread.Join();
+
+            return responseObject.Message;
+        }
+
+        private void ModifyPart(Dictionary<string, string> newValues)
+        {
+            SocketClient.StartClient();
+            Process process = new Process();
+            responseObject = process.ModifyPart(newValues, roleID);
+            SocketClient.Close();
+        }
+
         private void AddPart(Part newPart)
         {
             SocketClient.StartClient();
