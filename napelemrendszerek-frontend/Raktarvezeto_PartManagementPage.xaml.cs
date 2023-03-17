@@ -105,7 +105,7 @@ namespace napelemrendszerek_frontend
 
             Part selectedPart = LB_Parts.SelectedItem as Part;
             Dictionary<string, string> newValues = new Dictionary<string, string>();
-            if (selectedPart.SellPrice != Convert.ToInt32(TB_SellPrice))
+            if (selectedPart.SellPrice != Convert.ToInt32(TB_SellPrice.Text))
             {
                 newValues.Add("SellPrice", TB_SellPrice.Text);
             }
