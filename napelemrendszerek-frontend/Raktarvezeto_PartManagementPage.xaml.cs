@@ -113,16 +113,20 @@ namespace napelemrendszerek_frontend
             }
 
             Part selectedPart = LB_Parts.SelectedItem as Part;
+            bool vaulesChanged = false;
             Dictionary<string, string> newValues = new Dictionary<string, string>();
+            newValues.Add("partName", selectedPart.PartName);
             if (selectedPart.SellPrice != Convert.ToInt32(TB_SellPrice.Text))
             {
-                newValues.Add("SellPrice", TB_SellPrice.Text);
+                vaulesChanged = true;
+                newValues.Add("sellPrice", TB_SellPrice.Text);
             }
             if (selectedPart.MaxNumberInBox != Convert.ToInt32(TB_MaxNumberInBox.Text))
             {
-                newValues.Add("MaxNumberInBox", TB_MaxNumberInBox.Text);
+                vaulesChanged = true;
+                newValues.Add("maxNumber", TB_MaxNumberInBox.Text);
             }
-            if (newValues.Count == 0)
+            if (vaulesChanged == false)
             {
                 //TODO: Hiba jelzés
                 return;
