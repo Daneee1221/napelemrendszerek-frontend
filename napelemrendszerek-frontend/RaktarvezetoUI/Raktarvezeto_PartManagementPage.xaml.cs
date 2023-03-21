@@ -53,6 +53,8 @@ namespace napelemrendszerek_frontend
             {
                 TB_MaxNumberInBox.Text = (LB_Parts.SelectedItem as Part).MaxNumberInBox.ToString();
                 TB_SellPrice.Text = (LB_Parts.SelectedItem as Part).SellPrice.ToString();
+                TB_MaxNumberInBox.Background = null;
+                TB_SellPrice.Background = null;
             }
         }
 
