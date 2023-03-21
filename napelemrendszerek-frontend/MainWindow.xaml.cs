@@ -33,7 +33,7 @@ namespace napelemrendszerek_frontend
         {
             InitializeComponent();
             
-            FR_mainFrame.Source = new Uri("loginPage.xaml", UriKind.RelativeOrAbsolute);
+            FR_mainFrame.Source = new Uri("./loginPage.xaml", UriKind.RelativeOrAbsolute);
 
             //Thread connThread = new Thread(StartClient);
             //connThread.Start();
@@ -52,7 +52,7 @@ namespace napelemrendszerek_frontend
                 switch (roleID)
                 {
                     case 1:
-                        FR_mainFrame.Source = new Uri("RaktarvezetoBasePage.xaml", UriKind.RelativeOrAbsolute);
+                        FR_mainFrame.Source = new Uri("./RaktarvezetoUI/RaktarvezetoBasePage.xaml", UriKind.RelativeOrAbsolute);
                         break;
                     default:
                         break;

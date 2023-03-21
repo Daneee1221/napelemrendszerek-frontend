@@ -61,28 +61,28 @@
     </ApplicationDefinition>
     <Compile Include="DBClasses\Roles.cs" />
     <Compile Include="DBClasses\Users.cs" />
-    <Compile Include="RaktarvezetoBasePage.xaml.cs">
+    <Compile Include="RaktarvezetoUI\RaktarvezetoBasePage.xaml.cs">
       <DependentUpon>RaktarvezetoBasePage.xaml</DependentUpon>
     </Compile>
-	  <Compile Include="Raktarvezeto_PartManagementPage.xaml.cs">
-		  <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
-	  </Compile>
-    <Compile Include="Szakember.xaml.cs">
+    <Compile Include="RaktarvezetoUI\Raktarvezeto_PartManagementPage.xaml.cs">
+      <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SzakemberUI\Szakember.xaml.cs">
       <DependentUpon>Szakember.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberProjektek.xaml.cs">
+    <Compile Include="SzakemberUI\SzakemberProjektek.xaml.cs">
       <DependentUpon>SzakemberProjektek.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberProjektekWaitScheduled.xaml.cs">
+    <Compile Include="SzakemberUI\SzakemberProjektekWaitScheduled.xaml.cs">
       <DependentUpon>SzakemberProjektekWaitScheduled.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberProjektInProgress.xaml.cs">
+    <Compile Include="SzakemberUI\SzakemberProjektInProgress.xaml.cs">
       <DependentUpon>SzakemberProjektInProgress.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberProjektUj.xaml.cs">
+    <Compile Include="SzakemberUI\SzakemberProjektUj.xaml.cs">
       <DependentUpon>SzakemberProjektUj.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberUgyfel.xaml.cs">
+    <Compile Include="SzakemberUI\SzakemberUgyfel.xaml.cs">
       <DependentUpon>SzakemberUgyfel.xaml</DependentUpon>
     </Compile>
     <Page Include="loginPage.xaml">
@@ -108,35 +108,35 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RaktarvezetoBasePage.xaml">
+    <Page Include="RaktarvezetoUI\RaktarvezetoBasePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Raktarvezeto_PartManagementPage.xaml">
+    <Page Include="RaktarvezetoUI\Raktarvezeto_PartManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Szakember.xaml">
+    <Page Include="SzakemberUI\Szakember.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberProjektek.xaml">
+    <Page Include="SzakemberUI\SzakemberProjektek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberProjektekWaitScheduled.xaml">
+    <Page Include="SzakemberUI\SzakemberProjektekWaitScheduled.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberProjektInProgress.xaml">
+    <Page Include="SzakemberUI\SzakemberProjektInProgress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberProjektUj.xaml">
+    <Page Include="SzakemberUI\SzakemberProjektUj.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberUgyfel.xaml">
+    <Page Include="SzakemberUI\SzakemberUgyfel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
