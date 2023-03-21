@@ -78,14 +78,12 @@ namespace napelemrendszerek_frontend
             }
             if (TB_NewPartName.Text == "")
             {
-                //TODO: Hiba jelzés
                 TB_NewPartName.Text = "Kötelező kitölteni!";
                 TB_NewPartName.Background = errorInputBackground;
                 foundEmptyInput = true;
             }
             if (TB_NewSellPrice.Text == "")
             {
-                //TODO: Hiba jelzés
                 TB_NewSellPrice.Text = "Kötelező kitölteni!";
                 TB_NewSellPrice.Background = errorInputBackground;
                 foundEmptyInput = true;
@@ -134,7 +132,6 @@ namespace napelemrendszerek_frontend
         {
             if (LB_Parts.SelectedIndex == -1)
             {
-                //TODO: Hiba jelzés
                 TB_MaxNumberInBox.Background = errorInputBackground;
                 TB_SellPrice.Background = errorInputBackground;
                 TB_MaxNumberInBox.Text = "<- Válassz a listából!";
@@ -144,14 +141,12 @@ namespace napelemrendszerek_frontend
             bool foundEmptyInput = false;
             if (TB_MaxNumberInBox.Text == "")
             {
-                //TODO: Hiba jelzés
                 TB_MaxNumberInBox.Background = errorInputBackground;
                 TB_MaxNumberInBox.Text = "Kötelező kitölteni!";
                 foundEmptyInput = true;
             }
             if (TB_SellPrice.Text == "")
             {
-                //TODO: Hiba jelzés
                 TB_SellPrice.Background = errorInputBackground;
                 TB_SellPrice.Text = "Kötelező kitölteni!";
                 foundEmptyInput = true;
@@ -177,7 +172,6 @@ namespace napelemrendszerek_frontend
             }
             if (vaulesChanged == false)
             {
-                //TODO: Hiba jelzés
                 return;
             }
 
