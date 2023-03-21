@@ -24,11 +24,13 @@ namespace napelemrendszerek_frontend
     {
         private MainWindow mainWindow;
         private List<Part> parts;
+        private SolidColorBrush errorInputBackground;
 
         public Raktarvezeto_PartManagementPage()
         {
             InitializeComponent();
             mainWindow = ((MainWindow)Application.Current.MainWindow);
+            errorInputBackground = new SolidColorBrush(Color.FromScRgb(0.69f, 1f, 0.05f, 0.05f));
 
             parts = mainWindow.StartGetPartsProcess();
             LB_Parts.DataContext = parts;
@@ -59,23 +61,35 @@ namespace napelemrendszerek_frontend
             LB_Parts.SelectedIndex = -1;
             TB_MaxNumberInBox.Clear();
             TB_SellPrice.Clear();
+            TB_MaxNumberInBox.Background = null;
+            TB_SellPrice.Background = null;
         }
 
         private void BTN_SaveNewPart_Click(object sender, RoutedEventArgs e)
         {
+            bool foundEmptyInput = false;
             if (TB_NewMaxNumberInBox.Text == "")
             {
-                //TODO: Hiba jelzés
-                return;
+                TB_NewMaxNumberInBox.Text = "Kötelező kitölteni!";
+                TB_NewMaxNumberInBox.Background = errorInputBackground;
+                foundEmptyInput = true;
             }
             if (TB_NewPartName.Text == "")
             {
                 //TODO: Hiba jelzés
-                return;
+                TB_NewPartName.Text = "Kötelező kitölteni!";
+                TB_NewPartName.Background = errorInputBackground;
+                foundEmptyInput = true;
             }
             if (TB_NewSellPrice.Text == "")
             {
                 //TODO: Hiba jelzés
+                TB_NewSellPrice.Text = "Kötelező kitölteni!";
+                TB_NewSellPrice.Background = errorInputBackground;
+                foundEmptyInput = true;
+            }
+            if (foundEmptyInput)
+            {
                 return;
             }
             Part newPart = new Part(TB_NewPartName.Text, Convert.ToInt32(TB_NewMaxNumberInBox.Text), Convert.ToInt32(TB_NewSellPrice.Text), 0);
@@ -92,23 +106,54 @@ namespace napelemrendszerek_frontend
             TB_NewPartName.Clear();
             TB_NewMaxNumberInBox.Clear();
             TB_NewSellPrice.Clear();
+            TB_NewPartName.Background = null;
+            TB_NewMaxNumberInBox.Background = null;
+            TB_NewSellPrice.Background = null;
+        }
+
+        private void TB_GotFocus_Reset(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is TextBox))
+            {
+                return;
+            }
+            TextBox TB = (TextBox)sender;
+            if (TB.Background != errorInputBackground)
+            {
+                return;
+            }
+            TB.Text = "";
+            TB.Background = null;
         }
 
         private void BTN_ModifyPart_Click(object sender, RoutedEventArgs e)
         {
+            if (LB_Parts.SelectedIndex == -1)
+            {
+                //TODO: Hiba jelzés
+                TB_MaxNumberInBox.Background = errorInputBackground;
+                TB_SellPrice.Background = errorInputBackground;
+                TB_MaxNumberInBox.Text = "<- Válassz a listából!";
+                TB_SellPrice.Text = "<- Válassz a listából!";
+                return;
+            }
+            bool foundEmptyInput = false;
             if (TB_MaxNumberInBox.Text == "")
             {
                 //TODO: Hiba jelzés
-                return;
+                TB_MaxNumberInBox.Background = errorInputBackground;
+                TB_MaxNumberInBox.Text = "Kötelező kitölteni!";
+                foundEmptyInput = true;
             }
             if (TB_SellPrice.Text == "")
             {
                 //TODO: Hiba jelzés
-                return;
+                TB_SellPrice.Background = errorInputBackground;
+                TB_SellPrice.Text = "Kötelező kitölteni!";
+                foundEmptyInput = true;
             }
-            if (LB_Parts.SelectedIndex == -1)
+            if (foundEmptyInput)
             {
-                //TODO: Hiba jelzés
                 return;
             }
 

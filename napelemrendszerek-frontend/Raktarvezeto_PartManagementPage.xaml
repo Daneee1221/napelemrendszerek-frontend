@@ -54,9 +54,9 @@
                 <StackPanel x:Name="SP_ModifyPartData" Orientation="Vertical" Margin="10">
                     <TextBlock Text="Adatmódosítás:" Margin="5" FontSize="15" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
                     <Label Content="Eladási Ár" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
-                    <TextBox x:Name="TB_SellPrice" Width="150" Text="" PreviewTextInput="NumberOnlyInput"/>
+                    <TextBox x:Name="TB_SellPrice" Width="150" Text="" PreviewTextInput="NumberOnlyInput" GotFocus="TB_GotFocus_Reset"/>
                     <Label Content="db/Rekesz" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
-                    <TextBox x:Name="TB_MaxNumberInBox" Width="150" Text="" PreviewTextInput="NumberOnlyInput"/>
+                    <TextBox x:Name="TB_MaxNumberInBox" Width="150" Text="" PreviewTextInput="NumberOnlyInput" GotFocus="TB_GotFocus_Reset"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button x:Name="BTN_ModifyPart" Content="Módosítás" Margin="0 15 10 0" Width="120" Click="BTN_ModifyPart_Click"/>
                         <Button x:Name="BTN_ClearModifyForm" Content="×" Margin="0 15 0 0" Width="20" FontWeight="Bold" Background="Red" ToolTip="Clear" Click="BTN_ClearModifyForm_Click"/>
@@ -70,11 +70,11 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock Text="Új Alkatrész Felvétele" FontSize="20" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center" Margin="0 5 0 45"/>
             <Label Content="Alkatrész Neve" Width="200" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
-            <TextBox x:Name="TB_NewPartName" Width="200"/>
+            <TextBox x:Name="TB_NewPartName" Width="200" GotFocus="TB_GotFocus_Reset"/>
             <Label Content="Eladási Ár" Width="200" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
-            <TextBox x:Name="TB_NewSellPrice" Width="200" PreviewTextInput="NumberOnlyInput"/>
+            <TextBox x:Name="TB_NewSellPrice" Width="200" PreviewTextInput="NumberOnlyInput" GotFocus="TB_GotFocus_Reset"/>
             <Label Content="db/Rekesz" Width="200" FontSize="12" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0"/>
-            <TextBox x:Name="TB_NewMaxNumberInBox" Width="200" PreviewTextInput="NumberOnlyInput"/>
+            <TextBox x:Name="TB_NewMaxNumberInBox" Width="200" PreviewTextInput="NumberOnlyInput" GotFocus="TB_GotFocus_Reset"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="BTN_SaveNewPart" Content="Mentés" Margin="0 15 10 0" Width="170" Click="BTN_SaveNewPart_Click"/>
                 <Button x:Name="BTN_ClearNewPartForm" Content="×" Margin="0 15 0 0" Width="20" FontWeight="Bold" Background="Red" ToolTip="Clear" Click="BTN_ClearNewPartForm_Click"/>
