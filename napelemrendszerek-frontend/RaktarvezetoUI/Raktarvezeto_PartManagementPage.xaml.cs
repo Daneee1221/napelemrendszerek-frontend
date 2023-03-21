@@ -100,7 +100,9 @@ namespace napelemrendszerek_frontend
             parts = mainWindow.StartGetPartsProcess(); //use local list?
             LB_Parts.DataContext = parts;
 
-            //clear form
+            TB_NewPartName.Clear();
+            TB_NewMaxNumberInBox.Clear();
+            TB_NewSellPrice.Clear();
         }
 
         private void BTN_ClearNewPartForm_Click(object sender, RoutedEventArgs e)
