@@ -20,9 +20,11 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class loginPage : Page
     {
+        private MainWindow mainWindow;
         public loginPage()
         {
             InitializeComponent();
+            mainWindow = (MainWindow)Application.Current.MainWindow;
         }
 
         private void BTN_logInButton_Click(object sender, RoutedEventArgs e)
