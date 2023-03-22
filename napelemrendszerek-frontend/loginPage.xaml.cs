@@ -27,14 +27,14 @@ namespace napelemrendszerek_frontend
             mainWindow = (MainWindow)Application.Current.MainWindow;
         }
 
-        private void BTN_logInButton_Click(object sender, RoutedEventArgs e)
+        private async void BTN_logInButton_Click(object sender, RoutedEventArgs e)
         {
             TB_Response.Text = string.Empty;
             string username = TB_username.Text;
             string password = PB_password.Password;
 
-            string response = ((MainWindow)Application.Current.MainWindow).StartLoginProcess(username, password);
-            
+            string response = await mainWindow.StartLoginProcess(username, password);
+
             switch (response)
             {
                 case "nodata":

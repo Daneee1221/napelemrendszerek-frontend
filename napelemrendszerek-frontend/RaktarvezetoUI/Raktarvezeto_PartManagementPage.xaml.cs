@@ -32,7 +32,12 @@ namespace napelemrendszerek_frontend
             mainWindow = ((MainWindow)Application.Current.MainWindow);
             errorInputBackground = new SolidColorBrush(Color.FromScRgb(0.69f, 1f, 0.05f, 0.05f));
 
-            parts = mainWindow.StartGetPartsProcess();
+            loadPartsList();
+        }
+
+        private async void loadPartsList()
+        {
+            parts = await mainWindow.StartGetPartsProcess();
             LB_Parts.DataContext = parts;
         }
 
@@ -67,7 +72,7 @@ namespace napelemrendszerek_frontend
             TB_SellPrice.Background = null;
         }
 
-        private void BTN_SaveNewPart_Click(object sender, RoutedEventArgs e)
+        private async void BTN_SaveNewPart_Click(object sender, RoutedEventArgs e)
         {
             bool foundEmptyInput = false;
             if (TB_NewMaxNumberInBox.Text == "")
@@ -93,9 +98,9 @@ namespace napelemrendszerek_frontend
                 return;
             }
             Part newPart = new Part(TB_NewPartName.Text, Convert.ToInt32(TB_NewMaxNumberInBox.Text), Convert.ToInt32(TB_NewSellPrice.Text), 0);
-            string response = mainWindow.StartAddPartProcess(newPart); //switch-case -> display response to user
+            string response = await mainWindow.StartAddPartProcess(newPart); //switch-case -> display response to user
 
-            parts = mainWindow.StartGetPartsProcess(); //use local list?
+            parts = await mainWindow.StartGetPartsProcess(); //use local list?
             LB_Parts.DataContext = parts;
 
             TB_NewPartName.Clear();
@@ -128,7 +133,7 @@ namespace napelemrendszerek_frontend
             TB.Background = null;
         }
 
-        private void BTN_ModifyPart_Click(object sender, RoutedEventArgs e)
+        private async void BTN_ModifyPart_Click(object sender, RoutedEventArgs e)
         {
             if (LB_Parts.SelectedIndex == -1)
             {
@@ -175,9 +180,9 @@ namespace napelemrendszerek_frontend
                 return;
             }
 
-            mainWindow.StartModifyPartProcess(newValues);
+            string response = await mainWindow.StartModifyPartProcess(newValues);
 
-            parts = mainWindow.StartGetPartsProcess(); //use local list?
+            parts = await mainWindow.StartGetPartsProcess(); //use local list?
             LB_Parts.DataContext = parts;
         }
     }

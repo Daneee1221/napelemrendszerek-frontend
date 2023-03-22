@@ -29,23 +29,30 @@ namespace napelemrendszerek_frontend
         private Communication responseObject = new Communication();
         private int roleID = 0;
 
+        private Process process;
+
         public MainWindow()
         {
             InitializeComponent();
             
             FR_mainFrame.Source = new Uri("./loginPage.xaml", UriKind.RelativeOrAbsolute);
 
+            SocketClient.StartClient();
+            process = new Process();
+
             //Thread connThread = new Thread(StartClient);
             //connThread.Start();
         }
 
-        public string StartLoginProcess(string username, string password)
+        public async Task<string> StartLoginProcess(string username, string password)
         {
-            Thread connThread = new Thread(() => Login(username, password));
-            connThread.Start();
-            connThread.Join();
+            //Thread connThread = new Thread(() => Login(username, password));
+            //connThread.Start();
+            //connThread.Join();
 
-            if(responseObject.Message == "successful")
+            responseObject = await process.Login(username, password);
+
+            if (responseObject.Message == "successful")
             {
                 roleID = (int)responseObject.RoleId;
                 //load next page
@@ -65,13 +72,15 @@ namespace napelemrendszerek_frontend
             }
         }
 
-        public List<Part> StartGetPartsProcess()
+        public async Task<List<Part>> StartGetPartsProcess()
         {
             List<Part> parts = new List<Part>();
 
-            Thread connThread = new Thread(() => GetParts());
-            connThread.Start();
-            connThread.Join();
+            //Thread connThread = new Thread(() => GetParts());
+            //connThread.Start();
+            //connThread.Join();
+
+            responseObject = await process.GetParts(roleID);
 
             foreach (Dictionary<string, string> pair in responseObject.Content)
             {
@@ -81,54 +90,58 @@ namespace napelemrendszerek_frontend
             return parts;
         }
 
-        public string StartAddPartProcess(Part newPart)
+        public async Task<string> StartAddPartProcess(Part newPart)
         {
-            Thread connThread = new Thread(() => AddPart(newPart));
-            connThread.Start();
-            connThread.Join();
+            //Thread connThread = new Thread(() => AddPart(newPart));
+            //connThread.Start();
+            //connThread.Join();
+
+            responseObject = await process.AddPart(newPart, roleID);
 
             return responseObject.Message;
         }
 
-        public string StartModifyPartProcess(Dictionary<string, string> newValues)
+        public async Task<string> StartModifyPartProcess(Dictionary<string, string> newValues)
         {
-            Thread connThread = new Thread(() => ModifyPart(newValues));
-            connThread.Start();
-            connThread.Join();
+            //Thread connThread = new Thread(() => ModifyPart(newValues));
+            //connThread.Start();
+            //connThread.Join();
+
+            responseObject = await process.ModifyPart(newValues, roleID);
 
             return responseObject.Message;
         }
 
         private void ModifyPart(Dictionary<string, string> newValues)
         {
-            SocketClient.StartClient();
-            Process process = new Process();
-            responseObject = process.ModifyPart(newValues, roleID);
-            SocketClient.Close();
+            //SocketClient.StartClient();
+            //Process process = new Process();
+            //responseObject = process.ModifyPart(newValues, roleID);
+            //SocketClient.Close();
         }
 
         private void AddPart(Part newPart)
         {
-            SocketClient.StartClient();
-            Process process = new Process();
-            responseObject = process.AddPart(newPart, roleID);
-            SocketClient.Close();
+            //SocketClient.StartClient();
+            //Process process = new Process();
+            //responseObject = process.AddPart(newPart, roleID);
+            //SocketClient.Close();
         }
 
         private void Login(string username, string password)
         {
-            SocketClient.StartClient();
-            Process process = new Process();
-            responseObject = process.Login(username, password);
-            SocketClient.Close();
+            //SocketClient.StartClient();
+            //Process process = new Process();
+            //responseObject = process.Login(username, password);
+            //SocketClient.Close();
         }
 
         private void GetParts()
         {
-            SocketClient.StartClient();
-            Process process = new Process();
-            responseObject = process.GetParts(roleID);
-            SocketClient.Close();
+            //SocketClient.StartClient();
+            //Process process = new Process();
+            //responseObject = process.GetParts(roleID);
+            //SocketClient.Close();
         }
     }
 }
