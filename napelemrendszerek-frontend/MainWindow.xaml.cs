@@ -26,7 +26,6 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Communication responseObject = new Communication();
         private int roleID = 0;
 
         private Process process;
@@ -43,7 +42,7 @@ namespace napelemrendszerek_frontend
 
         public async Task<string> Login(string username, string password)
         {
-            responseObject = await process.Login(username, password);
+            Communication responseObject = await process.Login(username, password);
 
             if (responseObject.Message == "successful")
             {
@@ -69,7 +68,7 @@ namespace napelemrendszerek_frontend
         {
             List<Part> parts = new List<Part>();
 
-            responseObject = await process.GetParts(roleID);
+            Communication responseObject = await process.GetParts(roleID);
 
             foreach (Dictionary<string, string> pair in responseObject.Content)
             {
@@ -81,14 +80,14 @@ namespace napelemrendszerek_frontend
 
         public async Task<string> AddPart(Part newPart)
         {
-            responseObject = await process.AddPart(newPart, roleID);
+            Communication responseObject = await process.AddPart(newPart, roleID);
 
             return responseObject.Message;
         }
 
         public async Task<string> ModifyPart(Dictionary<string, string> newValues)
         {
-            responseObject = await process.ModifyPart(newValues, roleID);
+            Communication responseObject = await process.ModifyPart(newValues, roleID);
 
             return responseObject.Message;
         }
