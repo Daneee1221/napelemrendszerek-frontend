@@ -37,7 +37,7 @@ namespace napelemrendszerek_frontend
 
         private async void loadPartsList()
         {
-            parts = await mainWindow.StartGetPartsProcess();
+            parts = await mainWindow.GetParts();
             LB_Parts.DataContext = parts;
         }
 
@@ -98,9 +98,9 @@ namespace napelemrendszerek_frontend
                 return;
             }
             Part newPart = new Part(TB_NewPartName.Text, Convert.ToInt32(TB_NewMaxNumberInBox.Text), Convert.ToInt32(TB_NewSellPrice.Text), 0);
-            string response = await mainWindow.StartAddPartProcess(newPart); //switch-case -> display response to user
+            string response = await mainWindow.AddPart(newPart); //switch-case -> display response to user
 
-            parts = await mainWindow.StartGetPartsProcess(); //use local list?
+            parts = await mainWindow.GetParts(); //use local list?
             LB_Parts.DataContext = parts;
 
             TB_NewPartName.Clear();
@@ -180,9 +180,9 @@ namespace napelemrendszerek_frontend
                 return;
             }
 
-            string response = await mainWindow.StartModifyPartProcess(newValues);
+            string response = await mainWindow.ModifyPart(newValues);
 
-            parts = await mainWindow.StartGetPartsProcess(); //use local list?
+            parts = await mainWindow.GetParts(); //use local list?
             LB_Parts.DataContext = parts;
         }
     }

@@ -41,7 +41,7 @@ namespace napelemrendszerek_frontend
             process = new Process();
         }
 
-        public async Task<string> StartLoginProcess(string username, string password)
+        public async Task<string> Login(string username, string password)
         {
             responseObject = await process.Login(username, password);
 
@@ -65,7 +65,7 @@ namespace napelemrendszerek_frontend
             }
         }
 
-        public async Task<List<Part>> StartGetPartsProcess()
+        public async Task<List<Part>> GetParts()
         {
             List<Part> parts = new List<Part>();
 
@@ -79,14 +79,14 @@ namespace napelemrendszerek_frontend
             return parts;
         }
 
-        public async Task<string> StartAddPartProcess(Part newPart)
+        public async Task<string> AddPart(Part newPart)
         {
             responseObject = await process.AddPart(newPart, roleID);
 
             return responseObject.Message;
         }
 
-        public async Task<string> StartModifyPartProcess(Dictionary<string, string> newValues)
+        public async Task<string> ModifyPart(Dictionary<string, string> newValues)
         {
             responseObject = await process.ModifyPart(newValues, roleID);
 
