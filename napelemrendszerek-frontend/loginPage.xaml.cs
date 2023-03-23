@@ -21,10 +21,13 @@ namespace napelemrendszerek_frontend
     public partial class loginPage : Page
     {
         private MainWindow mainWindow;
+        private SolidColorBrush errorInputBackground;
+
         public loginPage()
         {
             InitializeComponent();
             mainWindow = (MainWindow)Application.Current.MainWindow;
+            errorInputBackground = new SolidColorBrush(Color.FromScRgb(0.69f, 1f, 0.05f, 0.05f));
         }
 
         private async void BTN_logInButton_Click(object sender, RoutedEventArgs e)
@@ -32,6 +35,24 @@ namespace napelemrendszerek_frontend
             TB_Response.Text = string.Empty;
             string username = TB_username.Text;
             string password = PB_password.Password;
+      
+            bool foundEmptyInput = false;
+            if(username == "")
+            {
+                TB_username.Background = errorInputBackground;
+                TB_Response.Text = "Mindkét mezőt kötelező kitölteni!";
+                foundEmptyInput = true;
+            }
+            if(password == "")
+            {
+                PB_password.Background = errorInputBackground;
+                TB_Response.Text = "Mindkét mezőt kötelező kitölteni!";
+                foundEmptyInput = true;
+            }
+            if(foundEmptyInput)
+            {
+                return;
+            }
 
             string response = await mainWindow.StartLoginProcess(username, password);
 
@@ -45,6 +66,36 @@ namespace napelemrendszerek_frontend
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void TB_GotFocus_Reset(object sender, RoutedEventArgs e)
+        {
+            if(!(sender is TextBox || sender is PasswordBox))
+            {
+                return;
+            }
+
+            TextBox TB;
+            PasswordBox PB;
+
+            if(sender is TextBox)
+            {
+                TB = sender as TextBox;
+                if(TB.Background == errorInputBackground)
+                {
+                    TB.Text = "";
+                    TB.Background = null;
+                }
+
+            }else
+            {
+                PB = sender as PasswordBox;
+                if (PB.Background == errorInputBackground)
+                {
+                    PB.Password = "";
+                    PB.Background = null;
+                }
             }
         }
     }
