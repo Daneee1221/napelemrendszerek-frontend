@@ -97,11 +97,20 @@ namespace napelemrendszerek_frontend
             {
                 return;
             }
+
+            BTN_SaveNewPart.IsEnabled = false;
+            BTN_ClearNewPartForm.IsEnabled = false;
+            BTN_SaveNewPart.Content = "Kis türelmet";
+
             Part newPart = new Part(TB_NewPartName.Text, Convert.ToInt32(TB_NewMaxNumberInBox.Text), Convert.ToInt32(TB_NewSellPrice.Text), 0);
-            string response = await mainWindow.AddPart(newPart); //switch-case -> display response to user
+            string response = await mainWindow.AddPart(newPart); //switch-case -> display response to user     
 
             parts = await mainWindow.GetParts(); //use local list?
             LB_Parts.DataContext = parts;
+
+            BTN_SaveNewPart.IsEnabled = true;
+            BTN_ClearNewPartForm.IsEnabled = true;
+            BTN_SaveNewPart.Content = "Mentés";
 
             TB_NewPartName.Clear();
             TB_NewMaxNumberInBox.Clear();
@@ -180,10 +189,18 @@ namespace napelemrendszerek_frontend
                 return;
             }
 
+            BTN_ModifyPart.IsEnabled = false;
+            BTN_ClearModifyForm.IsEnabled = false;
+            BTN_ModifyPart.Content = "Kis türelmet";
+
             string response = await mainWindow.ModifyPart(newValues);
 
             parts = await mainWindow.GetParts(); //use local list?
             LB_Parts.DataContext = parts;
+
+            BTN_ModifyPart.IsEnabled = true;
+            BTN_ClearModifyForm.IsEnabled = true;
+            BTN_ModifyPart.Content = "Módosítás";
         }
     }
 }
