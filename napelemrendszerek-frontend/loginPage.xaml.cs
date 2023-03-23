@@ -54,7 +54,13 @@ namespace napelemrendszerek_frontend
                 return;
             }
 
+            BTN_logInButton.IsEnabled = false;
+            BTN_logInButton.Content = "Kis türelmet";
+
             string response = await mainWindow.StartLoginProcess(username, password);
+
+            BTN_logInButton.IsEnabled = true;
+            BTN_logInButton.Content = "Belépés";
 
             switch (response)
             {
