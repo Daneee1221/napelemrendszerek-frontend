@@ -5,25 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:napelemrendszerek_frontend"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1400"
       Title="SzakemberProjektek" Background="white">
 
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Margin="10" Width="180" Background="LightGray">
+        <StackPanel HorizontalAlignment="Left" Margin="10" Background="LightGray">
 
             <StackPanel Orientation="Horizontal">
                 <Button Content="X" Click="Button_Click" Margin="10" Height="20"/>
-                <Label Content="Projektek" FontSize="15" Width="100" FontStyle="Italic" HorizontalContentAlignment="Center" Margin="0 5 0 0"/>
             </StackPanel>
+            <Label Content="Projektek" FontSize="25" FontStyle="Italic" HorizontalAlignment="Center" Margin="0 -30 0 0"/>
             
-            <ListBox x:Name="LB_projektekLista" Width="150" HorizontalAlignment="Center" Margin="10" Background="White" Height="375" ItemsSource="{Binding}">
+            <ListBox x:Name="LB_projektekLista" Width="250" HorizontalAlignment="Center" Margin="10" Background="White" Height="375" ItemsSource="{Binding}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding CustomerName}" Width="90" Margin="5 0 0 0"/>
-                            <TextBlock Text="{Binding ProjectLocation}" Width="90" Margin="5 0 0 0"/>
-                            <TextBlock Text="{Binding ProjectDescription}" Width="90" Margin="5 0 0 0"/>
-                            <TextBlock Text="{Binding ProjectStateId}" Width="90" Margin="5 0 0 0"/>
+                            <TextBlock Text="{Binding ProjectLocation}" FontSize="20" FontWeight="Medium" Margin="5 0 0 0"/>
+                            <TextBlock Text="{Binding CustomerName}" FontSize="16" Margin="15 0 0 0"/>
+                            <TextBlock Text="{Binding ProjectDescription}" FontSize="14" FontWeight="Light" FontStyle="Italic" Margin="15 0 0 0"/>
+                            <TextBlock Text="{Binding ProjectStateId}" Width="90" Margin="5 0 0 0"/> <!-- Kötőjellel a Hlyszín mellé?? -->
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
