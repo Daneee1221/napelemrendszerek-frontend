@@ -1,0 +1,43 @@
+﻿<Page x:Class="napelemrendszerek_frontend.SzakemberUgyfel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:napelemrendszerek_frontend"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1400"
+      Title="SzakemberUgyfel" Background="white">
+
+    <Grid>
+        <Label Content="Új ügyfél" FontSize="40" Margin="0 50 0 0" FontStyle="Italic" HorizontalAlignment="Center"/>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 30 0 0">
+            <Label Content="Teljes név" FontSize="15" Width="300" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0" Margin="0 20 0 0"/>
+            <TextBox x:Name="TB_name" Width="300" FontSize="22"/>
+
+            <Label Content="Cím" FontSize="15" Width="300" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0" Margin="0 10 0 0"/>
+            <TextBox x:Name="TB_cim" Width="300" FontSize="22"/>
+
+            <Label Content="Telefonszám" FontSize="15" Width="300" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0" Margin="0 10 0 0"/>
+            <TextBox x:Name="TB_telefonszam" Width="300" FontSize="22"/>
+
+            <Label Content="E-mail" FontSize="15" Width="300" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0" Margin="0 10 0 0"/>
+            <TextBox x:Name="TB_email" Width="300" FontSize="22"/>
+
+            <Label Content="Helyszín" FontSize="15" Width="300" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0" Margin="0 10 0 0"/>
+            <TextBox x:Name="TB_helyszin" Width="300" FontSize="22"/>
+
+            <Label Content="Leírás" FontSize="15" Width="300" FontWeight="Light" FontStyle="Italic" Padding="2 5 5 0" Margin="0 10 0 0"/>
+            <TextBox FontSize="22" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="80" x:Name="TB_leiras" Width="300" Margin="5"/>
+
+            <StackPanel Orientation="Horizontal" Margin="5 10">
+                <Button x:Name="BTN_ujUgyfelHozzaadas" Width="140" FontSize="25" Content="Hozzáad" Click="BTN_ujUgyfelHozzaadas_Click"/>
+                <Button x:Name="BTN_megse" Width="140" FontSize="25" Content="Mégse" Click="BTN_megse_Click" Margin="20 0 0 0"/>
+            </StackPanel>
+
+            <TextBlock x:Name="TB_ugyfelResponse" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Red"/>
+
+        </StackPanel>
+
+    </Grid>
+</Page>

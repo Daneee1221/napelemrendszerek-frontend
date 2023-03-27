@@ -8,19 +8,8 @@ namespace Comm
     class Process
     {
         public Process() { }
-        public void ReadAndWrite()
-        {
-            //string data = Console.ReadLine();
-            string data = "hardcodedData";
-            Communication commObject = new Communication();
 
-            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
-            Console.WriteLine("Sent request, waiting for response");
-            Communication dResponse = tsResponse.Result;
-            Console.WriteLine("Received response: " + dResponse);
-        }
-
-        public Communication Login(string username, string password)
+        public async Task<Communication> Login(string username, string password)
         {
             Communication commObject = new Communication();
             commObject.Message= "login";
@@ -33,12 +22,12 @@ namespace Comm
 
             Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");
-            Communication dResponse = tsResponse.Result;
+            Communication dResponse = await tsResponse;
 
             return dResponse;
         }
 
-        public Communication GetParts(int roleID)
+        public async Task<Communication> GetParts(int roleID)
         {
             Communication commObject = new Communication();
             commObject.Message = "getParts";
@@ -47,12 +36,12 @@ namespace Comm
 
             Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");
-            Communication dResponse = tsResponse.Result;
+            Communication dResponse = await tsResponse;
 
             return dResponse;
         }
 
-        public Communication AddPart(Part newPart, int roleID)
+        public async Task<Communication> AddPart(Part newPart, int roleID)
         {
             Communication commObject = new Communication();
             commObject.Message = "addPart";
@@ -61,12 +50,12 @@ namespace Comm
 
             Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");
-            Communication dResponse = tsResponse.Result;
+            Communication dResponse = await tsResponse;
 
             return dResponse;
         }
 
-        public Communication ModifyPart(Dictionary<string, string> newValues, int roleID)
+        public async Task<Communication> ModifyPart(Dictionary<string, string> newValues, int roleID)
         {
             Communication commObject = new Communication();
             commObject.Message = "modifyPart";
@@ -75,7 +64,7 @@ namespace Comm
 
             Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");
-            Communication dResponse = tsResponse.Result;
+            Communication dResponse = await tsResponse;
 
             return dResponse;
         }

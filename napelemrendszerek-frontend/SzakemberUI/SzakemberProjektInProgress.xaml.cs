@@ -24,5 +24,10 @@ namespace napelemrendszerek_frontend
         {
             InitializeComponent();
         }
+
+        private void BTN_megse_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
