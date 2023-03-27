@@ -137,12 +137,23 @@ namespace napelemrendszerek_frontend
                 return;
             }
             TextBox TB = (TextBox)sender;
-            if (TB.Background != errorInputBackground)
+            if (TB.Background == errorInputBackground)
             {
-                return;
+                TB.Text = "";
+                TB.Background = null;
             }
-            TB.Text = "";
-            TB.Background = null;
+
+            StackPanel parent = TB.Parent as StackPanel;
+            if(parent.Name == "SP_ModifyPartForm")
+            {
+                BTN_ModifyPart.IsDefault = true;
+                BTN_SaveNewPart.IsDefault = false;
+            }
+            else
+            {
+                BTN_ModifyPart.IsDefault = false;
+                BTN_SaveNewPart.IsDefault = true;
+            }
         }
 
         private async void BTN_ModifyPart_Click(object sender, RoutedEventArgs e)
