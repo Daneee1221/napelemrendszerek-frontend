@@ -26,6 +26,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Width="350" Margin="30 10">
                     <TextBlock Text="Alkatrészek:" Margin="0 5 0 15" FontSize="25" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
+                    
                     <ListBox x:Name="LB_Parts" Height="500" ItemsSource="{Binding}" SelectionChanged="LB_Parts_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -50,6 +51,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <TextBlock x:Name="TB_Loading" Text="Betöltés..." FontSize="30" FontWeight="Medium" Margin="0 -280 0 0" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel x:Name="SP_ModifyPartData" Orientation="Vertical" Margin="10" Width="370">
                     <TextBlock Text="Adatmódosítás:" Margin="5" FontSize="25" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>

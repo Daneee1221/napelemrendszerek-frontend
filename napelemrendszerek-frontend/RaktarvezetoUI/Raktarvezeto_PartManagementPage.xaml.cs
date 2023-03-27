@@ -37,7 +37,10 @@ namespace napelemrendszerek_frontend
 
         private async void loadPartsList()
         {
+
             parts = await mainWindow.GetParts();
+            StackPanel parent = LB_Parts.Parent as StackPanel;
+            parent.Children.Remove(TB_Loading);
             LB_Parts.DataContext = parts;
         }
 
