@@ -28,6 +28,8 @@ namespace napelemrendszerek_frontend
             InitializeComponent();
             mainWindow = (MainWindow)Application.Current.MainWindow;
             errorInputBackground = new SolidColorBrush(Color.FromScRgb(0.69f, 1f, 0.05f, 0.05f));
+
+            TB_username.Focus();
         }
 
         private async void BTN_logInButton_Click(object sender, RoutedEventArgs e)
