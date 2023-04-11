@@ -74,6 +74,9 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
                     BorderBrush = new SolidColorBrush(Colors.Gray),
                     BorderThickness = new Thickness(1)
                 };
+                border.MouseEnter += StackPanel_MouseEnter;
+                border.MouseLeave += StackPanel_MouseLeave;
+
                 StackPanel stackPanel = new StackPanel
                 {
                     Background = new SolidColorBrush(Colors.White),
@@ -82,6 +85,7 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
                     Height = 98
                 };
                 stackPanel.MouseLeftButtonDown += StackPanel_MouseLeftButtonDown;
+                
                 TextBlock TBname = new TextBlock
                 {
                     Text = "Napelem panel (500W)",
@@ -112,6 +116,26 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
                 border.Child = stackPanel;
                 WP_Compartments.Children.Add(border);
             }
+        }
+
+        private void StackPanel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            int childIndex = WP_Compartments.Children.IndexOf(sender as Border);
+            int rowIndex = childIndex % 5;
+            int columnIndex = childIndex / 5;
+            (SP_ColumnNumbers.Children[columnIndex] as TextBlock).Background = null;
+            (SP_RowNumbers.Children[rowIndex] as TextBlock).Background = null;
+            ((sender as Border).Child as StackPanel).Background = null;
+        }
+
+        private void StackPanel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            int childIndex = WP_Compartments.Children.IndexOf(sender as Border);
+            int rowIndex = childIndex % 5;
+            int columnIndex = childIndex / 5;
+            (SP_ColumnNumbers.Children[columnIndex] as TextBlock).Background = new SolidColorBrush(Color.FromRgb(170, 210, 230));
+            (SP_RowNumbers.Children[rowIndex] as TextBlock).Background = new SolidColorBrush(Color.FromRgb(170, 210, 230));
+            ((sender as Border).Child as StackPanel).Background = new SolidColorBrush(Color.FromRgb(170, 210, 230));
         }
 
         //Tesztkód!

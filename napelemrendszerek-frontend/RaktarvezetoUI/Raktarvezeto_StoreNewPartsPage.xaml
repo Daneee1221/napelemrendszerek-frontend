@@ -71,7 +71,7 @@
             </StackPanel>
             
             <!--Oszlopjelölők-->
-            <StackPanel x:Name="SP_ColumnNumbers" Grid.Column="1" Orientation="Horizontal" Width="900" HorizontalAlignment="Left" Margin="10 0 0 0">
+            <StackPanel x:Name="SP_ColumnNumbers" Grid.Column="1" Orientation="Horizontal" Width="900" HorizontalAlignment="Left">
                 <TextBlock Width="180" Text="1" FontSize="30" Padding="80 10 0 0"/>
                 <TextBlock Width="180" Text="2" FontSize="30" Padding="80 10 0 0"/>
                 <TextBlock Width="180" Text="3" FontSize="30" Padding="80 10 0 0"/>
@@ -80,7 +80,7 @@
             </StackPanel>
             
             <!--Polcok (180x100 px/rekesz)-->
-            <WrapPanel x:Name="WP_Compartments" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Height="500" Width="900" HorizontalAlignment="Left" Margin="10 0 0 0">
+            <WrapPanel x:Name="WP_Compartments" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Height="500" Width="900" HorizontalAlignment="Left">
                 
             </WrapPanel>
         </Grid>
