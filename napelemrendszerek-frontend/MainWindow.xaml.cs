@@ -34,7 +34,7 @@ namespace napelemrendszerek_frontend
         {
             InitializeComponent();
             
-            FR_mainFrame.Source = new Uri("./loginPage.xaml", UriKind.RelativeOrAbsolute);
+            FR_mainFrame.Source = new Uri("./SzakemberUI/SzakemberUgyfel.xaml", UriKind.RelativeOrAbsolute);
 
             SocketClient.StartClient();
             process = new Process();
@@ -88,6 +88,13 @@ namespace napelemrendszerek_frontend
         public async Task<string> ModifyPart(Dictionary<string, string> newValues)
         {
             Communication responseObject = await process.ModifyPart(newValues, roleID);
+
+            return responseObject.Message;
+        }
+
+        public async Task<string> AddNewProject(Project newProject)
+        {
+            Communication responseObject = await process.AddNewProject(newProject, 3);
 
             return responseObject.Message;
         }

@@ -21,10 +21,25 @@ namespace napelemrendszerek_backend.Models
         public DateTime? ClosedDate { get; set; }
         public string ProjectLocation { get; set; }
         public string ProjectDescription { get; set; }
-        public int WorkFee { get; set; }
-        public int EstimatedTimeInDays { get; set; }
+        public int? WorkFee { get; set; }
+        public int? EstimatedTimeInDays { get; set; }
+
+        public Project(string customerName, string customerAddress, string customerPhone, string customerEmail, string projectLocation, string projectDescription, string createdBy)
+        {
+            ProjectStateId = 1;
+            CreatedBy = createdBy;
+            CustomerName = customerName;
+            CustomerAddress = customerAddress;
+            CustomerPhone = customerPhone;
+            CustomerEmail = customerEmail;
+            StartDate = DateTime.Now;
+            LastModifiedDate = DateTime.Now;
+            ProjectLocation = projectLocation;
+            ProjectDescription = projectDescription;
+        }
 
         #region DictionaryConverter
+
         public Project(Dictionary<string, string> values)
         {
             ProjectId = Convert.ToInt32(values["ProjectId"]);
@@ -36,11 +51,33 @@ namespace napelemrendszerek_backend.Models
             CustomerEmail = values["CustomerEmail"];
             StartDate = Convert.ToDateTime(values["StartDate"]);
             LastModifiedDate = Convert.ToDateTime(values["LastModifiedDate"]);
-            ClosedDate = Convert.ToDateTime(values["ClosedDate"]);
+            if (values["ClosedDate"] == "")
+            {
+                ClosedDate = null;
+            }
+            else
+            {
+                ClosedDate = Convert.ToDateTime(values["ClosedDate"]);
+            }
             ProjectLocation = values["ProjectLocation"];
             ProjectDescription = values["ProjectDescription"];
-            WorkFee = Convert.ToInt32(values["WorkFee"]);
-            EstimatedTimeInDays = Convert.ToInt32(values["EstimatedTimeInDays"]);
+            if (values["WorkFee"] == "")
+            {
+                WorkFee = null;
+            }
+            else
+            {
+                WorkFee = Convert.ToInt32(values["WorkFee"]);
+            }
+
+            if (values["EstimatedTimeInDays"] == "")
+            {
+                EstimatedTimeInDays = null;
+            }
+            else
+            {
+                EstimatedTimeInDays = Convert.ToInt32(values["EstimatedTimeInDays"]);
+            }
         }
 
         public Dictionary<string, string> GetValues()
