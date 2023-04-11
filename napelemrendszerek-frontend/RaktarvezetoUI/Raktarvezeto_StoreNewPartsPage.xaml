@@ -26,8 +26,22 @@
         <!--Alkatrészlista-->
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Width="350" Orientation="Vertical" Margin="10">
             <TextBlock Text="Alkatrészek:" Margin="0 5 0 15" FontSize="25" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
-            <ListBox x:Name="LB_Parts" Height="600" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                
+            <ListBox x:Name="LB_Parts" Height="600" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding PartName}" FontSize="20"/>
+                            <TextBlock FontSize="18" FontWeight="Light" FontStyle="Italic" Margin="10 0 0 5">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="Raktáron kívül: {0} db">
+                                        <Binding Path="Amount"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <Separator Width="330"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
 

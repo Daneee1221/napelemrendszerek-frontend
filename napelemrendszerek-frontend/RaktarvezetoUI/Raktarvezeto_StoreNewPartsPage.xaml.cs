@@ -15,6 +15,18 @@ using System.Windows.Shapes;
 
 namespace napelemrendszerek_frontend.RaktarvezetoUI
 {
+    class TestClass
+    {
+        public string PartName { get; set; }
+        public int Amount { get; set; }
+
+        public TestClass(string partName, int amount)
+        {
+            this.PartName = partName;
+            this.Amount = amount;
+        }
+    }
+
     /// <summary>
     /// Interaction logic for Raktarvezeto__StoreNewPartsPage.xaml
     /// </summary>
@@ -23,6 +35,13 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
         public Raktarvezeto__StoreNewPartsPage()
         {
             InitializeComponent();
+            List<TestClass> parts = new List<TestClass>
+            {
+                new TestClass("Teszt Alkatrész 1", 12),
+                new TestClass("Teszt Alkatrész 2", 24),
+                new TestClass("Teszt Alkatrész 3", 8)
+            };
+            LB_Parts.DataContext = parts;
         }
 
         private void RowSelectorBTN_Click(object sender, RoutedEventArgs e)
