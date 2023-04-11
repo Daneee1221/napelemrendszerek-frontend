@@ -16,6 +16,7 @@
 
         <Menu>
             <MenuItem Header="Alkatrészek kezelése" FontSize="20" Height="40" Click="Menu_ManageParts_Click"/>
+            <MenuItem Header="Beérkezett alkatrészek rendszerezése" FontSize="20" Height="40" Click="Menu_StoreNewParts_Click"/>
         </Menu>
         <Frame x:Name="FR_RaktarosMainFrame" Grid.Row="1"/>
     </Grid>

@@ -27,7 +27,12 @@ namespace napelemrendszerek_frontend
 
         private void Menu_ManageParts_Click(object sender, RoutedEventArgs e)
         {
-            FR_RaktarosMainFrame.Source = new Uri("Raktarvezeto_PartManagementPage.xaml", UriKind.RelativeOrAbsolute);
+            FR_RaktarosMainFrame.Source = new Uri("./Raktarvezeto_PartManagementPage.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void Menu_StoreNewParts_Click(object sender, RoutedEventArgs e)
+        {
+            FR_RaktarosMainFrame.Source = new Uri("./Raktarvezeto_StoreNewPartsPage.xaml", UriKind.RelativeOrAbsolute);
         }
     }
 }

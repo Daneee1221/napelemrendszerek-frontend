@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="380"/>
@@ -53,7 +53,7 @@
         <!--Sor oldalnézete-->
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -72,11 +72,11 @@
             
             <!--Oszlopjelölők-->
             <StackPanel x:Name="SP_ColumnNumbers" Grid.Column="1" Orientation="Horizontal" Width="900" HorizontalAlignment="Left" Margin="10 0 0 0">
-                <TextBlock Width="180" Text="1" FontSize="30" Padding="80 20 0 0"/>
-                <TextBlock Width="180" Text="2" FontSize="30" Padding="80 20 0 0"/>
-                <TextBlock Width="180" Text="3" FontSize="30" Padding="80 20 0 0"/>
-                <TextBlock Width="180" Text="4" FontSize="30" Padding="80 20 0 0"/>
-                <TextBlock Width="180" Text="5" FontSize="30" Padding="80 20 0 0"/>
+                <TextBlock Width="180" Text="1" FontSize="30" Padding="80 10 0 0"/>
+                <TextBlock Width="180" Text="2" FontSize="30" Padding="80 10 0 0"/>
+                <TextBlock Width="180" Text="3" FontSize="30" Padding="80 10 0 0"/>
+                <TextBlock Width="180" Text="4" FontSize="30" Padding="80 10 0 0"/>
+                <TextBlock Width="180" Text="5" FontSize="30" Padding="80 10 0 0"/>
             </StackPanel>
             
             <!--Polcok (180x100 px/rekesz)-->
@@ -88,42 +88,42 @@
         <!--Sorválasztó-->
         <StackPanel x:Name="SP_RowSelector" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
             <TextBlock Text="Kiválasztott sor:" FontSize="25" VerticalAlignment="Center" Margin="40 0 30 0"/>
-            <Button x:Name="BTN_SelectRow1" Content="1" Width="100" Height="80" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
+            <Button x:Name="BTN_SelectRow1" Content="1" Width="100" Height="70" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="BTN_SelectRow2" Content="2" Width="100" Height="80" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
+            <Button x:Name="BTN_SelectRow2" Content="2" Width="100" Height="70" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="BTN_SelectRow3" Content="3" Width="100" Height="80" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
+            <Button x:Name="BTN_SelectRow3" Content="3" Width="100" Height="70" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="BTN_SelectRow4" Content="4" Width="100" Height="80" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
+            <Button x:Name="BTN_SelectRow4" Content="4" Width="100" Height="70" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="BTN_SelectRow5" Content="5" Width="100" Height="80" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
+            <Button x:Name="BTN_SelectRow5" Content="5" Width="100" Height="70" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="BTN_SelectRow6" Content="6" Width="100" Height="80" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
+            <Button x:Name="BTN_SelectRow6" Content="6" Width="100" Height="70" FontSize="40" Margin="20 0 0 0" Click="RowSelectorBTN_Click" BorderThickness="0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
