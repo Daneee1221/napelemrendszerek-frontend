@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace napelemrendszerek_frontend.RaktarvezetoUI
 {
@@ -35,6 +36,10 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
         public Raktarvezeto__StoreNewPartsPage()
         {
             InitializeComponent();
+
+            //1. Sor betöltése
+            RowSelectorBTN_Click(BTN_SelectRow1, new RoutedEventArgs());
+
             List<TestClass> parts = new List<TestClass>
             {
                 new TestClass("Teszt Alkatrész 1", 12),
@@ -46,7 +51,67 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
 
         private void RowSelectorBTN_Click(object sender, RoutedEventArgs e)
         {
+            WP_Compartments.Children.Clear();
 
+            Button btn = (Button)sender;
+            btn.IsEnabled = false;
+            StackPanel parent = btn.Parent as StackPanel;
+            foreach (FrameworkElement element in parent.Children)
+            {
+                if (element is Button && element.Name != btn.Name)
+                {
+                    element.IsEnabled = true;
+                }
+            }
+            int selectedShelf = parent.Children.IndexOf(btn);
+            //adott sort lekérni a backendtől -> outer join, hogy minden compartment benne legyen ami a sorba tartozik
+
+            for (int i = 0; i < 25; i++) // majd foreach lesz egyszer
+            {
+                //TODO -> HardCoded cuccokat kibombázni
+                Border border = new Border
+                {
+                    BorderBrush = new SolidColorBrush(Colors.Gray),
+                    BorderThickness = new Thickness(1)
+                };
+                StackPanel stackPanel = new StackPanel
+                {
+                    Background = new SolidColorBrush(Colors.White),
+                    Orientation = Orientation.Vertical,
+                    Width = 178,
+                    Height = 98
+                };
+                stackPanel.MouseLeftButtonDown += StackPanel_MouseLeftButtonDown;
+                TextBlock TBname = new TextBlock
+                {
+                    Text = "Napelem panel (500W)",
+                    FontSize = 16,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(0, 5, 0, 0)
+                };
+                TextBlock TBamount = new TextBlock
+                {
+                    Text = "2 / " + selectedShelf,
+                    FontSize = 25,
+                    FontWeight = FontWeights.Light,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(0, 10, 0, 0)
+                };
+                TextBlock TBboxId = new TextBlock
+                {
+                    Text = "BoxID: A1-1",
+                    FontSize = 12,
+                    FontWeight = FontWeights.Medium,
+                    Foreground = new SolidColorBrush(Colors.DimGray),
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    Margin = new Thickness(0, 10, 5, 0)
+                };
+                stackPanel.Children.Add(TBname);
+                stackPanel.Children.Add(TBamount);
+                stackPanel.Children.Add(TBboxId);
+                border.Child = stackPanel;
+                WP_Compartments.Children.Add(border);
+            }
         }
 
         //Tesztkód!
