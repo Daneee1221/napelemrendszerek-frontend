@@ -53,6 +53,12 @@ namespace napelemrendszerek_frontend
                     case 1:
                         FR_mainFrame.Source = new Uri("./RaktarvezetoUI/RaktarvezetoBasePage.xaml", UriKind.RelativeOrAbsolute);
                         break;
+                    case 2:
+                        FR_mainFrame.Source = new Uri("./RaktarosUI/RaktarosUI.xaml", UriKind.RelativeOrAbsolute);
+                        break;
+                    case 3:
+                        FR_mainFrame.Source = new Uri("./SzakemberUI/Szakember.xaml", UriKind.RelativeOrAbsolute);
+                        break;
                     default:
                         break;
                 }
@@ -88,6 +94,13 @@ namespace napelemrendszerek_frontend
         public async Task<string> ModifyPart(Dictionary<string, string> newValues)
         {
             Communication responseObject = await process.ModifyPart(newValues, roleID);
+
+            return responseObject.Message;
+        }
+
+        public async Task<string> AddNewProject(Project newProject)
+        {
+            Communication responseObject = await process.AddNewProject(newProject, 3);
 
             return responseObject.Message;
         }

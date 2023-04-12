@@ -15,10 +15,10 @@
         </Grid.RowDefinitions>
 
         <Menu>
-            <MenuItem Header="Új ügyfél" FontSize="20" Height="40"/>
-            <MenuItem Header="Projektek" FontSize="20" Height="40"/>
+            <MenuItem Header="Új ügyfél" FontSize="20" Height="40" Click="Menu_NewCustomer"/>
+            <MenuItem Header="Projektek" FontSize="20" Height="40" Margin="10 0 0 0" Click="Menu_Projects"/>
         </Menu>
 
-        <Frame Grid.Row="1"/>
+        <Frame x:Name="FR_SzakemberMainFrame" Grid.Row="1"/>
     </Grid>
 </Page>
