@@ -101,6 +101,7 @@ namespace napelemrendszerek_frontend
                     TB_ugyfelResponse.Text = "Sikeres rögzítés";
                     break;
                 case "already exists":
+                    TB_ugyfelResponse.Text = "Az ügyfél már szerepel a rendszerben!";
                     break;
             }
         }
