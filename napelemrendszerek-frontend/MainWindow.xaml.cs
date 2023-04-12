@@ -104,5 +104,19 @@ namespace napelemrendszerek_frontend
 
             return responseObject.Message;
         }
+
+        public async Task<List<Project>> GetProjects()
+        {
+            List<Project> projects = new List<Project>();
+
+            Communication responseObject = await process.GetProjects(roleID);
+
+            foreach (Dictionary<string, string> pair in responseObject.Content)
+            {
+                projects.Add(new Project(pair));
+            }
+
+            return projects;
+        }
     }
 }
