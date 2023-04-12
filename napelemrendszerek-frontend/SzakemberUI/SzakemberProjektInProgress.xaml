@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:napelemrendszerek_frontend"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1100"
+      d:DesignHeight="760" d:DesignWidth="1100"
       Title="SzakemberProjektInProgress" Background="White">
 
     <Grid>
