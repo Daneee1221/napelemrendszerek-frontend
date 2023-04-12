@@ -26,7 +26,7 @@
         <!--Alkatrészlista-->
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Width="350" Orientation="Vertical" Margin="10">
             <TextBlock Text="Alkatrészek:" Margin="0 5 0 15" FontSize="25" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
-            <ListBox x:Name="LB_Parts" Height="600" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding}">
+            <ListBox x:Name="LB_Parts" Height="570" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding}" SelectionChanged="LB_Parts_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
