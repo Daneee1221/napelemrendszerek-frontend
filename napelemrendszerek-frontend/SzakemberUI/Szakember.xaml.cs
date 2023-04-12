@@ -24,5 +24,15 @@ namespace napelemrendszerek_frontend
         {
             InitializeComponent();
         }
+
+        private void Menu_NewCustomer(object sender, RoutedEventArgs e)
+        {
+            FR_SzakemberMainFrame.Source = new Uri("./SzakemberUgyfel.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void Menu_Projects(object sender, RoutedEventArgs e)
+        {
+            FR_SzakemberMainFrame.Source = new Uri("./SzakemberProjektUj.xaml", UriKind.RelativeOrAbsolute);
+        }
     }
 }
