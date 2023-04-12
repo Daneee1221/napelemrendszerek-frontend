@@ -34,7 +34,7 @@ namespace napelemrendszerek_frontend
         {
             InitializeComponent();
             
-            FR_mainFrame.Source = new Uri("./SzakemberUI/SzakemberUgyfel.xaml", UriKind.RelativeOrAbsolute);
+            FR_mainFrame.Source = new Uri("./loginPage.xaml", UriKind.RelativeOrAbsolute);
 
             SocketClient.StartClient();
             process = new Process();
@@ -52,6 +52,12 @@ namespace napelemrendszerek_frontend
                 {
                     case 1:
                         FR_mainFrame.Source = new Uri("./RaktarvezetoUI/RaktarvezetoBasePage.xaml", UriKind.RelativeOrAbsolute);
+                        break;
+                    case 2:
+                        FR_mainFrame.Source = new Uri("./RaktarosUI/RaktarosUI.xaml", UriKind.RelativeOrAbsolute);
+                        break;
+                    case 3:
+                        FR_mainFrame.Source = new Uri("./SzakemberUI/Szakember.xaml", UriKind.RelativeOrAbsolute);
                         break;
                     default:
                         break;
