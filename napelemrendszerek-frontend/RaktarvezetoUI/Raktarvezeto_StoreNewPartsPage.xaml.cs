@@ -155,7 +155,7 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
             SP.Background = hoverBrush;
         }
 
-        private void SetCompartmentColors()
+        private void SetCompartmentColors() //TODO Menteni a cellák állapotát sorváltás miatt!
         {
             if (LB_Parts.SelectedIndex == -1)
             {

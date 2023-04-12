@@ -24,9 +24,9 @@
         <Separator Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="20 0"/>
         
         <!--Alkatrészlista-->
-        <StackPanel Grid.Row="1" Grid.RowSpan="2" Width="350" Orientation="Vertical" Margin="10">
+        <StackPanel Grid.Row="1" Width="350" Orientation="Vertical" Margin="10">
             <TextBlock Text="Alkatrészek:" Margin="0 5 0 15" FontSize="25" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
-            <ListBox x:Name="LB_Parts" Height="570" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding}" SelectionChanged="LB_Parts_SelectionChanged">
+            <ListBox x:Name="LB_Parts" Height="470" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding}" SelectionChanged="LB_Parts_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
@@ -44,6 +44,9 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
+        
+        <!--Mentés gomb-->
+        <Button Grid.Row="2" Content="Mentés" FontSize="25" Width="150" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 20"/>
 
         <!--Vertical separator-->
         <StackPanel Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20" Grid.Row="1">
