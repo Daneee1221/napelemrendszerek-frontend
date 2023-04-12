@@ -32,7 +32,7 @@ namespace napelemrendszerek_frontend
 
         private void Menu_Projects(object sender, RoutedEventArgs e)
         {
-            FR_SzakemberMainFrame.Source = new Uri("./SzakemberProjektUj.xaml", UriKind.RelativeOrAbsolute);
+            FR_SzakemberMainFrame.Source = new Uri("./SzakemberProjektek.xaml", UriKind.RelativeOrAbsolute);
         }
     }
 }
