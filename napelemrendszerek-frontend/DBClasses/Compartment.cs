@@ -23,6 +23,7 @@ namespace napelemrendszerek_backend.Models
             CompartmentRow = Convert.ToInt32(values["CompartmentRow"]);
             CompartmentCulomn = Convert.ToInt32(values["CompartmentCulomn"]);
             CompartmentCell = Convert.ToInt32(values["CompartmentCell"]);
+            StoredAmount = Convert.ToInt32(values["StoredAmount"]);
             StoredPartName = values["StoredPartName"];
         }
 
@@ -34,6 +35,7 @@ namespace napelemrendszerek_backend.Models
                 { "CompartmentRow", CompartmentRow.ToString() },
                 { "CompartmentCulomn", CompartmentCulomn.ToString() },
                 { "CompartmentCell", CompartmentCell.ToString() },
+                { "StoredAmount", StoredAmount.ToString() },
                 { "StoredPartName", StoredPartName }
             };
 
