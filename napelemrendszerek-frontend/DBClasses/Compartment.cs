@@ -9,9 +9,9 @@ namespace napelemrendszerek_backend.Models
 {
     public partial class Compartment
     {
-        public int CompartmentId { get; set; }
+        public string CompartmentId { get; set; }
         public int CompartmentRow { get; set; }
-        public int CompartmentCulomn { get; set; }
+        public int CompartmentColumn { get; set; }
         public int CompartmentCell { get; set; }
         public int StoredAmount { get; set; }
         public string StoredPartName { get; set; }
@@ -19,9 +19,9 @@ namespace napelemrendszerek_backend.Models
         #region DictionaryConverter
         public Compartment(Dictionary<string, string> values)
         {
-            CompartmentId = Convert.ToInt32(values["CompartmentId"]);
+            CompartmentId = values["CompartmentId"];
             CompartmentRow = Convert.ToInt32(values["CompartmentRow"]);
-            CompartmentCulomn = Convert.ToInt32(values["CompartmentCulomn"]);
+            CompartmentColumn = Convert.ToInt32(values["CompartmentColumn"]);
             CompartmentCell = Convert.ToInt32(values["CompartmentCell"]);
             StoredAmount = Convert.ToInt32(values["StoredAmount"]);
             StoredPartName = values["StoredPartName"];
@@ -31,9 +31,9 @@ namespace napelemrendszerek_backend.Models
         {
             Dictionary<string, string> values = new Dictionary<string, string>
             {
-                { "CompartmentId", CompartmentId.ToString() },
+                { "CompartmentId", CompartmentId },
                 { "CompartmentRow", CompartmentRow.ToString() },
-                { "CompartmentCulomn", CompartmentCulomn.ToString() },
+                { "CompartmentColumn", CompartmentColumn.ToString() },
                 { "CompartmentCell", CompartmentCell.ToString() },
                 { "StoredAmount", StoredAmount.ToString() },
                 { "StoredPartName", StoredPartName }
