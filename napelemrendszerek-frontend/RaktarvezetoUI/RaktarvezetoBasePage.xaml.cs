@@ -30,10 +30,10 @@ namespace napelemrendszerek_frontend
 
             mainWindow = (MainWindow)Application.Current.MainWindow;
 
-            CheckForUnaccocatedParts();
+            _ = CheckForUnaccocatedParts();
         }
 
-        private async void CheckForUnaccocatedParts()
+        private async Task CheckForUnaccocatedParts()
         {
             bool foundUnallocatedParts = await mainWindow.CheckForUnaccocatedParts();
 
@@ -46,9 +46,9 @@ namespace napelemrendszerek_frontend
             }
         }
 
-        private void Menu_ManageParts_Click(object sender, RoutedEventArgs e)
+        private async void Menu_ManageParts_Click(object sender, RoutedEventArgs e)
         {
-            //CheckForUnaccocatedParts(); //Meg kéne várni az eredményt, de voidra nincs await
+            await CheckForUnaccocatedParts();
             FR_RaktarosMainFrame.Source = new Uri("./Raktarvezeto_PartManagementPage.xaml", UriKind.RelativeOrAbsolute);
         }
 
