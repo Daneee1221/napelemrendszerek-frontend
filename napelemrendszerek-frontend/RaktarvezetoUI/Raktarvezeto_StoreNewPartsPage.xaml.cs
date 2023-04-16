@@ -343,7 +343,7 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
                 BTN_save.Content = "Sikeres mentés!";
                 BTN_save.Foreground = new SolidColorBrush(Colors.Green);
             }
-            await Task.Delay(2500);
+            await Task.Delay(1500);
             BTN_save.IsEnabled = true;
             BTN_save.Foreground = new SolidColorBrush(Colors.Black);
             BTN_save.Content = "Mentés";
