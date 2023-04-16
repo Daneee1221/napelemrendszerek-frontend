@@ -197,9 +197,9 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
             SP.Background = hoverBrush;
         }
 
-        private void SetCompartmentColors()
+        private void SetCompartmentColors(SolidColorBrush color = null)
         {
-            if (LB_Parts.SelectedIndex == -1)
+            if (LB_Parts.SelectedIndex == -1 && color == null)
             {
                 return;
             }
@@ -210,6 +210,12 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
                 FrameworkElement element = WP_Compartments.Children[i] as FrameworkElement;
 
                 StackPanel stackPanel = (element as Border).Child as StackPanel;
+
+                if (color != null)//kapott színnel színez mindent
+                {
+                    stackPanel.Background = color;
+                    continue;
+                }
 
                 if ((LB_Parts.SelectedItem as Part).PartName == filteredCompartments[i].PartName) // alkatrész stimmel
                 {
@@ -244,6 +250,8 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
                 TB_PartListTitle.Text = "Válassz a listából!";
                 TB_PartListTitle.FontStyle = FontStyles.Normal;
                 TB_PartListTitle.FontWeight = FontWeights.Normal;
+                SetCompartmentColors(unselectableBrush);
+                lastBrush = unselectableBrush;//hover effekt jó színre állítsa vissza a panelt
                 return;
             }
 
