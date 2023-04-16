@@ -67,6 +67,9 @@
     <Compile Include="RaktarvezetoUI\RaktarvezetoBasePage.xaml.cs">
       <DependentUpon>RaktarvezetoBasePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RaktarvezetoUI\Raktarvezeto_StoreNewPartsPage.xaml.cs">
+      <DependentUpon>Raktarvezeto_StoreNewPartsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RaktarvezetoUI\Raktarvezeto_PartManagementPage.xaml.cs">
       <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RaktarvezetoUI\RaktarvezetoBasePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RaktarvezetoUI\Raktarvezeto_StoreNewPartsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +190,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\clearBTN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\alert.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

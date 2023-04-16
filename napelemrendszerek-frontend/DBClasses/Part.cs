@@ -12,14 +12,14 @@ namespace napelemrendszerek_backend.Models
         public string PartName { get; set; }
         public int MaxNumberInBox { get; set; }
         public int SellPrice { get; set; }
-        public int NumberAvailable { get; set; }
+        public int Unallocated { get; set; }
 
-        public Part(string partName, int maxNumberInBox, int sellPrice, int numberAvailable)
+        public Part(string partName, int maxNumberInBox, int sellPrice, int unallocated)
         {
             PartName = partName;
             MaxNumberInBox = maxNumberInBox;
             SellPrice = sellPrice;
-            NumberAvailable = numberAvailable;
+            Unallocated = unallocated;
         }
 
         #region DictionaryConverter
@@ -28,7 +28,7 @@ namespace napelemrendszerek_backend.Models
             PartName = values["PartName"];
             MaxNumberInBox = Convert.ToInt32(values["MaxNumberInBox"]);
             SellPrice = Convert.ToInt32(values["SellPrice"]);
-            NumberAvailable = Convert.ToInt32(values["NumberAvailable"]);
+            Unallocated = Convert.ToInt32(values["Unallocated"]);
         }
 
         public Dictionary<string, string> GetValues()
@@ -38,7 +38,7 @@ namespace napelemrendszerek_backend.Models
                 { "PartName", PartName },
                 { "MaxNumberInBox", MaxNumberInBox.ToString() },
                 { "SellPrice", SellPrice.ToString() },
-                { "NumberAvailable", NumberAvailable.ToString() },
+                { "Unallocated", Unallocated.ToString() },
             };
 
             return values;
