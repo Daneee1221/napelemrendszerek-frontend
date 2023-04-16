@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -76,7 +77,6 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
 
             loadCompartmentsAndParts();
             //TODO
-            //feedback a mentés után
             //Alert on load (to the menu bar)
             //
             //alert to save before quit???
@@ -326,7 +326,19 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
 
         private async void BTN_save_Click(object sender, RoutedEventArgs e)
         {
+            BTN_save.IsEnabled = false;
+            BTN_save.Content = "Kis türelmet";
             string res = await mainWindow.SendChangedCompartments(changedCompartments);
+
+            if (res == "successful")
+            {
+                BTN_save.Content = "Sikeres mentés!";
+                BTN_save.Foreground = new SolidColorBrush(Colors.Green);
+            }
+            await Task.Delay(2500);
+            BTN_save.IsEnabled = true;
+            BTN_save.Foreground = new SolidColorBrush(Colors.Black);
+            BTN_save.Content = "Mentés";
         }
     }
 }
