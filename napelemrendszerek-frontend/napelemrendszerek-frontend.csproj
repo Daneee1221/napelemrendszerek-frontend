@@ -191,5 +191,8 @@
   <ItemGroup>
     <Resource Include="img\clearBTN.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\alert.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

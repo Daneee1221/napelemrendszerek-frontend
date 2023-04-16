@@ -114,5 +114,19 @@ namespace Comm
 
             return dResponse;
         }
+
+        public async Task<Communication> CheckForUnaccocatedParts(int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "getUnallocatedStatus";
+            commObject.RoleId = roleID;
+            commObject.addItemToContent(new Dictionary<string, string>());
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = await tsResponse;
+
+            return dResponse;
+        }
     }
 }

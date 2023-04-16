@@ -120,5 +120,18 @@ namespace napelemrendszerek_frontend
 
             return responseObject.Message;
         }
+
+        public async Task<bool> CheckForUnaccocatedParts()
+        {
+            bool foundUnallocatedParts = false;
+            Communication responseObject = await process.CheckForUnaccocatedParts(roleID);
+
+            if (responseObject.Message == "successful")
+            {
+                foundUnallocatedParts = Convert.ToBoolean(responseObject.Content[0]["isThereUnallocated"]);
+            }
+
+            return foundUnallocatedParts;
+        }
     }
 }
