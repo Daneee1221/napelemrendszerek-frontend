@@ -76,10 +76,6 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
             changedCompartments = new List<CompartmentWithPart>();
 
             loadCompartmentsAndParts();
-            //TODO
-            //Alert on load (to the menu bar)
-            //
-            //alert to save before quit???
         }
 
         private async void loadCompartmentsAndParts()
