@@ -24,7 +24,7 @@
         <Separator Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="20 0"/>
         
         <!--Alkatrészlista-->
-        <StackPanel Grid.Row="1" Width="350" Orientation="Vertical" Margin="10">
+        <StackPanel x:Name="SP_PartList" Grid.Row="1" Width="350" Orientation="Vertical" Margin="10">
             <TextBlock x:Name="TB_PartListTitle" Text="Alkatrészek:" Margin="0 5 0 15" FontSize="25" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
             <ListBox x:Name="LB_Parts" Height="470" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding}" SelectionChanged="LB_Parts_SelectionChanged">
                 <ListBox.ItemTemplate>
@@ -43,6 +43,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <TextBlock x:Name="TB_ListLoading" Text="Betöltés..." FontSize="30" FontWeight="Medium" Margin="0 -270 0 0" HorizontalAlignment="Center"/>
         </StackPanel>
         
         <!--Mentés gomb-->
@@ -84,7 +85,7 @@
             
             <!--Polcok (180x100 px/rekesz)-->
             <WrapPanel x:Name="WP_Compartments" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Height="500" Width="900" HorizontalAlignment="Left">
-                
+                <TextBlock x:Name="TB_WrapLoading" Text="Betöltés..." FontSize="40" FontWeight="Medium" Margin="360 220 0 0"/>
             </WrapPanel>
         </Grid>
         

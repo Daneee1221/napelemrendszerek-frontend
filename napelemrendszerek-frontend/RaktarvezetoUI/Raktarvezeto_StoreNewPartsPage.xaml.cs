@@ -81,6 +81,7 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
         private async void loadCompartmentsAndParts()
         {
             parts = await mainWindow.GetUnallocatedParts();
+            SP_PartList.Children.Remove(TB_ListLoading);
             LB_Parts.DataContext = parts;
 
             List<Dictionary<string, string>> responseList = await mainWindow.GetCompartments();
