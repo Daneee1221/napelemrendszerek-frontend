@@ -1,4 +1,5 @@
 ﻿using napelemrendszerek_backend.Models;
+using napelemrendszerek_frontend.RaktarvezetoUI;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -61,6 +62,51 @@ namespace Comm
             commObject.Message = "modifyPart";
             commObject.addItemToContent(newValues);
             commObject.RoleId = roleID;
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = await tsResponse;
+
+            return dResponse;
+        }
+
+        public async Task<Communication> GetCompartments(int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "getAllCompartments";
+            commObject.RoleId = roleID;
+            commObject.addItemToContent(new Dictionary<string, string>());
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = await tsResponse;
+
+            return dResponse;
+        }
+
+        public async Task<Communication> GetUnallocatedParts(int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "getUnallocatedParts";
+            commObject.RoleId = roleID;
+            commObject.addItemToContent(new Dictionary<string, string>());
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = await tsResponse;
+
+            return dResponse;
+        }
+
+        public async Task<Communication> SendChangedCompartments(List<CompartmentWithPart> changedCompartments, int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "modifyCompartment";
+            commObject.RoleId = roleID;
+            foreach (CompartmentWithPart compartment in changedCompartments)
+            {
+                commObject.addItemToContent(compartment.GetValues());
+            }
 
             Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");

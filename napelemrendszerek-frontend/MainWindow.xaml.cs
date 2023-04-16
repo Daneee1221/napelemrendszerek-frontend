@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 
 using Comm;
 using napelemrendszerek_backend.Models;
+using napelemrendszerek_frontend.RaktarvezetoUI;
 
 namespace napelemrendszerek_frontend
 {
@@ -88,6 +89,34 @@ namespace napelemrendszerek_frontend
         public async Task<string> ModifyPart(Dictionary<string, string> newValues)
         {
             Communication responseObject = await process.ModifyPart(newValues, roleID);
+
+            return responseObject.Message;
+        }
+
+        public async Task<List<Dictionary<string, string>>> GetCompartments()
+        {
+            Communication responseObject = await process.GetCompartments(roleID);
+
+            return responseObject.Content;
+        }
+
+        public async Task<List<Part>> GetUnallocatedParts()
+        {
+            List<Part> parts = new List<Part>();
+
+            Communication responseObject = await process.GetUnallocatedParts(roleID);
+
+            foreach (Dictionary<string, string> pair in responseObject.Content)
+            {
+                parts.Add(new Part(pair));
+            }
+
+            return parts;
+        }
+
+        public async Task<string> SendChangedCompartments(List<CompartmentWithPart> changedCompartments)
+        {
+            Communication responseObject = await process.SendChangedCompartments(changedCompartments, roleID);
 
             return responseObject.Message;
         }
