@@ -1,4 +1,4 @@
-﻿using napelemrendszerek_backend.Models;
+using napelemrendszerek_backend.Models;
 using napelemrendszerek_frontend.RaktarvezetoUI;
 using System;
 using System.Collections.Generic;
@@ -107,6 +107,14 @@ namespace Comm
             {
                 commObject.addItemToContent(compartment.GetValues());
             }
+        }
+        
+        public async Task<Communication> AddNewProject(Project newProject, int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "addProject";
+            commObject.addItemToContent(newProject.GetValues());
+            commObject.RoleId = roleID;
 
             Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");
@@ -119,6 +127,12 @@ namespace Comm
         {
             Communication commObject = new Communication();
             commObject.Message = "getUnallocatedStatus";
+        }
+        
+        public async Task<Communication> GetProjects(int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "getAllProjects";
             commObject.RoleId = roleID;
             commObject.addItemToContent(new Dictionary<string, string>());
 

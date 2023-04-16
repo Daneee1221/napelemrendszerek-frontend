@@ -54,6 +54,12 @@ namespace napelemrendszerek_frontend
                     case 1:
                         FR_mainFrame.Source = new Uri("./RaktarvezetoUI/RaktarvezetoBasePage.xaml", UriKind.RelativeOrAbsolute);
                         break;
+                    case 2:
+                        FR_mainFrame.Source = new Uri("./RaktarosUI/RaktarosUI.xaml", UriKind.RelativeOrAbsolute);
+                        break;
+                    case 3:
+                        FR_mainFrame.Source = new Uri("./SzakemberUI/Szakember.xaml", UriKind.RelativeOrAbsolute);
+                        break;
                     default:
                         break;
                 }
@@ -132,6 +138,27 @@ namespace napelemrendszerek_frontend
             }
 
             return foundUnallocatedParts;
+        }
+        
+        public async Task<string> AddNewProject(Project newProject)
+        {
+            Communication responseObject = await process.AddNewProject(newProject, 3);
+
+            return responseObject.Message;
+        }
+
+        public async Task<List<Project>> GetProjects()
+        {
+            List<Project> projects = new List<Project>();
+
+            Communication responseObject = await process.GetProjects(roleID);
+
+            foreach (Dictionary<string, string> pair in responseObject.Content)
+            {
+                projects.Add(new Project(pair));
+            }
+
+            return projects;
         }
     }
 }

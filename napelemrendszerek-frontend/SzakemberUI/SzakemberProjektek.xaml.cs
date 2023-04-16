@@ -21,26 +21,49 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class SzakemberProjektek : Page
     {
+        private List<Project> projects;
+        private MainWindow mainWindow;
+
         public SzakemberProjektek()
         {
             InitializeComponent();
+            mainWindow = ((MainWindow)Application.Current.MainWindow);
 
-            //List<Project> listProject = new List<Project>();
-            //listProject.Add(new Project(1, "Valaki", "Valahol", "asd"));
-            //listProject.Add(new Project(2, "Valaki2", "Valahol2", "asd2"));
-
-            //LB_projektekLista.DataContext = listProject;
-
+            loadProjectsList();
         }
 
-        private void BTN_megse_Click(object sender, RoutedEventArgs e)
+        public async void loadProjectsList()
         {
-
+            projects = await mainWindow.GetProjects();
+            LB_projektekLista.DataContext = projects;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LB_projektekLista_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Project selectedProject = (Project)LB_projektekLista.SelectedItem;
 
+            int status = selectedProject.ProjectStateId;
+
+            switch(status)
+            {
+                case 1:
+                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektUj.xaml", UriKind.RelativeOrAbsolute);
+                    break;
+                case 2:
+                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektUj.xaml", UriKind.RelativeOrAbsolute);
+                    break;
+                case 3:
+                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektekWaitScheduled.xaml", UriKind.RelativeOrAbsolute);
+                    break;
+                case 4:
+                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektekWaitScheduled.xaml", UriKind.RelativeOrAbsolute);
+                    break;
+                case 5:
+                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektInProgress.xaml", UriKind.RelativeOrAbsolute);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
