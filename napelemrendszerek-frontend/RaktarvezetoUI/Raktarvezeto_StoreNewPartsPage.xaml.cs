@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -75,7 +76,6 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
 
             loadCompartmentsAndParts();
             //TODO
-            //Ha kattint, de nincs kiválasztva semmi, akkor kis visual feedback kéne, hogy a listából válasszon
             //feedback a mentés után
             //Alert on load (to the menu bar)
             //
@@ -239,6 +239,11 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
         {
             if (LB_Parts.SelectedIndex == -1)
             {
+                LB_Parts.Background = new SolidColorBrush(Color.FromRgb(227, 113, 104));
+                TB_PartListTitle.Foreground = new SolidColorBrush(Colors.Red);
+                TB_PartListTitle.Text = "Válassz a listából!";
+                TB_PartListTitle.FontStyle = FontStyles.Normal;
+                TB_PartListTitle.FontWeight = FontWeights.Normal;
                 return;
             }
 
@@ -311,6 +316,11 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
 
         private void LB_Parts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            LB_Parts.Background = new SolidColorBrush(Colors.White);
+            TB_PartListTitle.Foreground = new SolidColorBrush(Colors.Black);
+            TB_PartListTitle.Text = "Alkatrészek:";
+            TB_PartListTitle.FontStyle = FontStyles.Italic;
+            TB_PartListTitle.FontWeight = FontWeights.Light;
             SetCompartmentColors();
         }
 
