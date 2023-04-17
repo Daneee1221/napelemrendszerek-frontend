@@ -6,6 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using napelemrendszerek_backend.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -21,16 +29,22 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class SzakemberProjektUj : Page
     {
+        private List<Part> parts;
+        private MainWindow mainWindow;
+
         public SzakemberProjektUj()
         {
             InitializeComponent();
 
-            //List<Part> listPart = new List<Part>();
-            //listPart.Add(new Part("Csavar", 10, 100, 5));
-            //listPart.Add(new Part("Kábel", 20, 200, 15));
+            mainWindow = ((MainWindow)Application.Current.MainWindow);
 
-            //LB_alkatreszekLista.DataContext = listPart;
-            //LB_projektAnyagokLista.DataContext = listPart;
+            loadPartList();
+        }
+
+        private async void loadPartList()
+        {
+            parts = await mainWindow.GetParts();
+            LB_partsList.DataContext = parts;
         }
 
         private void BTN_kesz_Click(object sender, RoutedEventArgs e)
@@ -38,9 +52,10 @@ namespace napelemrendszerek_frontend
 
         }
 
-        private void BTN_megse_Click(object sender, RoutedEventArgs e)
+        private void BTN_ClearModifyForm_Click(object sender, RoutedEventArgs e)
         {
-
+            TB_estimatedTimeInDays.Text = "";
+            TB_workfee.Text = "";
         }
     }
 }
