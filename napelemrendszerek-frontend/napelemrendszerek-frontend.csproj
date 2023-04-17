@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -73,6 +73,9 @@
     <Compile Include="RaktarvezetoUI\RaktarvezetoBasePage.xaml.cs">
       <DependentUpon>RaktarvezetoBasePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RaktarvezetoUI\Raktarvezeto_StoreNewPartsPage.xaml.cs">
+      <DependentUpon>Raktarvezeto_StoreNewPartsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RaktarvezetoUI\Raktarvezeto_PartManagementPage.xaml.cs">
       <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RaktarvezetoUI\RaktarvezetoBasePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RaktarvezetoUI\Raktarvezeto_StoreNewPartsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,6 +203,9 @@
   <ItemGroup>
     <Resource Include="img\invalid.gif" />
     <Resource Include="img\verified.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\alert.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
