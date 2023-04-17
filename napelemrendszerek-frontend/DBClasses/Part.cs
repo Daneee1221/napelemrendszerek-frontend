@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
@@ -13,6 +13,7 @@ namespace napelemrendszerek_backend.Models
         public int MaxNumberInBox { get; set; }
         public int SellPrice { get; set; }
         public int Unallocated { get; set; }
+        public int NumberAvailable { get; set; }
 
         public Part(string partName, int maxNumberInBox, int sellPrice, int unallocated)
         {
@@ -29,6 +30,11 @@ namespace napelemrendszerek_backend.Models
             MaxNumberInBox = Convert.ToInt32(values["MaxNumberInBox"]);
             SellPrice = Convert.ToInt32(values["SellPrice"]);
             Unallocated = Convert.ToInt32(values["Unallocated"]);
+
+            if (values.ContainsKey("StoredAmount"))
+            {
+                NumberAvailable = Convert.ToInt32(values["StoredAmount"]);
+            }
         }
 
         public Dictionary<string, string> GetValues()

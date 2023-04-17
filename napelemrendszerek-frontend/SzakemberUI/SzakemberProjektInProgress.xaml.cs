@@ -9,9 +9,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfAnimatedGif;
 
 namespace napelemrendszerek_frontend
 {
@@ -20,14 +22,44 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class SzakemberProjektInProgress : Page
     {
+        private MainWindow mainWindow;
+
         public SzakemberProjektInProgress()
         {
             InitializeComponent();
+            mainWindow = (MainWindow)Application.Current.MainWindow;
+
         }
 
-        private void BTN_megse_Click(object sender, RoutedEventArgs e)
+        private void BTN_done_Click(object sender, RoutedEventArgs e)
         {
+            BTN_unsuccessful.IsEnabled = false;
+            BTN_done.IsEnabled = false;
+
+            L_status.Content = "Sikeres projekt";
+
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri("../img/verified.gif", UriKind.RelativeOrAbsolute);
+            image.EndInit();
+            ImageBehavior.SetAnimatedSource(animatedGif, image);
 
         }
+
+        private void BTN_unsuccessful_Click(object sender, RoutedEventArgs e)
+        {
+            BTN_unsuccessful.IsEnabled = false;
+            BTN_done.IsEnabled = false;
+
+            L_status.Content = "Sikertelen projekt";
+
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri("../img/invalid.gif", UriKind.RelativeOrAbsolute);
+            image.EndInit();
+            ImageBehavior.SetAnimatedSource(animatedGif, image);
+
+        }
+
     }
 }

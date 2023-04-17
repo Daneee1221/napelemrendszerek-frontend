@@ -25,7 +25,7 @@ namespace napelemrendszerek_frontend
             InitializeComponent();
         }
 
-        private void BTN_megse_Click(object sender, RoutedEventArgs e)
+        private void BTN_kesz_Click(object sender, RoutedEventArgs e)
         {
 
         }
