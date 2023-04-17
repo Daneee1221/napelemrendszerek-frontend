@@ -6,23 +6,42 @@
       xmlns:local="clr-namespace:napelemrendszerek_frontend"
       mc:Ignorable="d" 
       d:DesignHeight="760" d:DesignWidth="1100"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
       Title="SzakemberProjektInProgress" Background="White">
 
     <Grid>
-        <StackPanel Background="LightGray" Margin="10">
-            <StackPanel Orientation="Horizontal" Width="560" Margin="0 10 0 0" Background="White">
-                <Label Content="Állapot:" FontSize="15" Width="60" Margin="10 0 0 0" FontStyle="Italic" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                <Label Content="" FontSize="15" Width="200" FontStyle="Italic" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                <Button x:Name="BTN_megse" Width="80" Content="Mégse" Click="BTN_megse_Click" Margin="200 10 10 10" HorizontalAlignment="Right"/>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal" Width="1070" Margin="0 10 0 10" Background="White" HorizontalAlignment="Left">
+                <Label Content="Állapot:" FontSize="20" Width="80" Margin="10 0 30 0" FontStyle="Italic" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="L_status" Content="Munka alatt" FontSize="20" Width="230" FontStyle="Italic" FontWeight="Medium" VerticalContentAlignment="Center" Margin="0 10 595 10"/>
             </StackPanel>
+            <Separator Width="1080" Height="5"/>
+        </StackPanel>
 
-            <Label Content="SUNSHINE HELYE" HorizontalAlignment="Center" Margin="0 50 0 0"/>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="20" Margin="0 200 0 0">
-                <Button Content="Kész" Margin="0 0 150 0"/>
-                <Button Content="Sikertelen" Margin="0"/>
-            </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 30 0 0" >
+            <Image x:Name="animatedGif" gif:ImageBehavior.AnimatedSource="../img/basicHouse.gif" HorizontalAlignment="Center" Height="600" Width="800"/>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Margin="0 680 0 0" Width="550">
+            <Button x:Name="BTN_done" Content="Befejezve" IsEnabled="True" Width="130" FontSize="20" Click="BTN_done_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="BTN_unsuccessful" Content="Sikertelen" Width="130" FontSize="20" Margin="290 0 0 0" Click="BTN_unsuccessful_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </StackPanel>
+
     </Grid>
 </Page>
