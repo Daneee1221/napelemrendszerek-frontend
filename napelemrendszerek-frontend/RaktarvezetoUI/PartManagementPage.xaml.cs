@@ -20,13 +20,13 @@ namespace napelemrendszerek_frontend
     /// <summary>
     /// Interaction logic for Raktarvezeto_PartManagementPage.xaml
     /// </summary>
-    public partial class Raktarvezeto_PartManagementPage : Page
+    public partial class PartManagementPage : Page
     {
         private MainWindow mainWindow;
         private List<Part> parts;
         private SolidColorBrush errorInputBackground;
 
-        public Raktarvezeto_PartManagementPage()
+        public PartManagementPage()
         {
             InitializeComponent();
             mainWindow = ((MainWindow)Application.Current.MainWindow);

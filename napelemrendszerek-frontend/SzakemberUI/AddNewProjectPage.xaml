@@ -1,4 +1,4 @@
-﻿<Page x:Class="napelemrendszerek_frontend.SzakemberUgyfel"
+﻿<Page x:Class="napelemrendszerek_frontend.AddNewProjectPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:napelemrendszerek_frontend"
       mc:Ignorable="d" 
       d:DesignHeight="760" d:DesignWidth="1400"
-      Title="SzakemberUgyfel" Background="white">
+      Title="AddNewProjectPage" Background="white">
 
     <Grid>
         <Label Content="Új ügyfél" FontSize="40" Margin="0 50 0 0" FontStyle="Italic" HorizontalAlignment="Center"/>

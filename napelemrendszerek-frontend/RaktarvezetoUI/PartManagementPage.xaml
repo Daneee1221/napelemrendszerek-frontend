@@ -1,4 +1,4 @@
-﻿<Page x:Class="napelemrendszerek_frontend.Raktarvezeto_PartManagementPage"
+﻿<Page x:Class="napelemrendszerek_frontend.PartManagementPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:napelemrendszerek_frontend"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1400"
-      Title="Raktarvezeto_PartManagementPage" Background="White">
+      Title="PartManagementPage" Background="White">
 
     <Grid>
         <Grid.ColumnDefinitions>

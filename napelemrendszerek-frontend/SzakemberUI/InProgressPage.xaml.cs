@@ -20,11 +20,11 @@ namespace napelemrendszerek_frontend
     /// <summary>
     /// Interaction logic for SzakemberProjektInProgress.xaml
     /// </summary>
-    public partial class SzakemberProjektInProgress : Page
+    public partial class InProgressPage : Page
     {
         private MainWindow mainWindow;
 
-        public SzakemberProjektInProgress()
+        public InProgressPage()
         {
             InitializeComponent();
             mainWindow = (MainWindow)Application.Current.MainWindow;
