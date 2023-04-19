@@ -27,12 +27,12 @@ namespace napelemrendszerek_frontend
     /// <summary>
     /// Interaction logic for SzakemberProjektUj.xaml
     /// </summary>
-    public partial class SzakemberProjektUj : Page
+    public partial class NewDraftPage : Page
     {
         private List<Part> parts;
         private MainWindow mainWindow;
 
-        public SzakemberProjektUj()
+        public NewDraftPage()
         {
             InitializeComponent();
 
