@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -70,32 +70,32 @@
     <Compile Include="RaktarosUI\RaktarosUI.xaml.cs">
       <DependentUpon>RaktarosUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RaktarvezetoUI\RaktarvezetoBasePage.xaml.cs">
-      <DependentUpon>RaktarvezetoBasePage.xaml</DependentUpon>
+    <Compile Include="RaktarvezetoUI\RV_BasePage.xaml.cs">
+      <DependentUpon>RV_BasePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RaktarvezetoUI\Raktarvezeto_StoreNewPartsPage.xaml.cs">
-      <DependentUpon>Raktarvezeto_StoreNewPartsPage.xaml</DependentUpon>
+    <Compile Include="RaktarvezetoUI\StoreNewPartsPage.xaml.cs">
+      <DependentUpon>StoreNewPartsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RaktarvezetoUI\Raktarvezeto_PartManagementPage.xaml.cs">
-      <DependentUpon>Raktarvezeto_PartManagementPage.xaml</DependentUpon>
+    <Compile Include="RaktarvezetoUI\PartManagementPage.xaml.cs">
+      <DependentUpon>PartManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberUI\Szakember.xaml.cs">
-      <DependentUpon>Szakember.xaml</DependentUpon>
+    <Compile Include="SzakemberUI\SZ_BasePage.xaml.cs">
+      <DependentUpon>SZ_BasePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberUI\SzakemberProjektek.xaml.cs">
-      <DependentUpon>SzakemberProjektek.xaml</DependentUpon>
+    <Compile Include="SzakemberUI\ProjectsMainPage.xaml.cs">
+      <DependentUpon>ProjectsMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberUI\SzakemberProjektekWaitScheduled.xaml.cs">
-      <DependentUpon>SzakemberProjektekWaitScheduled.xaml</DependentUpon>
+    <Compile Include="SzakemberUI\WaitScheduledPage.xaml.cs">
+      <DependentUpon>WaitScheduledPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberUI\SzakemberProjektInProgress.xaml.cs">
-      <DependentUpon>SzakemberProjektInProgress.xaml</DependentUpon>
+    <Compile Include="SzakemberUI\InProgressPage.xaml.cs">
+      <DependentUpon>InProgressPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberUI\SzakemberProjektUj.xaml.cs">
-      <DependentUpon>SzakemberProjektUj.xaml</DependentUpon>
+    <Compile Include="SzakemberUI\NewDraftPage.xaml.cs">
+      <DependentUpon>NewDraftPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SzakemberUI\SzakemberUgyfel.xaml.cs">
-      <DependentUpon>SzakemberUgyfel.xaml</DependentUpon>
+    <Compile Include="SzakemberUI\AddNewProjectPage.xaml.cs">
+      <DependentUpon>AddNewProjectPage.xaml</DependentUpon>
     </Compile>
     <Page Include="loginPage.xaml">
       <SubType>Designer</SubType>
@@ -124,39 +124,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RaktarvezetoUI\RaktarvezetoBasePage.xaml">
+    <Page Include="RaktarvezetoUI\RV_BasePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RaktarvezetoUI\Raktarvezeto_StoreNewPartsPage.xaml">
+    <Page Include="RaktarvezetoUI\StoreNewPartsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RaktarvezetoUI\Raktarvezeto_PartManagementPage.xaml">
+    <Page Include="RaktarvezetoUI\PartManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberUI\Szakember.xaml">
+    <Page Include="SzakemberUI\SZ_BasePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberUI\SzakemberProjektek.xaml">
+    <Page Include="SzakemberUI\ProjectsMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberUI\SzakemberProjektekWaitScheduled.xaml">
+    <Page Include="SzakemberUI\WaitScheduledPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberUI\SzakemberProjektInProgress.xaml">
+    <Page Include="SzakemberUI\InProgressPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberUI\SzakemberProjektUj.xaml">
+    <Page Include="SzakemberUI\NewDraftPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SzakemberUI\SzakemberUgyfel.xaml">
+    <Page Include="SzakemberUI\AddNewProjectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +206,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\alert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

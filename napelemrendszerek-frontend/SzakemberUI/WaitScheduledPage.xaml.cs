@@ -16,23 +16,18 @@ using System.Windows.Shapes;
 namespace napelemrendszerek_frontend
 {
     /// <summary>
-    /// Interaction logic for Szakember.xaml
+    /// Interaction logic for SzakemberProjektekWaitScheduled.xaml
     /// </summary>
-    public partial class Szakember : Page
+    public partial class WaitScheduledPage : Page
     {
-        public Szakember()
+        public WaitScheduledPage()
         {
             InitializeComponent();
         }
 
-        private void Menu_NewCustomer(object sender, RoutedEventArgs e)
+        private void BTN_kesz_Click(object sender, RoutedEventArgs e)
         {
-            FR_SzakemberMainFrame.Source = new Uri("./SzakemberUgyfel.xaml", UriKind.RelativeOrAbsolute);
-        }
 
-        private void Menu_Projects(object sender, RoutedEventArgs e)
-        {
-            FR_SzakemberMainFrame.Source = new Uri("./SzakemberProjektek.xaml", UriKind.RelativeOrAbsolute);
         }
     }
 }

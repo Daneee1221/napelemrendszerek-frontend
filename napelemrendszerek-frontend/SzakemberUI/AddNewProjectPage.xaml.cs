@@ -19,12 +19,12 @@ namespace napelemrendszerek_frontend
     /// <summary>
     /// Interaction logic for SzakemberUgyfel.xaml
     /// </summary>
-    public partial class SzakemberUgyfel : Page
+    public partial class AddNewProjectPage : Page
     {
         private SolidColorBrush errorInputBackground;
         private MainWindow mainWindow;
 
-        public SzakemberUgyfel()
+        public AddNewProjectPage()
         {
             InitializeComponent();
             mainWindow = (MainWindow)Application.Current.MainWindow;

@@ -19,12 +19,12 @@ namespace napelemrendszerek_frontend
     /// <summary>
     /// Interaction logic for SzakemberProjektek.xaml
     /// </summary>
-    public partial class SzakemberProjektek : Page
+    public partial class ProjectsMainPage : Page
     {
         private List<Project> projects;
         private MainWindow mainWindow;
 
-        public SzakemberProjektek()
+        public ProjectsMainPage()
         {
             InitializeComponent();
             mainWindow = ((MainWindow)Application.Current.MainWindow);
@@ -47,19 +47,19 @@ namespace napelemrendszerek_frontend
             switch(status)
             {
                 case 1:
-                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektUj.xaml", UriKind.RelativeOrAbsolute);
+                    FR_ProjektekFrame.Source = new Uri("./NewDraftPage.xaml", UriKind.Relative);
                     break;
                 case 2:
-                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektUj.xaml", UriKind.RelativeOrAbsolute);
+                    FR_ProjektekFrame.Source = new Uri("./NewDraftPage.xaml", UriKind.Relative);
                     break;
                 case 3:
-                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektekWaitScheduled.xaml", UriKind.RelativeOrAbsolute);
+                    FR_ProjektekFrame.Source = new Uri("./WaitScheduledPage.xaml", UriKind.Relative);
                     break;
                 case 4:
-                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektekWaitScheduled.xaml", UriKind.RelativeOrAbsolute);
+                    FR_ProjektekFrame.Source = new Uri("./WaitScheduledPage.xaml", UriKind.Relative);
                     break;
                 case 5:
-                    FR_ProjektekFrame.Source = new Uri("./SzakemberProjektInProgress.xaml", UriKind.RelativeOrAbsolute);
+                    FR_ProjektekFrame.Source = new Uri("./InProgressPage.xaml", UriKind.Relative);
                     break;
                 default:
                     break;

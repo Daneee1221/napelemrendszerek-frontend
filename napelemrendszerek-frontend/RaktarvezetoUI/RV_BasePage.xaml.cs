@@ -18,13 +18,13 @@ namespace napelemrendszerek_frontend
     /// <summary>
     /// Interaction logic for RaktarvezetoBasePage.xaml
     /// </summary>
-    public partial class RaktarvezetoBasePage : Page
+    public partial class RV_BasePage : Page
     {
         private MainWindow mainWindow;
 
         private Image IMG_alert;
 
-        public RaktarvezetoBasePage()
+        public RV_BasePage()
         {
             InitializeComponent();
 
@@ -49,12 +49,12 @@ namespace napelemrendszerek_frontend
         private async void Menu_ManageParts_Click(object sender, RoutedEventArgs e)
         {
             await CheckForUnaccocatedParts();
-            FR_RaktarosMainFrame.Source = new Uri("./Raktarvezeto_PartManagementPage.xaml", UriKind.RelativeOrAbsolute);
+            FR_RaktarosMainFrame.Source = new Uri("./PartManagementPage.xaml", UriKind.Relative);
         }
 
         private void Menu_StoreNewParts_Click(object sender, RoutedEventArgs e)
         {
-            FR_RaktarosMainFrame.Source = new Uri("./Raktarvezeto_StoreNewPartsPage.xaml", UriKind.RelativeOrAbsolute);
+            FR_RaktarosMainFrame.Source = new Uri("./StoreNewPartsPage.xaml", UriKind.Relative);
             SP_StoreNewParts.Children.Remove(IMG_alert);
         }
     }

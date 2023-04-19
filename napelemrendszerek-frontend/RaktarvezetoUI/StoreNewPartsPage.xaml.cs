@@ -48,7 +48,7 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
     /// <summary>
     /// Interaction logic for Raktarvezeto__StoreNewPartsPage.xaml
     /// </summary>
-    public partial class Raktarvezeto__StoreNewPartsPage : Page
+    public partial class StoreNewPartsPage : Page
     {
         private readonly char[] shelfRowLetters = { 'A', 'B', 'C', 'D', 'E', 'F' };
 
@@ -63,7 +63,7 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
         private List<CompartmentWithPart> changedCompartments;
         private MainWindow mainWindow;
 
-        public Raktarvezeto__StoreNewPartsPage()
+        public StoreNewPartsPage()
         {
             InitializeComponent();
             unselectableBrush = new SolidColorBrush(Color.FromRgb(180, 180, 180));
