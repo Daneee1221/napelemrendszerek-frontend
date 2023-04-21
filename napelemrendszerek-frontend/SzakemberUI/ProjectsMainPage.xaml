@@ -24,7 +24,7 @@
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat=" {0} - {1}">
                                         <Binding Path="ProjectLocation"/>
-                                        <Binding Path="ProjectStateId"/>
+                                        <Binding Path="Status"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
