@@ -24,7 +24,7 @@ namespace napelemrendszerek_frontend
     {
         private MainWindow mainWindow;
 
-        public InProgressPage()
+        public InProgressPage(int projectID)
         {
             InitializeComponent();
             mainWindow = (MainWindow)Application.Current.MainWindow;

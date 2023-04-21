@@ -20,7 +20,7 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class WaitScheduledPage : Page
     {
-        public WaitScheduledPage()
+        public WaitScheduledPage(int projectID)
         {
             InitializeComponent();
         }
