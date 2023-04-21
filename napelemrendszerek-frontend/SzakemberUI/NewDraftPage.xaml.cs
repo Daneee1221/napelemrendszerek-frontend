@@ -122,7 +122,7 @@ namespace napelemrendszerek_frontend
             }
 
             string estimatedTimeInDays = TB_estimatedTimeInDays.Text;
-            if (TB_workfee.IsEnabled == false)
+            if (TB_workfee.IsEnabled == true)
             {
                 string workFee = TB_workfee.Text;
                 _ = await mainWindow.setWorkfeeAndEstimatedTime(projectID, estimatedTimeInDays, workFee);
