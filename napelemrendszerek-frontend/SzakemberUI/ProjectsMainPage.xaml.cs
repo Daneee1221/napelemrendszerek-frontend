@@ -47,19 +47,19 @@ namespace napelemrendszerek_frontend
             switch(status)
             {
                 case 1:
-                    FR_ProjektekFrame.Source = new Uri("./NewDraftPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new NewDraftPage(selectedProject.ProjectId));
                     break;
                 case 2:
-                    FR_ProjektekFrame.Source = new Uri("./NewDraftPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new NewDraftPage(selectedProject.ProjectId));
                     break;
                 case 3:
-                    FR_ProjektekFrame.Source = new Uri("./WaitScheduledPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new WaitScheduledPage(selectedProject.ProjectId));
                     break;
                 case 4:
-                    FR_ProjektekFrame.Source = new Uri("./WaitScheduledPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new WaitScheduledPage(selectedProject.ProjectId));
                     break;
                 case 5:
-                    FR_ProjektekFrame.Source = new Uri("./InProgressPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new InProgressPage(selectedProject.ProjectId));
                     break;
                 default:
                     break;
