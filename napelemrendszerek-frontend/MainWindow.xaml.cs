@@ -186,5 +186,14 @@ namespace napelemrendszerek_frontend
             return responseObject.Message;
         }
 
+        public async Task<List<Dictionary<string,string>>> GetProjectParts(int projectID)
+        {
+            Dictionary<string, string> ID = new Dictionary<string, string>();
+            ID["projectId"] = projectID.ToString();
+
+            Communication responseObject = await process.GetProjectParts(ID, roleID);
+
+            return responseObject.Content;
+        }
     }
 }

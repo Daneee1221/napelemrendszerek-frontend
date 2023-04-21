@@ -21,16 +21,28 @@
                 <StackPanel Orientation="Horizontal" >
                     <StackPanel Orientation="Vertical">
                         <Label Content="Lefoglalt alkatrészek"  Margin="60 20 0 0" Width="190" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="20"/>
-                        <ListBox x:Name="LB_alkatreszekLista" Width="280" HorizontalAlignment="Left" Margin="10 0 0 0" Background="White" Height="550" ItemsSource="{Binding}">
+                        <ListBox x:Name="LB_alkatreszekLista" Width="280" HorizontalAlignment="Left" Margin="10 0 0 0" Background="White" Height="550" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <StackPanel>
-                                            <TextBlock Text="{Binding PartName}" Width="90" Margin="5 0 0 0"/>
-                                            <TextBlock Text="{Binding Unallocated}" Width="90" Margin="5 0 0 0"/>
+                                            <TextBlock Text="{Binding PartName}" FontSize="20"/>
+                                            <TextBlock FontSize="16" FontWeight="Light" FontStyle="Italic" Margin="10 0 0 0">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="Lefoglalva: {0} db">
+                                                        <Binding Path="Available"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <TextBlock FontSize="16" FontWeight="Light" FontStyle="Italic" Margin="10 0 0 0">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="Hiányzik: {0} db">
+                                                        <Binding Path="Missing"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <Separator Width="260"/>
                                         </StackPanel>
-                                        <Button x:Name="BTN_minusz" Margin="5 0 0 0" Content="-" FontSize="10" Width="20" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                                        <Button x:Name="BTN_plusz" Margin="5 0 5 0" Content="+" FontSize="10" Width="20" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
