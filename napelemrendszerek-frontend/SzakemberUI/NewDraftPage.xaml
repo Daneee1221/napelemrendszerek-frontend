@@ -12,7 +12,7 @@
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal" Margin="0 20 0 20" Background="White">
                 <Label Content="Állapot:" FontSize="20" Margin="10 0 30 0" FontStyle="Italic" VerticalAlignment="Center"/>
-                <Label x:Name="L_status" Content="Új" FontSize="20" FontStyle="Italic" FontWeight="Medium" VerticalAlignment="Center"/>
+                <Label x:Name="L_status" Content="New" FontSize="20" FontStyle="Italic" FontWeight="Medium" VerticalAlignment="Center"/>
             </StackPanel>
 
             <Separator Height="5"/>
@@ -36,7 +36,7 @@
                                                 </TextBlock.Text>
                                             </TextBlock>
                                         </StackPanel>
-                                        <Button x:Name="BTN_plusz" Margin="5 0 0 0" Height="35" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0">
+                                        <Button x:Name="BTN_plusz" Margin="5 0 0 0" Height="35" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Click="BTN_plusz_Click">
                                             <Image Source="../img/plus.png"/>
                                             <Button.Resources>
                                                 <Style TargetType="Border">
@@ -53,31 +53,43 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="50 0 0 0">
-                    <Label Content="Projekt anyagok" Margin="0 20 0 0" HorizontalAlignment="Center" FontSize="20"/>
-                    <ListBox x:Name="LB_projectPartsList" Width="310" Background="White" Height="550" ItemsSource="{Binding}">
+                    <Label x:Name="L_projectParts" Content="Projekt anyagok" Margin="0 20 0 0" HorizontalAlignment="Center" FontSize="20"/>
+                    <ListBox x:Name="LB_projectPartsList" Width="380" Background="White" Height="550" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding PartName}" Width="90" Margin="5 0 0 0"/>
-                                        <TextBlock Text="{Binding NumberAvailable}" Width="90" Margin="5 0 0 0"/>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Width="350">
+                                        <StackPanel Width="220">
+                                            <TextBlock Text="{Binding PartName}" FontSize="20"/>
+                                        </StackPanel>
+                                        <TextBox x:Name="TB_projectPartsNumber" Width="50" Height="25" FontSize="16" Text="1" TextChanged="TB_projectPartsNumber_TextChanged" PreviewTextInput="NumberOnlyInput"  />
+                                            <Label Content="db" FontSize="16" Height="30" VerticalContentAlignment="Center"/>
+                                        <Button x:Name="BTN_bin" Margin="5 0 0 0" Height="35" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Click="BTN_bin_Click" >
+                                            <Image Source="../img/bin.png"/>
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="5"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
                                     </StackPanel>
+                                    <Separator Margin="0 5 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Width="280" Height="160" VerticalAlignment="Top" Margin="60 50 0 0">
+                <StackPanel Orientation="Vertical" Width="280" Height="160" VerticalAlignment="Top" Margin="20 50 0 0">
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Becsült idő:" FontSize="20"/>
-                        <TextBox x:Name="TB_estimatedTimeInDays" Width="110" FontSize="20" Height="30"  Margin="5 0 0 0"/>
+                        <Label x:Name="L_estimatedTimeInDays" Content="Becsült idő:" FontSize="20"/>
+                        <TextBox x:Name="TB_estimatedTimeInDays" Width="110" FontSize="20" Height="30"  Margin="5 0 0 0" PreviewTextInput="NumberOnlyInput" GotFocus="TB_GotFocus"/>
                         <Label Content="nap" FontSize="20" Margin="5 0 0 0"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Munkadíj:" FontSize="20"/>
-                        <TextBox x:Name="TB_workfee" Width="110" FontSize="20" Height="30" Margin="19 0 0 0" />
+                        <TextBox x:Name="TB_workfee" Width="110" FontSize="20" Height="30" Margin="19 0 0 0" PreviewTextInput="NumberOnlyInput" GotFocus="TB_GotFocus" />
                         <Label Content="Ft" FontSize="20" Margin="5 0 0 0"/>
                     </StackPanel>
 
