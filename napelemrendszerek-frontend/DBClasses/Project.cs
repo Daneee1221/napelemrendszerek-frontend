@@ -23,6 +23,7 @@ namespace napelemrendszerek_backend.Models
         public string ProjectDescription { get; set; }
         public int? WorkFee { get; set; }
         public int? EstimatedTimeInDays { get; set; }
+        public string Status { get; set; }
 
         public Project(string customerName, string customerAddress, string customerPhone, string customerEmail, string projectLocation, string projectDescription, string createdBy)
         {
@@ -77,6 +78,11 @@ namespace napelemrendszerek_backend.Models
             else
             {
                 EstimatedTimeInDays = Convert.ToInt32(values["EstimatedTimeInDays"]);
+            }
+
+            if(values.ContainsKey("ProjectStateName"))
+            {
+                Status = values["ProjectStateName"];
             }
         }
 
