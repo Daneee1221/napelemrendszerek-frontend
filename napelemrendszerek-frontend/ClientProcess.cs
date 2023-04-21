@@ -156,5 +156,34 @@ namespace Comm
 
             return dResponse;
         }
+
+        public async Task<Communication> addPartsToProject(Dictionary<string, string> partsList, Dictionary<string, string> id, int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "addPartsToProject";
+            commObject.addItemToContent(id);
+            commObject.addItemToContent(partsList);
+            commObject.RoleId = roleID;
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = await tsResponse;
+
+            return dResponse;
+        }
+
+        public async Task<Communication> setWorkfeeAndEstimatedTime(Dictionary<string, string> l, int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "setWorkfeeAndEstimatedTime";
+            commObject.addItemToContent(l);
+            commObject.RoleId = roleID;
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = await tsResponse;
+
+            return dResponse;
+        }
     }
 }
