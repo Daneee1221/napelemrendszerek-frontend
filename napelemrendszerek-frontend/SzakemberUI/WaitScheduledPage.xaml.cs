@@ -21,8 +21,12 @@ namespace napelemrendszerek_frontend
     public partial class WaitScheduledPage : Page
     {
         public WaitScheduledPage(int projectID)
+        private ProjectsMainPage parent;
+
         {
             InitializeComponent();
+            this.parent = Parent;
+
         }
 
         private void BTN_kesz_Click(object sender, RoutedEventArgs e)

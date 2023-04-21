@@ -38,17 +38,20 @@ namespace napelemrendszerek_frontend
         private bool allPartsAvailable = false;
         private Dictionary<string, string> selectedPartsDict;
         private int projectID;
+        private ProjectsMainPage parentPage;
 
-        public NewDraftPage(int projectID)
+        public NewDraftPage(int projectID, ProjectsMainPage parentpage )
         {
             InitializeComponent();
 
             this.projectID = projectID;
+            parentPage = parentpage;
             mainWindow = ((MainWindow)Application.Current.MainWindow);
             errorInputBackground = new SolidColorBrush(Color.FromScRgb(0.69f, 1f, 0.05f, 0.05f));
             projectParts = new List<Part>();
             selectedPartsDict= new Dictionary<string, string>();
             loadPartList();
+            
         }
 
         private async void loadPartList()
@@ -132,10 +135,7 @@ namespace napelemrendszerek_frontend
                 _ = await mainWindow.setWorkfeeAndEstimatedTime(projectID, estimatedTimeInDays);
             }
 
-
-            //WaitScheduledPage secPage = new WaitScheduledPage(projectID);
-            //NavigationService.Navigate(secPage);
-
+            parentPage.refreshProjectsList();
         }
 
         private void NumberOnlyInput(object sender, TextCompositionEventArgs e)
