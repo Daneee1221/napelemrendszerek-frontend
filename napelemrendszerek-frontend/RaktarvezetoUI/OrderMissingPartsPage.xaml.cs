@@ -76,12 +76,28 @@ namespace napelemrendszerek_frontend
 
         private void BTN_plusz_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;
+            orderedParts.Add((OrderPart)btn.DataContext);
+            neededParts.Remove((OrderPart)btn.DataContext);
 
+            LB_NeededParts.DataContext = null;
+            LB_OrderedParts.DataContext = null;
+            LB_NeededParts.DataContext = neededParts;
+            LB_OrderedParts.DataContext = orderedParts;
         }
 
         private void BTN_bin_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;
+            neededParts.Add((OrderPart)btn.DataContext);
+            orderedParts.Remove((OrderPart)btn.DataContext);
 
+            neededParts.Sort((a, b) => a.PartName.CompareTo(b.PartName));
+
+            LB_NeededParts.DataContext = null;
+            LB_OrderedParts.DataContext = null;
+            LB_NeededParts.DataContext = neededParts;
+            LB_OrderedParts.DataContext = orderedParts;
         }
     }
 }
