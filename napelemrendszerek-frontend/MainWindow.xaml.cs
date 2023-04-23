@@ -160,5 +160,68 @@ namespace napelemrendszerek_frontend
 
             return projects;
         }
+
+        public async Task<string> addPartsToProject(int id, Dictionary<string, string> partsList)
+        {
+            Dictionary<string, string> ID = new Dictionary<string, string>();
+            ID["projectID"] = id.ToString();
+
+            Communication responseObject = await process.addPartsToProject(partsList, ID, roleID);
+
+            return responseObject.Message;
+        }
+
+        public async Task<string> setWorkfeeAndEstimatedTime(int id, string estimatedTimeInDays, string workFee = "-1")
+        {
+            Dictionary<string, string> l = new Dictionary<string, string>();
+            l["projectID"] = id.ToString();
+            if(estimatedTimeInDays != null)
+            {
+                l["estimatedTime"] = estimatedTimeInDays;
+            }
+            if(workFee != "-1")
+            {
+                l["workFee"] = workFee;
+            }
+
+            Communication responseObject = await process.setWorkfeeAndEstimatedTime(l, roleID);
+
+            return responseObject.Message;
+        }
+
+        public async Task<List<Dictionary<string,string>>> GetProjectParts(int projectID)
+        {
+            Dictionary<string, string> ID = new Dictionary<string, string>();
+            ID["projectId"] = projectID.ToString();
+
+            Communication responseObject = await process.GetProjectParts(ID, roleID);
+
+            return responseObject.Content;
+        }
+
+        public async Task<Project> GetSingleProject(int projectID)
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>
+            {
+                { "projectID", projectID.ToString() }
+            };
+
+            Communication responseObject = await process.GetSingleProject(d, roleID);
+
+            return new Project(responseObject.Content[0]);
+        }
+
+        public async Task<string> ChangeProjectState(int id, int oldState, int newState)
+        {
+            Dictionary<string, string> l = new Dictionary<string, string>
+            {
+                { "projectId", id.ToString() },
+                { "oldState", oldState.ToString() },
+                { "newState", newState.ToString() }
+            };
+            Communication responseObject = await process.ChangeProjectState(l, roleID);
+
+            return responseObject.Message;
+        }
     }
 }

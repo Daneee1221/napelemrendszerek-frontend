@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel HorizontalAlignment="Left" Grid.Column="0" Margin="10">
+        <StackPanel x:Name="SP_projectList" HorizontalAlignment="Left" Grid.Column="0" Margin="10">
             <Label Content="Projektek" FontSize="25" FontStyle="Italic" HorizontalAlignment="Center" Margin="0 10 0 0"/>
             <ListBox x:Name="LB_projektekLista" Width="245" HorizontalAlignment="Center" Margin="10 10 1 10" Background="White" Height="630" ItemsSource="{Binding}" SelectionChanged="LB_projektekLista_SelectionChanged">
                 <ListBox.ItemTemplate>
@@ -24,7 +24,7 @@
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat=" {0} - {1}">
                                         <Binding Path="ProjectLocation"/>
-                                        <Binding Path="ProjectStateId"/>
+                                        <Binding Path="Status"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
@@ -34,6 +34,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <TextBlock x:Name="TB_Loading" Text="Betöltés..." FontSize="30" FontWeight="Medium" Margin="0 -350 0 0" HorizontalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Grid.Column="0" Orientation="Horizontal" Height="700" HorizontalAlignment="Right">

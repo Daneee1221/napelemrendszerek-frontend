@@ -29,17 +29,32 @@ namespace napelemrendszerek_frontend
             InitializeComponent();
             mainWindow = ((MainWindow)Application.Current.MainWindow);
 
-            loadProjectsList();
+            _ = loadProjectsList();
         }
 
-        public async void loadProjectsList()
+        public async Task loadProjectsList()
         {
             projects = await mainWindow.GetProjects();
+            SP_projectList.Children.Remove(TB_Loading);
+            LB_projektekLista.DataContext = null;
             LB_projektekLista.DataContext = projects;
+        }
+
+        public async void refreshProjectsList()
+        {
+            int pID = ((Project)LB_projektekLista.SelectedItem).ProjectId;
+            await loadProjectsList();
+            Project p = projects.Single(x => x.ProjectId == pID);
+            LB_projektekLista.SelectedItem = p;
         }
 
         private void LB_projektekLista_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(LB_projektekLista.SelectedIndex == -1)
+            {
+                return;
+            }
+
             Project selectedProject = (Project)LB_projektekLista.SelectedItem;
 
             int status = selectedProject.ProjectStateId;
@@ -47,19 +62,19 @@ namespace napelemrendszerek_frontend
             switch(status)
             {
                 case 1:
-                    FR_ProjektekFrame.Source = new Uri("./NewDraftPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new NewDraftPage(selectedProject.ProjectId, this));
                     break;
                 case 2:
-                    FR_ProjektekFrame.Source = new Uri("./NewDraftPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new NewDraftPage(selectedProject.ProjectId, this));
                     break;
                 case 3:
-                    FR_ProjektekFrame.Source = new Uri("./WaitScheduledPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new WaitScheduledPage(selectedProject.ProjectId, selectedProject.ProjectStateId, this));
                     break;
                 case 4:
-                    FR_ProjektekFrame.Source = new Uri("./WaitScheduledPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new WaitScheduledPage(selectedProject.ProjectId, selectedProject.ProjectStateId, this));
                     break;
                 case 5:
-                    FR_ProjektekFrame.Source = new Uri("./InProgressPage.xaml", UriKind.Relative);
+                    FR_ProjektekFrame.Navigate(new InProgressPage(selectedProject.ProjectId, this));
                     break;
                 default:
                     break;
