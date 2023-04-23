@@ -54,13 +54,13 @@
                 <StackPanel Orientation="Vertical" Width="280" Height="160" VerticalAlignment="Top" Margin="500 40 0 0">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Becsült idő:" VerticalAlignment="Top" FontSize="20"/>
-                        <Label Content="" Width="110" FontSize="20" Height="30"  Margin="5 0 0 0" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                        <Label x:Name="L_estimatedTimeInDays" Content="" Width="110" FontSize="20" Height="30"  Margin="5 0 0 0" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                         <Label Content=" nap" VerticalAlignment="Top" FontSize="20"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Munkadíj:" VerticalAlignment="Top" FontSize="20"/>
-                        <Label Content="" Width="110" FontSize="20" Height="30" VerticalAlignment="Center" Margin="19 0 0 0" HorizontalContentAlignment="Right"/>
+                        <TextBox x:Name="TB_workFee" Width="110" FontSize="20" Height="30" VerticalAlignment="Center" Margin="19 0 0 0" IsEnabled="False" PreviewTextInput="NumberOnlyInput" GotFocus="TB_workFee_GotFocus"/>
                         <Label Content=" Ft" VerticalAlignment="Top" FontSize="20"/>
                     </StackPanel>
 

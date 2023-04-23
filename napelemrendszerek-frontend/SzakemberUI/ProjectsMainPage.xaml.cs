@@ -68,10 +68,10 @@ namespace napelemrendszerek_frontend
                     FR_ProjektekFrame.Navigate(new NewDraftPage(selectedProject.ProjectId, this));
                     break;
                 case 3:
-                    FR_ProjektekFrame.Navigate(new WaitScheduledPage(selectedProject.ProjectId, this));
+                    FR_ProjektekFrame.Navigate(new WaitScheduledPage(selectedProject.ProjectId, selectedProject.ProjectStateId, this));
                     break;
                 case 4:
-                    FR_ProjektekFrame.Navigate(new WaitScheduledPage(selectedProject.ProjectId, this));
+                    FR_ProjektekFrame.Navigate(new WaitScheduledPage(selectedProject.ProjectId, selectedProject.ProjectStateId, this));
                     break;
                 case 5:
                     FR_ProjektekFrame.Navigate(new InProgressPage(selectedProject.ProjectId, this));
