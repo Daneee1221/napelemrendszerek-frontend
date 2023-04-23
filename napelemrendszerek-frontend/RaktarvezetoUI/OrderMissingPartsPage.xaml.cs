@@ -46,6 +46,21 @@ namespace napelemrendszerek_frontend
             neededParts = new List<OrderPart>();
             orderedParts = new List<OrderPart>();
             arrivedParts = new List<OrderPart>();
+
+            _ = LoadNeededParts();
+        }
+
+
+        private async Task LoadNeededParts()
+        {
+            List<Dictionary<string, string>> responseList = await mainWindow.GetAllMissingParts();
+
+            foreach (Dictionary<string, string> dict in responseList)
+            {
+                neededParts.Add(new OrderPart(dict["PartName"], Convert.ToInt32(dict["NumberReserved"])));
+            }
+
+            LB_NeededParts.DataContext = neededParts;
         }
 
         private void TB_OrderAmount_TextChanged(object sender, TextChangedEventArgs e)

@@ -223,5 +223,12 @@ namespace napelemrendszerek_frontend
 
             return responseObject.Message;
         }
+
+        public async Task<List<Dictionary<string, string>>> GetAllMissingParts()
+        {
+            Communication responseObject = await process.GetAllMissingParts(roleID);
+
+            return responseObject.Content;
+        }
     }
 }
