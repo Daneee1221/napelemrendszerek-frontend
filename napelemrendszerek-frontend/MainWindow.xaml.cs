@@ -175,7 +175,10 @@ namespace napelemrendszerek_frontend
         {
             Dictionary<string, string> l = new Dictionary<string, string>();
             l["projectID"] = id.ToString();
-            l["estimatedTime"] = estimatedTimeInDays;
+            if(estimatedTimeInDays != null)
+            {
+                l["estimatedTime"] = estimatedTimeInDays;
+            }
             if(workFee != "-1")
             {
                 l["workFee"] = workFee;
@@ -194,6 +197,31 @@ namespace napelemrendszerek_frontend
             Communication responseObject = await process.GetProjectParts(ID, roleID);
 
             return responseObject.Content;
+        }
+
+        public async Task<Project> GetSingleProject(int projectID)
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>
+            {
+                { "projectID", projectID.ToString() }
+            };
+
+            Communication responseObject = await process.GetSingleProject(d, roleID);
+
+            return new Project(responseObject.Content[0]);
+        }
+
+        public async Task<string> ChangeProjectState(int id, int oldState, int newState)
+        {
+            Dictionary<string, string> l = new Dictionary<string, string>
+            {
+                { "projectId", id.ToString() },
+                { "oldState", oldState.ToString() },
+                { "newState", newState.ToString() }
+            };
+            Communication responseObject = await process.ChangeProjectState(l, roleID);
+
+            return responseObject.Message;
         }
     }
 }
