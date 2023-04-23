@@ -35,6 +35,7 @@ namespace napelemrendszerek_frontend
         public async Task loadProjectsList()
         {
             projects = await mainWindow.GetProjects();
+            SP_projectList.Children.Remove(TB_Loading);
             LB_projektekLista.DataContext = null;
             LB_projektekLista.DataContext = projects;
         }

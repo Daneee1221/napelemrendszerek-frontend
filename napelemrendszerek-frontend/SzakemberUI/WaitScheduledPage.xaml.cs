@@ -54,6 +54,8 @@ namespace napelemrendszerek_frontend
         {
             List<Dictionary<string,string>> responseList = await mainWindow.GetProjectParts(projectID);
 
+            SP_partsList.Children.Remove(TB_Loading);
+
             foreach (Dictionary<string,string> item in responseList)
             {
                 if(parts.Any(x => x.PartName == item["PartName"]))

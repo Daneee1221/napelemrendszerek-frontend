@@ -18,7 +18,7 @@
             <Separator Height="5"/>
 
             <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical" Margin="10 0 0 0">
+                <StackPanel x:Name="SP_partsList" Orientation="Vertical" Margin="10 0 0 0">
                     <Label Content="Alkatrészek" Margin="0 20 0 0" HorizontalAlignment="Center" FontSize="20"/>
                     <ListBox x:Name="LB_partsList" Width="310" Background="White" Height="550" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemTemplate>
@@ -50,6 +50,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <TextBlock x:Name="TB_Loading" Text="Betöltés..." FontSize="30" FontWeight="Medium" Margin="0 -300 0 0" HorizontalAlignment="Center"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="50 0 0 0">
