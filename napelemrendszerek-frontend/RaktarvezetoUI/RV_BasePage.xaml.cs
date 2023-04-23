@@ -57,5 +57,10 @@ namespace napelemrendszerek_frontend
             FR_RaktarosMainFrame.Source = new Uri("./StoreNewPartsPage.xaml", UriKind.Relative);
             SP_StoreNewParts.Children.Remove(IMG_alert);
         }
+
+        private void Menu_OrderParts_Click(object sender, RoutedEventArgs e)
+        {
+            FR_RaktarosMainFrame.Source = new Uri("./OrderMissingPartsPage.xaml", UriKind.Relative);
+        }
     }
 }
