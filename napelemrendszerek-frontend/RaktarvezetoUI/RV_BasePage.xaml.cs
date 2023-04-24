@@ -35,9 +35,11 @@ namespace napelemrendszerek_frontend
 
         private async Task CheckForUnaccocatedParts()
         {
+            MenuBar.IsEnabled = false;
             bool foundUnallocatedParts = await mainWindow.CheckForUnaccocatedParts();
+            MenuBar.IsEnabled = true;
 
-            if (foundUnallocatedParts)
+            if (foundUnallocatedParts && SP_StoreNewParts.Children.Contains(IMG_alert) == false)
             {
                 IMG_alert = new Image();
                 IMG_alert.Source = new BitmapImage(new Uri("../img/alert.png", UriKind.Relative));

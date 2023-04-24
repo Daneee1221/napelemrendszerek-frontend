@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Menu>
+        <Menu x:Name="MenuBar">
             <MenuItem Header="Alkatrészek kezelése" FontSize="20" Height="40" Click="Menu_ManageParts_Click"/>
             <MenuItem Header="Alkatrész Rendelés" FontSize="20" Height="40" Click="Menu_OrderParts_Click"/>
             <MenuItem FontSize="20" Height="40" Click="Menu_StoreNewParts_Click">
