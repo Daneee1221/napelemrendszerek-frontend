@@ -223,5 +223,18 @@ namespace napelemrendszerek_frontend
 
             return responseObject.Message;
         }
+
+        public async Task<List<Dictionary<string, string>>> priceCalculator(int projectID)
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>
+            {
+                { "projectID", projectID.ToString() }
+            };
+
+            Communication responseObject = await process.priceCalculator(d, roleID);
+
+            return responseObject.Content;
+        }
+        
     }
 }

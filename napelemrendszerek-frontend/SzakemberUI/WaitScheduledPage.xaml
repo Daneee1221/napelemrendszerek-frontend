@@ -18,7 +18,7 @@
             <Separator Width="1080" Height="5"/>
 
             <StackPanel Orientation="Horizontal" >
-                <StackPanel Orientation="Horizontal" >
+                <StackPanel Orientation="Horizontal">
                     <StackPanel x:Name="SP_partsList" Orientation="Vertical">
                         <Label Content="Lefoglalt alkatrészek"  Margin="60 20 0 0" Width="190" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="20"/>
                         <ListBox x:Name="LB_alkatreszekLista" Width="280" HorizontalAlignment="Left" Margin="10 0 0 0" Background="White" Height="550" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
@@ -51,7 +51,47 @@
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Width="280" Height="160" VerticalAlignment="Top" Margin="500 40 0 0">
+                <StackPanel x:Name="SP_priceCalculation" Orientation="Horizontal" Margin="50 0 0 0" Visibility="Hidden">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Árkalkuláció" Margin="0 20 0 0" HorizontalAlignment="Center" FontSize="20"/>
+                        <ListBox x:Name="LB_priceCalculaionList" Width="280" HorizontalAlignment="Left" Background="White" Height="480" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding PartName}" FontSize="20"/>
+                                            <TextBlock FontSize="16" FontWeight="Light" FontStyle="Italic" Margin="10 0 0 0">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="Ár: {0} Ft">
+                                                        <Binding Path="SellPrice"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <TextBlock FontSize="16" FontWeight="Light" FontStyle="Italic" Margin="10 0 0 0">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="Darabszám: {0} db">
+                                                        <Binding Path="NumberReserved"/> 
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <Separator Width="260"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <StackPanel Orientation="Horizontal" Width="280">
+                            <Label x:Name="BTN_ClearModifyForm"  Height="50" Width="40" Background="White" BorderThickness="0" ToolTip="Clear" VerticalAlignment="Center">
+                                <!--<Image Source="../img/sum.png"/>-->
+                            </Label>
+                            <Label x:Name="L_price" Content="" HorizontalAlignment="Right" Margin="30 10 0 10" Width="170" Height="50" HorizontalContentAlignment="Right" FontSize="25"/>
+                            <Label Content=" Ft" HorizontalAlignment="Right" Width="40" Height="50" HorizontalContentAlignment="Center" FontSize="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Width="280" Height="160" VerticalAlignment="Top" Margin="140 40 0 0">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Becsült idő:" VerticalAlignment="Top" FontSize="20"/>
                         <Label x:Name="L_estimatedTimeInDays" Content="" Width="110" FontSize="20" Height="30"  Margin="5 0 0 0" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
