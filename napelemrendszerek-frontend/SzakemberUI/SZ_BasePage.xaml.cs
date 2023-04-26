@@ -20,9 +20,13 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class SZ_BasePage : Page
     {
+        private MainWindow mainWindow;
+
         public SZ_BasePage()
         {
             InitializeComponent();
+
+            mainWindow = (MainWindow)Application.Current.MainWindow;
         }
 
         private void Menu_NewCustomer(object sender, RoutedEventArgs e)
@@ -33,6 +37,11 @@ namespace napelemrendszerek_frontend
         private void Menu_Projects(object sender, RoutedEventArgs e)
         {
             FR_SzakemberMainFrame.Source = new Uri("./ProjectsMainPage.xaml", UriKind.Relative);
+        }
+
+        private void Menu_Logout_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Logout();
         }
     }
 }

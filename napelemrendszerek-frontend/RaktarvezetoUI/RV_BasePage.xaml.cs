@@ -76,5 +76,10 @@ namespace napelemrendszerek_frontend
             await CheckForUnaccocatedParts();
             FR_RaktarosMainFrame.Navigate(new OrderMissingPartsPage(this));
         }
+
+        private void Menu_Logout_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Logout();
+        }
     }
 }

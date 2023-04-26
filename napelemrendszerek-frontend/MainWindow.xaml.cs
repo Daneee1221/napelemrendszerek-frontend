@@ -71,6 +71,12 @@ namespace napelemrendszerek_frontend
             }
         }
 
+        public void Logout()
+        {
+            FR_mainFrame.Source = new Uri("./loginPage.xaml", UriKind.Relative);
+            roleID = 0;
+        }
+
         public async Task<List<Part>> GetParts()
         {
             List<Part> parts = new List<Part>();
