@@ -229,7 +229,14 @@ namespace napelemrendszerek_frontend
         {
             Communication responseObject = await process.GetAllMissingParts(roleID);
 
-            return responseObject.Content;
+            if (responseObject.Message == "nodata")
+            {
+                return new List<Dictionary<string, string>>();
+            }
+            else
+            {
+                return responseObject.Content;
+            }
         }
 
         public async Task<string> SendUnallocatedParts(Dictionary<string, int> orderDict)
