@@ -115,6 +115,13 @@ namespace napelemrendszerek_frontend
 
             string response = await mainWindow.addPartsToProject(projectID, selectedPartsDict);
 
+            Dictionary<string, string> selectedPartsDict = new Dictionary<string, string>();
+            foreach (Part item in projectParts)
+            {
+                selectedPartsDict.Add(item.PartName, item.NumberReserved.ToString());
+            }
+            string response = await mainWindow.addPartsToProject(projectID, "close", selectedPartsDict);
+
             if (response == "wait")
             {
                 L_status.Content = "Wait";
@@ -214,6 +221,28 @@ namespace napelemrendszerek_frontend
                 tb.Background = null;
                 tb.Text = "";
             }
+        }
+
+        private async void BTN_mentes_Click(object sender, RoutedEventArgs e)
+        {
+            if (projectParts.Count == 0)
+            {
+                LB_projectPartsList.Background = errorInputBackground;
+                L_projectParts.Content = "A lista üres!";
+                return;
+            }
+            BTN_mentes.IsEnabled = false;
+            BTN_lezaras.IsEnabled = false;
+
+            Dictionary<string, string> selectedPartsDict = new Dictionary<string, string>();
+            foreach (Part item in projectParts)
+            {
+                selectedPartsDict.Add(item.PartName, item.NumberReserved.ToString());
+            }
+            _ = await mainWindow.addPartsToProject(projectID, "save", selectedPartsDict);
+
+            await parentPage.refreshProjectsList();
+
         }
     }
 }
