@@ -27,6 +27,19 @@ namespace napelemrendszerek_frontend
         
     }
 
+    public class PriceCalculation
+    {
+        public string PartName { get; set; }
+        public int SellPrice { get; set; }
+        public int NumberReserved { get; set; }
+
+        public PriceCalculation(Dictionary<string,string> responseDict) 
+        {
+            this.PartName = responseDict["partName"];
+            this.SellPrice = Convert.ToInt32(responseDict["sellPrice"]);
+            this.NumberReserved = Convert.ToInt32(responseDict["numberReserved"]);
+        }
+    }
 
     /// <summary>
     /// Interaction logic for SzakemberProjektekWaitScheduled.xaml
@@ -36,6 +49,7 @@ namespace napelemrendszerek_frontend
     {
         private MainWindow mainWindow;
         private List<ReservedPart> parts;
+        private List<PriceCalculation> priceCalculation;
         private ProjectsMainPage parentPage;
         private SolidColorBrush errorInputBackground;
         private int projectID;
@@ -51,6 +65,7 @@ namespace napelemrendszerek_frontend
             this.projectID = projectID;
             this.projectStateID = ProjectStateId;
             parts = new List<ReservedPart>();
+            priceCalculation = new List<PriceCalculation>();
             if(ProjectStateId == 3)
             {
                 TB_workFee.IsEnabled = true;
@@ -59,8 +74,30 @@ namespace napelemrendszerek_frontend
             else
             {
                 L_status.Content = "Scheduled";
+                BTN_kesz.IsEnabled = false;
             }
             loadPartList();
+        }
+
+        private async Task loadPriceCalculationList()
+        {
+            List<Dictionary<string, string>> responseList = await mainWindow.priceCalculator(projectID);
+            L_price.Content = responseList[0]["totalPrice"];
+
+            foreach (Dictionary<string, string> dict in responseList.Skip(1))
+            {
+                if (priceCalculation.Any(x => x.PartName == dict["partName"]))
+                {
+                    priceCalculation.Single(x => x.PartName == dict["partName"]).NumberReserved += Convert.ToInt32(dict["numberReserved"]);
+                }
+                else
+                {
+                    priceCalculation.Add(new PriceCalculation(dict));
+                }
+            }
+
+            SP_priceCalculation.Visibility = Visibility.Visible;
+            LB_priceCalculaionList.DataContext = priceCalculation;
         }
 
         private async void loadPartList()
@@ -111,9 +148,14 @@ namespace napelemrendszerek_frontend
                 }
             }
 
-            LB_alkatreszekLista.DataContext = parts;
+            if (projectStateID == 4)
+            {
+                await loadPriceCalculationList();
+            }
 
-          
+            LB_alkatreszekLista.DataContext = parts;
+            BTN_kesz.IsEnabled = true;
+            parentPage.ReEnableList();
         }
 
         private void NumberOnlyInput(object sender, TextCompositionEventArgs e)
@@ -143,7 +185,7 @@ namespace napelemrendszerek_frontend
 
             _ = await mainWindow.ChangeProjectState(projectID, 3, 4);
 
-            parentPage.refreshProjectsList();
+            await parentPage.refreshProjectsList();
         }
 
         private void TB_workFee_GotFocus(object sender, RoutedEventArgs e)

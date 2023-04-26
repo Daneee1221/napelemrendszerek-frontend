@@ -15,6 +15,21 @@ namespace napelemrendszerek_backend.Models
         public int Unallocated { get; set; }
         public int NumberAvailable { get; set; }
 
+        private int numberReserved;
+        public int NumberReserved
+        {
+            get { return numberReserved; }
+            set 
+            {
+                if (value < 1)
+                {
+                    return;
+                }
+                numberReserved = value; 
+            }
+        }
+
+
         public Part(string partName, int maxNumberInBox, int sellPrice, int unallocated)
         {
             PartName = partName;
@@ -22,7 +37,6 @@ namespace napelemrendszerek_backend.Models
             SellPrice = sellPrice;
             Unallocated = unallocated;
         }
-
         #region DictionaryConverter
         public Part(Dictionary<string, string> values)
         {

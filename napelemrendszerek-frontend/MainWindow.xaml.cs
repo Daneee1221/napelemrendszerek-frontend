@@ -161,12 +161,13 @@ namespace napelemrendszerek_frontend
             return projects;
         }
 
-        public async Task<string> addPartsToProject(int id, Dictionary<string, string> partsList)
+        public async Task<string> addPartsToProject(int id, string action, Dictionary<string, string> partsList)
         {
-            Dictionary<string, string> ID = new Dictionary<string, string>();
-            ID["projectID"] = id.ToString();
+            Dictionary<string, string> header = new Dictionary<string, string>();
+            header["action"] = action;
+            header["projectID"] = id.ToString();
 
-            Communication responseObject = await process.addPartsToProject(partsList, ID, roleID);
+            Communication responseObject = await process.addPartsToProject(partsList, header, roleID);
 
             return responseObject.Message;
         }
@@ -241,6 +242,18 @@ namespace napelemrendszerek_frontend
             Communication responseObject = await process.SendUnallocatedParts(orderStrDict, roleID);
 
             return responseObject.Message;
+        }
+
+        public async Task<List<Dictionary<string, string>>> priceCalculator(int projectID)
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>
+            {
+                { "projectID", projectID.ToString() }
+            };
+
+            Communication responseObject = await process.priceCalculator(d, roleID);
+
+            return responseObject.Content;
         }
     }
 }

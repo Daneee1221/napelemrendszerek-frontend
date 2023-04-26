@@ -255,5 +255,19 @@ namespace Comm
 
             return dResponse;
         }
+
+        public async Task<Communication> priceCalculator(Dictionary<string, string> d, int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "priceCalculator";
+            commObject.RoleId = roleID;
+            commObject.addItemToContent(d);
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = await tsResponse;
+
+            return dResponse;
+        }
     }
 }
