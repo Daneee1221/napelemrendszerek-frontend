@@ -71,8 +71,9 @@ namespace napelemrendszerek_frontend
             SP_StoreNewParts.Children.Remove(IMG_alert);
         }
 
-        private void Menu_OrderParts_Click(object sender, RoutedEventArgs e)
+        private async void Menu_OrderParts_Click(object sender, RoutedEventArgs e)
         {
+            await CheckForUnaccocatedParts();
             FR_RaktarosMainFrame.Navigate(new OrderMissingPartsPage(this));
         }
     }
