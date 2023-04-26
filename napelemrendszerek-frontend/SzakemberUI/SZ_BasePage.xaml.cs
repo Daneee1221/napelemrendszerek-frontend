@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -29,14 +30,26 @@ namespace napelemrendszerek_frontend
             mainWindow = (MainWindow)Application.Current.MainWindow;
         }
 
+        public void ReEnableMenuBar()
+        {
+            MenuBar.IsEnabled = true;
+        }
+
+        public void DisableMenuBar()
+        {
+            MenuBar.IsEnabled = false;
+        }
+
         private void Menu_NewCustomer(object sender, RoutedEventArgs e)
         {
-            FR_SzakemberMainFrame.Source = new Uri("./AddNewProjectPage.xaml", UriKind.Relative);
+            MenuBar.IsEnabled = false;
+            FR_SzakemberMainFrame.Navigate(new AddNewProjectPage(this));
         }
 
         private void Menu_Projects(object sender, RoutedEventArgs e)
         {
-            FR_SzakemberMainFrame.Source = new Uri("./ProjectsMainPage.xaml", UriKind.Relative);
+            MenuBar.IsEnabled = false;
+            FR_SzakemberMainFrame.Navigate(new ProjectsMainPage(this));
         }
 
         private void Menu_Logout_Click(object sender, RoutedEventArgs e)

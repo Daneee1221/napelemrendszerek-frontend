@@ -86,6 +86,8 @@ namespace napelemrendszerek_frontend
             }
 
             LB_NeededParts.DataContext = neededParts;
+
+            parentPage.ReEnableMenuBar();
         }
 
         private void NumberOnlyInput(object sender, TextCompositionEventArgs e)

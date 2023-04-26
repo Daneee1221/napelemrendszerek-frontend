@@ -1,4 +1,5 @@
-﻿using System;
+﻿using napelemrendszerek_frontend.RaktarvezetoUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,11 +34,14 @@ namespace napelemrendszerek_frontend
             _ = CheckForUnaccocatedParts();
         }
 
+        public void ReEnableMenuBar()
+        {
+            MenuBar.IsEnabled = true;
+        }
+
         private async Task CheckForUnaccocatedParts()
         {
-            MenuBar.IsEnabled = false;
             bool foundUnallocatedParts = await mainWindow.CheckForUnaccocatedParts();
-            MenuBar.IsEnabled = true;
 
             if (foundUnallocatedParts && SP_StoreNewParts.Children.Contains(IMG_alert) == false)
             {
@@ -61,18 +65,21 @@ namespace napelemrendszerek_frontend
 
         private async void Menu_ManageParts_Click(object sender, RoutedEventArgs e)
         {
+            MenuBar.IsEnabled = false;
             await CheckForUnaccocatedParts();
-            FR_RaktarosMainFrame.Source = new Uri("./PartManagementPage.xaml", UriKind.Relative);
+            FR_RaktarosMainFrame.Navigate(new PartManagementPage(this));
         }
 
         private void Menu_StoreNewParts_Click(object sender, RoutedEventArgs e)
         {
-            FR_RaktarosMainFrame.Source = new Uri("./StoreNewPartsPage.xaml", UriKind.Relative);
+            MenuBar.IsEnabled = false;
+            FR_RaktarosMainFrame.Navigate(new StoreNewPartsPage(this));
             SP_StoreNewParts.Children.Remove(IMG_alert);
         }
 
         private async void Menu_OrderParts_Click(object sender, RoutedEventArgs e)
         {
+            MenuBar.IsEnabled = false;
             await CheckForUnaccocatedParts();
             FR_RaktarosMainFrame.Navigate(new OrderMissingPartsPage(this));
         }

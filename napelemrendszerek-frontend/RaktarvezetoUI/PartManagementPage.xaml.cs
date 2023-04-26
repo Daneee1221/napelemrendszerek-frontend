@@ -25,11 +25,14 @@ namespace napelemrendszerek_frontend
         private MainWindow mainWindow;
         private List<Part> parts;
         private SolidColorBrush errorInputBackground;
+        private RV_BasePage parentPage;
 
-        public PartManagementPage()
+        public PartManagementPage(RV_BasePage parentPage)
         {
             InitializeComponent();
-            mainWindow = ((MainWindow)Application.Current.MainWindow);
+            mainWindow = (MainWindow)Application.Current.MainWindow;
+            this.parentPage = parentPage;
+
             errorInputBackground = new SolidColorBrush(Color.FromScRgb(0.69f, 1f, 0.05f, 0.05f));
 
             loadPartsList();
@@ -42,6 +45,8 @@ namespace napelemrendszerek_frontend
             StackPanel parent = LB_Parts.Parent as StackPanel;
             parent.Children.Remove(TB_Loading);
             LB_Parts.DataContext = parts;
+
+            parentPage.ReEnableMenuBar();
         }
 
         private void NumberOnlyInput(object sender, TextCompositionEventArgs e)

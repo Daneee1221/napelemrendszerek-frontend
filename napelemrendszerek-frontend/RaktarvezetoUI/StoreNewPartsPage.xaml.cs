@@ -62,8 +62,9 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
         private List<Part> parts;
         private List<CompartmentWithPart> changedCompartments;
         private MainWindow mainWindow;
+        private RV_BasePage parentPage;
 
-        public StoreNewPartsPage()
+        public StoreNewPartsPage(RV_BasePage parentPage)
         {
             InitializeComponent();
             unselectableBrush = new SolidColorBrush(Color.FromRgb(180, 180, 180));
@@ -72,6 +73,7 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
             fullBrush = new SolidColorBrush(Color.FromRgb(214, 173, 90));
 
             mainWindow = (MainWindow)Application.Current.MainWindow;
+            this.parentPage = parentPage;
 
             changedCompartments = new List<CompartmentWithPart>();
 
@@ -91,6 +93,8 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
             {
                 compartments.Add(new CompartmentWithPart(compartmentDict));
             }
+
+            parentPage.ReEnableMenuBar();
 
             //1. Sor betöltése
             RowSelectorBTN_Click(BTN_SelectRow1, new RoutedEventArgs());
