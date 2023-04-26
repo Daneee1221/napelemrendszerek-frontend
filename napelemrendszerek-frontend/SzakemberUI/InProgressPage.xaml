@@ -20,7 +20,7 @@
 
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 30 0 0" >
-            <Image x:Name="animatedGif" gif:ImageBehavior.AnimatedSource="../img/basicHouse.gif" HorizontalAlignment="Center" Height="600" Width="800"/>
+            <Image x:Name="animatedGif" gif:ImageBehavior.RepeatBehavior="1x" gif:ImageBehavior.AnimatedSource="../img/basicHouse.gif" HorizontalAlignment="Center" Height="600" Width="800"/>
         </StackPanel>
 
 

@@ -67,6 +67,9 @@
     </ApplicationDefinition>
     <Compile Include="DBClasses\Roles.cs" />
     <Compile Include="DBClasses\Users.cs" />
+    <Compile Include="RaktarvezetoUI\OrderMissingPartsPage.xaml.cs">
+      <DependentUpon>OrderMissingPartsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RaktarosUI\RaktarosUI.xaml.cs">
       <DependentUpon>RaktarosUI.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RaktarvezetoUI\OrderMissingPartsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RaktarosUI\RaktarosUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,6 +222,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\sum.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

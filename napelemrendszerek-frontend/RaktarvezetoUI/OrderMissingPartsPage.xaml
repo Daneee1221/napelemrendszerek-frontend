@@ -1,0 +1,120 @@
+﻿<Page x:Class="napelemrendszerek_frontend.OrderMissingPartsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:napelemrendszerek_frontend"
+      mc:Ignorable="d" 
+      d:DesignHeight="760" d:DesignWidth="1400"
+      Title="OrderMissingPartsPage" Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--Címsor-->
+        <TextBlock Grid.ColumnSpan="3" Text="Hiányzó Alkatrészek Rendelése" FontSize="40" FontStyle="Italic" HorizontalAlignment="Center" Margin="0 5"/>
+        <Separator Grid.ColumnSpan="3" VerticalAlignment="Bottom" Margin="20 0"/>
+        
+        <!--Hiányzó Lista-->
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <TextBlock Text="Hiányzó Alkatrészek" Margin="0 15 0 20" FontSize="25" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
+            <ListBox x:Name="LB_NeededParts" Width="400" Height="550" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Width="365">
+                                <StackPanel Width="300" Margin="10 0 0 0">
+                                    <TextBlock Text="{Binding PartName}" FontSize="20" />
+                                    <TextBlock FontSize="16" Margin="10 0 0 0" FontWeight="Light" FontStyle="Italic">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat=" {0} db Szükséges">
+                                                <Binding Path="Amount"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                                <Button x:Name="BTN_plusz" Margin="5 0 0 0" Height="35" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Click="BTN_plusz_Click">
+                                    <Image Source="../img/plus.png"/>
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="20"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+                            <Separator Margin="0 5 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        
+        <!--Aktuális Rendelés-->
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Aktuális Rendelés" Margin="0 15 0 20" FontSize="25" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
+            <ListBox x:Name="LB_OrderedParts" Width="400" Height="500" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Width="365">
+                                <StackPanel Width="210" Margin="10 0 0 0">
+                                    <TextBlock Text="{Binding PartName}" FontSize="20" />
+                                    <TextBlock FontSize="16" Margin="10 0 0 0" FontWeight="Light" FontStyle="Italic">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat=" {0} db Szükséges">
+                                                <Binding Path="Amount"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                                <TextBox Text="{Binding NumberOrdered, Mode=TwoWay}" x:Name="TB_OrderAmount" Width="50" Height="25" FontSize="16" PreviewTextInput="NumberOnlyInput"/>
+                                <TextBlock Text="db" FontSize="20" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                                <Button x:Name="BTN_bin" Margin="20 0 0 0" Height="35" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Click="BTN_bin_Click" >
+                                    <Image Source="../img/bin.png"/>
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+                            <Separator Margin="0 5 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button x:Name="BTN_Order" Content="Rendelés" FontSize="25" Width="400" Height="40" Margin="0 10 0 0" Click="BTN_Order_Click"/>
+        </StackPanel>
+        
+        <!--"Tfh. Rögtön Ideért Minden" Lista-->
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2">
+            <TextBlock Text="Megérkezett Alkatrészek" Margin="0 15 0 20" FontSize="25" FontWeight="Light" FontStyle="Italic" HorizontalAlignment="Center"/>
+            <ListBox x:Name="LB_ArrivedParts" Width="400" Height="550" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="365">
+                            <TextBlock Text="{Binding Key}" FontSize="20"  Margin="10 0 0 0"/>
+                            <TextBlock FontSize="16" Margin="20 0 0 0" FontWeight="Light" FontStyle="Italic">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat=" {0} db Raktár Előtt">
+                                        <Binding Path="Value"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <Separator Margin="0 5 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        
+    </Grid>
+</Page>

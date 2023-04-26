@@ -225,6 +225,25 @@ namespace napelemrendszerek_frontend
             return responseObject.Message;
         }
 
+        public async Task<List<Dictionary<string, string>>> GetAllMissingParts()
+        {
+            Communication responseObject = await process.GetAllMissingParts(roleID);
+
+            return responseObject.Content;
+        }
+
+        public async Task<string> SendUnallocatedParts(Dictionary<string, int> orderDict)
+        {
+            Dictionary<string, string> orderStrDict = new Dictionary<string, string>();
+            foreach (KeyValuePair<string, int> pair in orderDict)
+            {
+                orderStrDict[pair.Key] = pair.Value.ToString();
+            }
+            Communication responseObject = await process.SendUnallocatedParts(orderStrDict, roleID);
+
+            return responseObject.Message;
+        }
+
         public async Task<List<Dictionary<string, string>>> priceCalculator(int projectID)
         {
             Dictionary<string, string> d = new Dictionary<string, string>
@@ -236,6 +255,5 @@ namespace napelemrendszerek_frontend
 
             return responseObject.Content;
         }
-        
     }
 }

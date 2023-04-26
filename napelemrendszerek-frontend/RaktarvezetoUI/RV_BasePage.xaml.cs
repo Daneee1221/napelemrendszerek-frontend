@@ -35,9 +35,22 @@ namespace napelemrendszerek_frontend
 
         private async Task CheckForUnaccocatedParts()
         {
+            MenuBar.IsEnabled = false;
             bool foundUnallocatedParts = await mainWindow.CheckForUnaccocatedParts();
+            MenuBar.IsEnabled = true;
 
-            if (foundUnallocatedParts)
+            if (foundUnallocatedParts && SP_StoreNewParts.Children.Contains(IMG_alert) == false)
+            {
+                IMG_alert = new Image();
+                IMG_alert.Source = new BitmapImage(new Uri("../img/alert.png", UriKind.Relative));
+                IMG_alert.Height = 30;
+                SP_StoreNewParts.Children.Add(IMG_alert);
+            }
+        }
+
+        public void SetAlertAfterOrder()
+        {
+            if (SP_StoreNewParts.Children.Contains(IMG_alert) == false)
             {
                 IMG_alert = new Image();
                 IMG_alert.Source = new BitmapImage(new Uri("../img/alert.png", UriKind.Relative));
@@ -56,6 +69,11 @@ namespace napelemrendszerek_frontend
         {
             FR_RaktarosMainFrame.Source = new Uri("./StoreNewPartsPage.xaml", UriKind.Relative);
             SP_StoreNewParts.Children.Remove(IMG_alert);
+        }
+
+        private void Menu_OrderParts_Click(object sender, RoutedEventArgs e)
+        {
+            FR_RaktarosMainFrame.Navigate(new OrderMissingPartsPage(this));
         }
     }
 }
