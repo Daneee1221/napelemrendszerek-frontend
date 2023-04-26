@@ -74,18 +74,26 @@ namespace napelemrendszerek_frontend
             else
             {
                 L_status.Content = "Scheduled";
+                BTN_kesz.IsEnabled = false;
             }
             loadPartList();
         }
 
-        private async void loadPriceCalculationList()
+        private async Task loadPriceCalculationList()
         {
             List<Dictionary<string, string>> responseList = await mainWindow.priceCalculator(projectID);
             L_price.Content = responseList[0]["totalPrice"];
 
             foreach (Dictionary<string, string> dict in responseList.Skip(1))
             {
-                priceCalculation.Add(new PriceCalculation(dict));
+                if (priceCalculation.Any(x => x.PartName == dict["partName"]))
+                {
+                    priceCalculation.Single(x => x.PartName == dict["partName"]).NumberReserved += Convert.ToInt32(dict["numberReserved"]);
+                }
+                else
+                {
+                    priceCalculation.Add(new PriceCalculation(dict));
+                }
             }
 
             SP_priceCalculation.Visibility = Visibility.Visible;
@@ -142,10 +150,12 @@ namespace napelemrendszerek_frontend
 
             if (projectStateID == 4)
             {
-                loadPriceCalculationList();
+                await loadPriceCalculationList();
             }
 
-            LB_alkatreszekLista.DataContext = parts;          
+            LB_alkatreszekLista.DataContext = parts;
+            BTN_kesz.IsEnabled = true;
+            parentPage.ReEnableList();
         }
 
         private void NumberOnlyInput(object sender, TextCompositionEventArgs e)
@@ -175,7 +185,7 @@ namespace napelemrendszerek_frontend
 
             _ = await mainWindow.ChangeProjectState(projectID, 3, 4);
 
-            parentPage.refreshProjectsList();
+            await parentPage.refreshProjectsList();
         }
 
         private void TB_workFee_GotFocus(object sender, RoutedEventArgs e)

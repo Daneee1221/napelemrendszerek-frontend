@@ -36,29 +36,64 @@ namespace napelemrendszerek_frontend
         private MainWindow mainWindow;
         private SolidColorBrush errorInputBackground;
         private bool allPartsAvailable = false;
-        private Dictionary<string, string> selectedPartsDict;
         private int projectID;
+        private int stateID;
         private ProjectsMainPage parentPage;
 
-        public NewDraftPage(int projectID, ProjectsMainPage parentpage )
+        public NewDraftPage(int projectID, int stateID, ProjectsMainPage parentpage )
         {
             InitializeComponent();
 
             this.projectID = projectID;
+            this.stateID = stateID;
             parentPage = parentpage;
             mainWindow = ((MainWindow)Application.Current.MainWindow);
             errorInputBackground = new SolidColorBrush(Color.FromScRgb(0.69f, 1f, 0.05f, 0.05f));
             projectParts = new List<Part>();
-            selectedPartsDict= new Dictionary<string, string>();
             loadPartList();
             
         }
 
         private async void loadPartList()
         {
+            if (stateID == 1)
+            {
+                SP_projectPartsList.Children.Remove(TB_Loading2);
+            }
+
             parts = await mainWindow.GetParts();
             SP_partsList.Children.Remove(TB_Loading);
             LB_partsList.DataContext = parts;
+
+
+            if (stateID == 2)
+            {
+                L_status.Content = "Draft";
+
+                List<Dictionary<string, string>> responseList = await mainWindow.GetProjectParts(projectID);
+              
+                SP_projectPartsList.Children.Remove(TB_Loading2);
+
+                foreach (Dictionary<string, string> item in responseList)
+                {
+                    if (projectParts.Any(x => x.PartName == item["PartName"]))
+                    {
+                        projectParts.Single(x => x.PartName == item["PartName"]).NumberReserved += Convert.ToInt32(item["NumberReserved"]);
+                    }
+                    else
+                    {
+                        projectParts.Add(parts.Single(x => x.PartName == item["PartName"]));
+                        projectParts.Last().NumberReserved = Convert.ToInt32(item["NumberReserved"]);
+                    }
+                }
+                LB_projectPartsList.DataContext = projectParts;
+
+                checkForUnavailablePart();
+            }
+
+            BTN_lezaras.IsEnabled= true;
+            BTN_mentes.IsEnabled= true;
+            parentPage.ReEnableList();
         }
 
         private void checkForUnavailablePart()
@@ -66,7 +101,7 @@ namespace napelemrendszerek_frontend
             allPartsAvailable = true;
             foreach (Part part in projectParts)
             {
-                if(part.NumberAvailable < Convert.ToInt32(selectedPartsDict[part.PartName]))
+                if(part.NumberAvailable < part.NumberReserved)
                 {
                     allPartsAvailable = false;
                     break;
@@ -83,7 +118,7 @@ namespace napelemrendszerek_frontend
             }
         }
 
-        private async void BTN_kesz_Click(object sender, RoutedEventArgs e)
+        private async void BTN_lezaras_Click(object sender, RoutedEventArgs e)
         {
 
             bool foundError = false;
@@ -113,7 +148,8 @@ namespace napelemrendszerek_frontend
                 return;
             }
 
-            string response = await mainWindow.addPartsToProject(projectID, selectedPartsDict);
+            BTN_lezaras.IsEnabled = false;
+            BTN_mentes.IsEnabled = false;
 
             Dictionary<string, string> selectedPartsDict = new Dictionary<string, string>();
             foreach (Part item in projectParts)
@@ -143,7 +179,7 @@ namespace napelemrendszerek_frontend
                 _ = await mainWindow.setWorkfeeAndEstimatedTime(projectID, estimatedTimeInDays);
             }
 
-            parentPage.refreshProjectsList();
+            await parentPage.refreshProjectsList();
         }
 
         private void NumberOnlyInput(object sender, TextCompositionEventArgs e)
@@ -166,8 +202,8 @@ namespace napelemrendszerek_frontend
         {
             L_status.Content = "Draft";
             Button btn = (Button)sender;
+            ((Part)btn.DataContext).NumberReserved = 1;
             projectParts.Add((Part)btn.DataContext);
-            selectedPartsDict[((Part)btn.DataContext).PartName] = "1";
 
             parts.Remove((Part)btn.DataContext);
 
@@ -175,6 +211,9 @@ namespace napelemrendszerek_frontend
             LB_projectPartsList.DataContext = null;
             LB_partsList.DataContext = parts;
             LB_projectPartsList.DataContext = projectParts;
+
+            LB_projectPartsList.Background= null;
+            L_projectParts.Content = "Projekt anyagok";
 
             checkForUnavailablePart();
 
@@ -187,12 +226,11 @@ namespace napelemrendszerek_frontend
             parts.Add((Part)btn.DataContext);
             parts = parts.OrderBy(x => x.PartName).ToList();
 
-            selectedPartsDict.Remove(((Part)btn.DataContext).PartName);
             projectParts.Remove((Part)btn.DataContext);
 
             if(projectParts.Count == 0)
             {
-                L_status.Content = "Új";
+                L_status.Content = "New";
             }
 
             LB_partsList.DataContext = null;
@@ -206,9 +244,6 @@ namespace napelemrendszerek_frontend
 
         private void TB_projectPartsNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            StackPanel parent = (sender as TextBox).Parent as StackPanel;
-            selectedPartsDict[((Part)parent.DataContext).PartName] = (sender as TextBox).Text;
-
             checkForUnavailablePart();
         }
 
