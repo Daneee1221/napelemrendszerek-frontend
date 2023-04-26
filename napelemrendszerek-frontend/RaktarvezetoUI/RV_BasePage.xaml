@@ -17,14 +17,14 @@
         <Menu x:Name="MenuBar">
             <MenuItem Header="Alkatrészek kezelése" FontSize="20" Height="40" Click="Menu_ManageParts_Click"/>
             <MenuItem Header="Alkatrész Rendelés" FontSize="20" Height="40" Click="Menu_OrderParts_Click"/>
-            <MenuItem FontSize="20" Height="40" Width="400" Click="Menu_StoreNewParts_Click">
+            <MenuItem FontSize="20" Height="40" Width="370" Click="Menu_StoreNewParts_Click">
                 <MenuItem.Header>
                     <StackPanel x:Name="SP_StoreNewParts" Orientation="Horizontal">
                         <TextBlock Text="Beérkezett alkatrészek rendszerezése"/>
                     </StackPanel>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem FontSize="20" Height="40" Margin="500 0 0 0" Click="Menu_Logout_Click">
+            <MenuItem FontSize="20" Height="40" Margin="520 0 0 0" Click="Menu_Logout_Click">
                 <MenuItem.Header>
                     <StackPanel x:Name="SP_Logout" Orientation="Horizontal">
                         <TextBlock Text="Kilépés"/>
