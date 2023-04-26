@@ -21,10 +21,26 @@ namespace napelemrendszerek_frontend
         public string PartName { get; set; }
         public int Amount { get; set; }
 
+        private int numberOrdered;
+        public int NumberOrdered
+        {
+            get { return numberOrdered; }
+            set 
+            {
+                if (value < 1)
+                {
+                    return;
+                }
+                numberOrdered = value;
+            }
+        }
+
+
         public OrderPart(string partName, int amount)
         {
             PartName = partName;
             Amount = amount;
+            NumberOrdered = 0;
         }
     }
 
@@ -35,17 +51,19 @@ namespace napelemrendszerek_frontend
     {
         private List<OrderPart> neededParts;
         private List<OrderPart> orderedParts;
-        private List<OrderPart> arrivedParts;
+        private Dictionary<string, int> arrivedParts;
         private MainWindow mainWindow;
+        private RV_BasePage parentPage;
 
-        public OrderMissingPartsPage()
+        public OrderMissingPartsPage(RV_BasePage parent)
         {
             InitializeComponent();
 
+            this.parentPage = parent;
             mainWindow = (MainWindow)Application.Current.MainWindow;
             neededParts = new List<OrderPart>();
             orderedParts = new List<OrderPart>();
-            arrivedParts = new List<OrderPart>();
+            arrivedParts = new Dictionary<string, int>();
 
             _ = LoadNeededParts();
         }
@@ -57,15 +75,17 @@ namespace napelemrendszerek_frontend
 
             foreach (Dictionary<string, string> dict in responseList)
             {
-                neededParts.Add(new OrderPart(dict["PartName"], Convert.ToInt32(dict["NumberReserved"])));
+                if (neededParts.Any(x => x.PartName == dict["PartName"]))
+                {
+                    neededParts.Single(x => x.PartName == dict["PartName"]).Amount += Convert.ToInt32(dict["NumberReserved"]);
+                }
+                else
+                {
+                    neededParts.Add(new OrderPart(dict["PartName"], Convert.ToInt32(dict["NumberReserved"])));
+                }
             }
 
             LB_NeededParts.DataContext = neededParts;
-        }
-
-        private void TB_OrderAmount_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private void NumberOnlyInput(object sender, TextCompositionEventArgs e)
@@ -77,8 +97,10 @@ namespace napelemrendszerek_frontend
         private void BTN_plusz_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            orderedParts.Add((OrderPart)btn.DataContext);
-            neededParts.Remove((OrderPart)btn.DataContext);
+            OrderPart selectedPart = (OrderPart)btn.DataContext;
+            selectedPart.NumberOrdered = 1;
+            orderedParts.Add(selectedPart);
+            neededParts.Remove(selectedPart);
 
             LB_NeededParts.DataContext = null;
             LB_OrderedParts.DataContext = null;
@@ -89,8 +111,10 @@ namespace napelemrendszerek_frontend
         private void BTN_bin_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            neededParts.Add((OrderPart)btn.DataContext);
-            orderedParts.Remove((OrderPart)btn.DataContext);
+            OrderPart selectedPart = (OrderPart)btn.DataContext;
+            selectedPart.NumberOrdered = 0;
+            neededParts.Add(selectedPart);
+            orderedParts.Remove(selectedPart);
 
             neededParts.Sort((a, b) => a.PartName.CompareTo(b.PartName));
 
@@ -98,6 +122,43 @@ namespace napelemrendszerek_frontend
             LB_OrderedParts.DataContext = null;
             LB_NeededParts.DataContext = neededParts;
             LB_OrderedParts.DataContext = orderedParts;
+        }
+
+        private async void BTN_Order_Click(object sender, RoutedEventArgs e)
+        {
+            Dictionary<string, int> currentOrder = new Dictionary<string, int>();
+            foreach (OrderPart part in orderedParts)
+            {
+                currentOrder[part.PartName] = part.NumberOrdered;
+                if (arrivedParts.ContainsKey(part.PartName))
+                {
+                    arrivedParts[part.PartName] += part.NumberOrdered;
+                }
+                else
+                {
+                    arrivedParts.Add(part.PartName, part.NumberOrdered);
+                }
+                if (part.NumberOrdered < part.Amount)
+                {
+                    part.Amount -= part.NumberOrdered;
+                    neededParts.Add(part);
+                }
+            }
+            LB_ArrivedParts.DataContext = null;
+            LB_ArrivedParts.DataContext = arrivedParts;
+
+            orderedParts.Clear();
+            LB_OrderedParts.DataContext = null;
+
+            LB_NeededParts.DataContext = null;
+            LB_NeededParts.DataContext = neededParts;
+
+            string response  = await mainWindow.SendUnallocatedParts(currentOrder);
+            if (response == "successful")
+            {
+                parentPage.SetAlertAfterOrder();
+                currentOrder.Clear();
+            }
         }
     }
 }

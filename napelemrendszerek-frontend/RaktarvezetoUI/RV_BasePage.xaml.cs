@@ -48,6 +48,17 @@ namespace napelemrendszerek_frontend
             }
         }
 
+        public void SetAlertAfterOrder()
+        {
+            if (SP_StoreNewParts.Children.Contains(IMG_alert) == false)
+            {
+                IMG_alert = new Image();
+                IMG_alert.Source = new BitmapImage(new Uri("../img/alert.png", UriKind.Relative));
+                IMG_alert.Height = 30;
+                SP_StoreNewParts.Children.Add(IMG_alert);
+            }
+        }
+
         private async void Menu_ManageParts_Click(object sender, RoutedEventArgs e)
         {
             await CheckForUnaccocatedParts();
@@ -62,7 +73,7 @@ namespace napelemrendszerek_frontend
 
         private void Menu_OrderParts_Click(object sender, RoutedEventArgs e)
         {
-            FR_RaktarosMainFrame.Source = new Uri("./OrderMissingPartsPage.xaml", UriKind.Relative);
+            FR_RaktarosMainFrame.Navigate(new OrderMissingPartsPage(this));
         }
     }
 }
