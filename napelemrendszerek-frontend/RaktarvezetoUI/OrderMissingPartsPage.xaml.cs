@@ -126,6 +126,10 @@ namespace napelemrendszerek_frontend
 
         private async void BTN_Order_Click(object sender, RoutedEventArgs e)
         {
+            if (orderedParts.Count == 0)
+            {
+                return;
+            }
             Dictionary<string, int> currentOrder = new Dictionary<string, int>();
             foreach (OrderPart part in orderedParts)
             {
