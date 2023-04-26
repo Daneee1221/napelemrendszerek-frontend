@@ -231,9 +231,23 @@ namespace Comm
         public async Task<Communication> GetAllMissingParts(int roleID)
         {
             Communication commObject = new Communication();
-            commObject.Message = "getOrderedPartsForProject";
+            commObject.Message = "getOrderedParts";
             commObject.RoleId = roleID;
             commObject.addItemToContent(new Dictionary<string, string>());
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = await tsResponse;
+
+            return dResponse;
+        }
+
+        public async Task<Communication> SendUnallocatedParts(Dictionary<string, string> orderDict, int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "setUnallocatedParts";
+            commObject.RoleId = roleID;
+            commObject.addItemToContent(orderDict);
 
             Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
             Console.WriteLine("Sent request, waiting for response");
