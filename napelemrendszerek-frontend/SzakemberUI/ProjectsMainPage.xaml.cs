@@ -40,12 +40,17 @@ namespace napelemrendszerek_frontend
             LB_projektekLista.DataContext = projects;
         }
 
-        public async void refreshProjectsList()
+        public async Task refreshProjectsList()
         {
             int pID = ((Project)LB_projektekLista.SelectedItem).ProjectId;
             await loadProjectsList();
             Project p = projects.Single(x => x.ProjectId == pID);
             LB_projektekLista.SelectedItem = p;
+        }
+
+        public void ReEnableList()
+        {
+            LB_projektekLista.IsEnabled = true;
         }
 
         private void LB_projektekLista_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -57,15 +62,17 @@ namespace napelemrendszerek_frontend
 
             Project selectedProject = (Project)LB_projektekLista.SelectedItem;
 
+            LB_projektekLista.IsEnabled = false;
+
             int status = selectedProject.ProjectStateId;
 
             switch(status)
             {
                 case 1:
-                    FR_ProjektekFrame.Navigate(new NewDraftPage(selectedProject.ProjectId, this));
+                    FR_ProjektekFrame.Navigate(new NewDraftPage(selectedProject.ProjectId, selectedProject.ProjectStateId, this));
                     break;
                 case 2:
-                    FR_ProjektekFrame.Navigate(new NewDraftPage(selectedProject.ProjectId, this));
+                    FR_ProjektekFrame.Navigate(new NewDraftPage(selectedProject.ProjectId, selectedProject.ProjectStateId, this));
                     break;
                 case 3:
                     FR_ProjektekFrame.Navigate(new WaitScheduledPage(selectedProject.ProjectId, selectedProject.ProjectStateId, this));
@@ -77,6 +84,7 @@ namespace napelemrendszerek_frontend
                     FR_ProjektekFrame.Navigate(new InProgressPage(selectedProject.ProjectId, this));
                     break;
                 default:
+                    ReEnableList();
                     break;
             }
         }
