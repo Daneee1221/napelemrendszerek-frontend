@@ -23,14 +23,18 @@ namespace napelemrendszerek_frontend
     {
         private SolidColorBrush errorInputBackground;
         private MainWindow mainWindow;
+        private SZ_BasePage parentPage;
 
-        public AddNewProjectPage()
+        public AddNewProjectPage(SZ_BasePage parentPage)
         {
             InitializeComponent();
             mainWindow = (MainWindow)Application.Current.MainWindow;
+            this.parentPage = parentPage;
+
             errorInputBackground = new SolidColorBrush(Color.FromScRgb(0.69f, 1f, 0.05f, 0.05f));
 
             TB_name.Focus();
+            parentPage.ReEnableMenuBar();
         }
 
         private async void BTN_ujUgyfelHozzaadas_Click(object sender, RoutedEventArgs e)
@@ -85,6 +89,7 @@ namespace napelemrendszerek_frontend
                 return;
             }
 
+            parentPage.DisableMenuBar();
             BTN_ujUgyfelHozzaadas.IsEnabled = false;
             BTN_ujUgyfelHozzaadas.Content = "Kis türelmet!";
 
@@ -94,6 +99,7 @@ namespace napelemrendszerek_frontend
 
             BTN_ujUgyfelHozzaadas.Content = "Hozzáad";
             BTN_ujUgyfelHozzaadas.IsEnabled = true;
+            parentPage.ReEnableMenuBar();
 
             switch (response)
             {

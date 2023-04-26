@@ -71,6 +71,12 @@ namespace napelemrendszerek_frontend
             }
         }
 
+        public void Logout()
+        {
+            FR_mainFrame.Source = new Uri("./loginPage.xaml", UriKind.Relative);
+            roleID = 0;
+        }
+
         public async Task<List<Part>> GetParts()
         {
             List<Part> parts = new List<Part>();
@@ -229,7 +235,14 @@ namespace napelemrendszerek_frontend
         {
             Communication responseObject = await process.GetAllMissingParts(roleID);
 
-            return responseObject.Content;
+            if (responseObject.Message == "nodata")
+            {
+                return new List<Dictionary<string, string>>();
+            }
+            else
+            {
+                return responseObject.Content;
+            }
         }
 
         public async Task<string> SendUnallocatedParts(Dictionary<string, int> orderDict)
