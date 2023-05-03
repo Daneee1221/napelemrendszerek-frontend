@@ -66,10 +66,10 @@
             <ListBox x:Name="LB_alkatreszekLista" Width="400" Margin="10 0" HorizontalAlignment="Center" Height="550" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding PartName}" Margin="5 0 0 0"/>
-                            <TextBlock Text="{Binding NumberAvailable}" Margin="5 0 0 0"/>
-                            <!--IDE AZ KELL, HOGY AZ ADOTT PROJEKHET HÁNY DB KELL?-->
+                        <StackPanel Orientation="Vertical" Width="365">
+                            <TextBlock Text="{Binding PartName}" FontSize="18" FontWeight="Medium" Margin="5 0 0 0"/>
+                            <TextBlock Text="{Binding NumberReserved, StringFormat=' {0} db szükséges'}" FontWeight="Light" FontStyle="Italic" FontSize="16" Margin="10 0 0 0"/>
+                            <Separator Margin="0 5 0 0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
