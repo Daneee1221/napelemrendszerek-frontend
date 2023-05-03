@@ -55,5 +55,10 @@ namespace napelemrendszerek_frontend
         {
             mainWindow.Logout();
         }
+
+        private void BTN_utvonal_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
