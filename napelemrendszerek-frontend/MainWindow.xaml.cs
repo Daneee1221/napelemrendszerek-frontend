@@ -153,7 +153,7 @@ namespace napelemrendszerek_frontend
             return responseObject.Message;
         }
 
-        public async Task<List<Project>> GetProjects()
+        public async Task<List<Project>> GetProjects(bool scheduledOnly = false)
         {
             List<Project> projects = new List<Project>();
 
@@ -161,7 +161,17 @@ namespace napelemrendszerek_frontend
 
             foreach (Dictionary<string, string> pair in responseObject.Content)
             {
-                projects.Add(new Project(pair));
+                if (scheduledOnly)
+                {
+                    if (pair["ProjectStateId"] == "4")
+                    {
+                        projects.Add(new Project(pair));
+                    }
+                }
+                else
+                {
+                    projects.Add(new Project(pair));
+                }
             }
 
             return projects;
