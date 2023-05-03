@@ -22,6 +22,19 @@
         <!--Fejléc-->
         <StackPanel Grid.ColumnSpan="3">
             <Label Content="Alkatrészek Kivételezése Projekthez" FontSize="40" HorizontalAlignment="Center" FontStyle="Italic"/>
+            <Button x:Name="BTN_Kilepes" Width="150" Height="40" FontSize="25" HorizontalAlignment="Right" Margin="0 -60 20 0" Click="BTN_Kilepes_Click">
+                <Button.Content>
+                    <StackPanel x:Name="SP_Logout" Orientation="Horizontal">
+                        <TextBlock Text="Kilépés"/>
+                        <Image Source="../img/logout.png" Margin="10 0 0 0" Height="30"/>
+                    </StackPanel>
+                </Button.Content>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
             <Separator VerticalAlignment="Top" Margin="15 5 15 0"/>
         </StackPanel>
 

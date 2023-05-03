@@ -20,14 +20,20 @@ namespace napelemrendszerek_frontend
     /// </summary>
     public partial class RaktarosUI : Page
     {
+        private MainWindow mainWindow;
         public RaktarosUI()
         {
             InitializeComponent();
+            mainWindow = (MainWindow)Application.Current.MainWindow;
         }
 
         private void BTN_kesz_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void BTN_Kilepes_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Logout();
         }
     }
 }
