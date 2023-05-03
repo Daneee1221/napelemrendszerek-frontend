@@ -23,6 +23,7 @@ namespace napelemrendszerek_frontend
     {
         private MainWindow mainWindow;
         private List<Project> projects;
+        private List<PartProjectConnection> projectParts;
 
         public RaktarosUI()
         {
@@ -30,12 +31,14 @@ namespace napelemrendszerek_frontend
 
             mainWindow = (MainWindow)Application.Current.MainWindow;
 
+            projectParts = new List<PartProjectConnection>();
+
             _ = LoadProjects();
         }
 
         private async Task LoadProjects()
         {
-            projects = await mainWindow.GetProjects();
+            projects = await mainWindow.GetProjects(true);
             LB_projektLista.DataContext = projects;
         }
 
@@ -44,11 +47,38 @@ namespace napelemrendszerek_frontend
 
         }
 
-        private void LB_projektLista_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void LB_projektLista_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (LB_projektLista.SelectedIndex == -1)
+            {
+                return;
+            }
+
             LB_projektLista.IsEnabled = false;
             BTN_kesz.IsEnabled = false;
-            //Kilepes false
+            BTN_Kilepes.IsEnabled = false;
+            
+            int projectID = (LB_projektLista.SelectedItem as Project).ProjectId;
+
+            List<Dictionary<string, string>> responseList = await mainWindow.GetProjectParts(projectID);
+
+            foreach (Dictionary<string, string> item in responseList)
+            {
+                if (projectParts.Any(x => x.PartName == item["PartName"]))
+                {
+                    projectParts.Single(x => x.PartName == item["PartName"]).NumberReserved += Convert.ToInt32(item["NumberReserved"]);
+                }
+                else
+                {
+                    projectParts.Add(new PartProjectConnection(item));
+                    projectParts.Last().NumberReserved = Convert.ToInt32(item["NumberReserved"]);
+                }
+            }
+            LB_alkatreszekLista.DataContext = projectParts;
+
+            LB_projektLista.IsEnabled = true;
+            BTN_kesz.IsEnabled = true;
+            BTN_Kilepes.IsEnabled = true;
         }
 
         private void BTN_Kilepes_Click(object sender, RoutedEventArgs e)
