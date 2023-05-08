@@ -159,6 +159,11 @@ namespace napelemrendszerek_frontend
 
             Communication responseObject = await process.GetProjects(roleID);
 
+            if (responseObject.Message == "denied" || responseObject.Message == "nodata")
+            {
+                return null;
+            }
+
             foreach (Dictionary<string, string> pair in responseObject.Content)
             {
                 if (scheduledOnly)
