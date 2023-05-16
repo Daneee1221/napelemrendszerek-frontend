@@ -65,21 +65,38 @@ namespace napelemrendszerek_frontend
             {
                 return;
             }
+
+            LB_projektLista.IsEnabled = false;
+            BTN_kesz.IsEnabled = false;
+
             int projectID = (LB_projektLista.SelectedItem as Project).ProjectId;
             string res = await mainWindow.StartProject(modifiedCompartments, projectID);
+
+            if (res == "successful")
+            {
+                BTN_kesz.Foreground = new SolidColorBrush(Colors.Green);
+                BTN_kesz.Content = "Sikeres!";
+            }
+            await Task.Delay(1500);
+            BTN_kesz.IsEnabled = true;
+            BTN_kesz.Foreground = new SolidColorBrush(Colors.Black);
+            BTN_kesz.Content = "Kész";
+
+            LB_projektLista.SelectedIndex = -1;
         }
 
         private async void LB_projektLista_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (LB_projektLista.SelectedIndex == -1)
-            {
-                return;
-            }
-
             projectParts.Clear();
             modifiedCompartments.Clear();
             LB_alkatreszekLista.DataContext = null;
             LB_boxLista.DataContext = null;
+            BTN_kesz.IsEnabled = false;
+
+            if (LB_projektLista.SelectedIndex == -1)
+            {
+                return;
+            }
 
             LB_projektLista.IsEnabled = false;
             BTN_utvonal.IsEnabled = false;
