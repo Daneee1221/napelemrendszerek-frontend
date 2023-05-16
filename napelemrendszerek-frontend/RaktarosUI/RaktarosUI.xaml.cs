@@ -30,11 +30,6 @@ namespace napelemrendszerek_frontend
 
         public RaktarosUI()
         {
-            //TODO
-            //Backendnek küldeni a változásokat
-            //Project állapotot átállítani
-
-
             InitializeComponent();
 
             mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -64,9 +59,14 @@ namespace napelemrendszerek_frontend
             }
         }
 
-        private void BTN_kesz_Click(object sender, RoutedEventArgs e)
+        private async void BTN_kesz_Click(object sender, RoutedEventArgs e)
         {
-
+            if (LB_projektLista.SelectedIndex == -1)
+            {
+                return;
+            }
+            int projectID = (LB_projektLista.SelectedItem as Project).ProjectId;
+            string res = await mainWindow.StartProject(modifiedCompartments, projectID);
         }
 
         private async void LB_projektLista_SelectionChanged(object sender, SelectionChangedEventArgs e)

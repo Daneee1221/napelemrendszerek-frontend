@@ -283,5 +283,21 @@ namespace napelemrendszerek_frontend
 
             return responseObject.Content;
         }
+
+        public async Task<string> StartProject(List<CompartmentWithPart> modifiedCompartments, int projectID)
+        {
+            Dictionary<string, string> header = new Dictionary<string, string>();
+            header.Add("projectID", projectID.ToString());
+
+            Dictionary<string, string> body = new Dictionary<string, string>();
+            foreach (CompartmentWithPart item in modifiedCompartments)
+            {
+                body.Add(item.Id, item.NumTaken.ToString());
+            }
+
+            Communication responseObject = await process.StartProject(header, body, roleID);
+
+            return responseObject.Message;
+        }
     }
 }
