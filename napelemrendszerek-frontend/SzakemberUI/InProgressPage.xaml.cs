@@ -23,14 +23,14 @@ namespace napelemrendszerek_frontend
     public partial class InProgressPage : Page
     {
         private MainWindow mainWindow;
-        private ProjectsMainPage parent;
+        private ProjectsMainPage parentPage;
 
         public InProgressPage(int projectID, ProjectsMainPage p)
         {
             InitializeComponent();
             mainWindow = (MainWindow)Application.Current.MainWindow;
-            parent = p;
-
+            parentPage = p;
+            parentPage.ReEnableList();
         }
 
         private void BTN_done_Click(object sender, RoutedEventArgs e)
