@@ -101,9 +101,10 @@
                             </StackPanel>
                             <TextBlock Margin="10 0 0 0" FontSize="18" FontWeight="Light" FontStyle="Italic">
                                 <TextBlock.Text>
-                                    <MultiBinding StringFormat=" {0} - {1} db">
+                                    <MultiBinding StringFormat=" {0} - {1} db (max {2}/box)">
                                         <Binding Path="PartName"/>
                                         <Binding Path="NumTaken"/>
+                                        <Binding Path="MaxAmount"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
