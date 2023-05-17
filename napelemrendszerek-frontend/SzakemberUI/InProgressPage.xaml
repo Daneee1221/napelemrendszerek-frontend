@@ -5,13 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:napelemrendszerek_frontend"
       mc:Ignorable="d" 
-      d:DesignHeight="760" d:DesignWidth="1100"
+      d:DesignHeight="720" d:DesignWidth="1000"
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       Title="InProgressPage" Background="White">
 
     <Grid>
-        <StackPanel Margin="10">
-            <StackPanel Orientation="Horizontal" Width="1070" Margin="0 10 0 10" Background="White" HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,10,10,10" Grid.RowSpan="2">
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 10" Background="White" HorizontalAlignment="Left">
                 <Label Content="Állapot:" FontSize="20" Width="80" Margin="10 0 30 0" FontStyle="Italic" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                 <Label x:Name="L_status" Content="Munka alatt" FontSize="20" Width="230" FontStyle="Italic" FontWeight="Medium" VerticalContentAlignment="Center" Margin="0 10 595 10"/>
             </StackPanel>
@@ -19,12 +23,12 @@
         </StackPanel>
 
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 30 0 0" >
-            <Image x:Name="animatedGif" gif:ImageBehavior.RepeatBehavior="1x" gif:ImageBehavior.AnimatedSource="../img/basicHouse.gif" HorizontalAlignment="Center" Height="600" Width="800"/>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,175,0,0" Height="400" Width="534" >
+            <Image x:Name="animatedGif" gif:ImageBehavior.RepeatBehavior="1x" gif:ImageBehavior.AnimatedSource="../img/basicHouse.gif" HorizontalAlignment="Center" Height="400"/>
         </StackPanel>
 
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Margin="0 680 0 0" Width="550">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="40" Grid.Row="1">
             <Button x:Name="BTN_done" Content="Befejezve" IsEnabled="True" Width="130" FontSize="20" Click="BTN_done_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -33,7 +37,7 @@
                 </Button.Resources>
             </Button>
 
-            <Button x:Name="BTN_unsuccessful" Content="Sikertelen" Width="130" FontSize="20" Margin="290 0 0 0" Click="BTN_unsuccessful_Click">
+            <Button x:Name="BTN_unsuccessful" Content="Sikertelen" Width="130" FontSize="20" Margin="150 0 0 0" Click="BTN_unsuccessful_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

@@ -5,85 +5,121 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:napelemrendszerek_frontend"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="760" d:DesignWidth="1400"
       Title="RaktarosUI" Background="White">
 
     <Grid>
-        <Label Content="Raktáros" FontSize="30" HorizontalAlignment="Center" FontStyle="Italic"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Separator VerticalAlignment="Top" Margin="15 50 15 0"/>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="350" Width="780" Margin=" 0 0 0 40">
-
-
-            <StackPanel HorizontalAlignment="Center"  Width="230" Background="LightGray" Height="350" Margin="10 0 15 0" >
-
-                <StackPanel>
-                    <Label Content="Projektek" FontWeight="Light" FontSize="15" Width="100"  FontStyle="Italic" HorizontalContentAlignment="Center" Margin="0 5 0 0"/>
-                </StackPanel>
-
-                <ListBox x:Name="LB_projektekLista" Width="230"  Margin="10" HorizontalAlignment="Center" Background="White" Height="300" ItemsSource="{Binding}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding ProjectLocation}" Width="90" Margin="5 0 0 0"/>
-                                <TextBlock Text="{Binding ProjectDescription}" Width="90" Margin="5 0 0 0"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Height="400">
-                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-            </StackPanel>
-
-            <StackPanel HorizontalAlignment="Center"  Width="230" Background="LightGray" Height="350" Margin="15 0 15 0">
-
-                <StackPanel>
-                    <Label Content="Alkatrészek" FontWeight="Light" FontSize="15" Width="100" FontStyle="Italic" HorizontalContentAlignment="Center" Margin="0 5 0 0"/>
-                </StackPanel>
-
-                <ListBox x:Name="LB_alkatreszekLista" Width="230" HorizontalAlignment="Center" Margin="10" Background="White" Height="300" ItemsSource="{Binding}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding PartName}" Width="115" Margin="5 0 0 0"/>
-                                <TextBlock Text="{Binding NumberAvailable}" Width="115" Margin="5 0 0 0"/>
-                                <!--IDE AZ KELL, HOGY AZ ADOTT PROJEKHET HÁNY DB KELL?-->
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Height="400">
-                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-            </StackPanel>
-
-            <StackPanel HorizontalAlignment="Center"  Width="230" Background="LightGray" Height="350" Margin="15 0 0 0">
-
-                <StackPanel>
-                    <Label Content="Box Sorrend" FontWeight="Light" FontSize="15" Width="100" FontStyle="Italic" HorizontalContentAlignment="Center" Margin="0 5 0 0"/>
-                </StackPanel>
-
-                <ListBox x:Name="LB_boxLista" Width="230" HorizontalAlignment="Center" Margin="10" Background="White" Height="300" ItemsSource="{Binding}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding CompartmentRow}" Width="115" Margin="5 0 0 0"/>
-                                <TextBlock Text="{Binding CompartmentCulomn}" Width="115" Margin="5 0 0 0"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
-
+        <!--Fejléc-->
+        <StackPanel Grid.ColumnSpan="3">
+            <Label Content="Alkatrészek Kivételezése Projekthez" FontSize="40" HorizontalAlignment="Center" FontStyle="Italic"/>
+            <Button x:Name="BTN_Kilepes" Width="150" Height="40" FontSize="25" HorizontalAlignment="Right" Margin="0 -60 20 0" Click="BTN_Kilepes_Click">
+                <Button.Content>
+                    <StackPanel x:Name="SP_Logout" Orientation="Horizontal">
+                        <TextBlock Text="Kilépés"/>
+                        <Image Source="../img/logout.png" Margin="10 0 0 0" Height="30"/>
+                    </StackPanel>
+                </Button.Content>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Separator VerticalAlignment="Top" Margin="15 5 15 0"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 20 10">
-            <Button x:Name="BTN_kesz" Content="Kész" Width="80" Click="BTN_kesz_Click"/>
+        <!--Project Lista-->
+        <StackPanel Grid.Row="1">
+            <Label Content="Projektek" FontWeight="Light" Margin="0 10 0 15" FontSize="25" FontStyle="Italic" HorizontalAlignment="Center"/>
+            <ListBox x:Name="LB_projektLista" Width="400" Margin="10 0" HorizontalAlignment="Center" Height="550" ItemsSource="{Binding}" SelectionChanged="LB_projektLista_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Width="365">
+                            <TextBlock Text="{Binding ProjectLocation}" FontSize="18" FontWeight="Medium" Margin="5 0 0 0"/>
+                            <TextBlock Text="{Binding CustomerName}" FontSize="16" Margin="10 0 0 0"/>
+                            <TextBlock Text="{Binding ProjectDescription}" FontSize="14" FontWeight="Light" FontStyle="Italic" Margin="10 0 0 0" MaxWidth="340" TextWrapping="WrapWithOverflow"/>
+                            <Separator Margin="0 5 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
 
+        <!--Vertical Separator-->
+        <StackPanel Orientation="Horizontal" Height="400">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        </StackPanel>
+
+        <!--Alkatrész Lista-->
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Alkatrészek" FontWeight="Light" Margin="0 10 0 15" FontSize="25" FontStyle="Italic" HorizontalAlignment="Center"/>
+            <ListBox x:Name="LB_alkatreszekLista" Width="400" Margin="10 0" HorizontalAlignment="Center" Height="550" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Width="365">
+                            <TextBlock Text="{Binding PartName}" FontSize="18" FontWeight="Medium" Margin="5 0 0 0"/>
+                            <TextBlock Text="{Binding NumberReserved, StringFormat=' {0} db szükséges'}" FontWeight="Light" FontStyle="Italic" FontSize="16" Margin="10 0 0 0"/>
+                            <Separator Margin="0 5 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button x:Name="BTN_utvonal" Content="Útvonal" FontSize="25" Width="400" Height="40" Margin="0 10 0 0" Click="BTN_utvonal_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+
+        <!--Vertical Separator-->
+        <StackPanel Orientation="Horizontal" Height="400">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        </StackPanel>
+
+        <!--Box Sorrend-->
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Label Content="Box Sorrend" FontWeight="Light" Margin="0 10 0 15" FontSize="25" FontStyle="Italic" HorizontalAlignment="Center"/>
+            <ListBox x:Name="LB_boxLista" Width="400" Margin="10 0" HorizontalAlignment="Center" Height="550" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Width="365">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="BoxID:" Margin="5 0 0 0" FontSize="20"/>
+                                <TextBlock Text="{Binding Id}" Margin="5 0 0 0" FontSize="20" FontWeight="Medium"/>
+                            </StackPanel>
+                            <TextBlock Margin="10 0 0 0" FontSize="18" FontWeight="Light" FontStyle="Italic">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat=" {0} - {1} db (max {2}/box)">
+                                        <Binding Path="PartName"/>
+                                        <Binding Path="NumTaken"/>
+                                        <Binding Path="MaxAmount"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <Separator Margin="0 5 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button x:Name="BTN_kesz" IsEnabled="False" Content="Kész" FontSize="25" Width="400" Height="40" Margin="0 10 0 0" Click="BTN_kesz_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>

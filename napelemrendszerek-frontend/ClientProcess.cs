@@ -269,5 +269,20 @@ namespace Comm
 
             return dResponse;
         }
+
+        public async Task<Communication> StartProject(Dictionary<string, string> header, Dictionary<string, string> body, int roleID)
+        {
+            Communication commObject = new Communication();
+            commObject.Message = "takePartsFromStorage";
+            commObject.RoleId = roleID;
+            commObject.addItemToContent(header);
+            commObject.addItemToContent(body);
+
+            Task<Communication> tsResponse = SocketClient.SendRequest(commObject);
+            Console.WriteLine("Sent request, waiting for response");
+            Communication dResponse = await tsResponse;
+
+            return dResponse;
+        }
     }
 }

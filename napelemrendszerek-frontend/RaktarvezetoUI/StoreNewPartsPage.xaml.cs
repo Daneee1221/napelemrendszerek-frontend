@@ -17,6 +17,7 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
         public string PartName { get; set; }
         public int StoredAmount { get; set; }
         public int MaxAmount { get; set; }
+        public int NumTaken { get; set; }
 
         public CompartmentWithPart(Dictionary<string, string> values)
         {
@@ -32,6 +33,7 @@ namespace napelemrendszerek_frontend.RaktarvezetoUI
                 PartName = "Üres Rekesz!";
                 MaxAmount = 0;
             }
+            NumTaken = 0;
         }
         public Dictionary<string, string> GetValues()
         {

@@ -153,15 +153,30 @@ namespace napelemrendszerek_frontend
             return responseObject.Message;
         }
 
-        public async Task<List<Project>> GetProjects()
+        public async Task<List<Project>> GetProjects(bool scheduledOnly = false)
         {
             List<Project> projects = new List<Project>();
 
             Communication responseObject = await process.GetProjects(roleID);
 
+            if (responseObject.Message == "denied" || responseObject.Message == "nodata")
+            {
+                return null;
+            }
+
             foreach (Dictionary<string, string> pair in responseObject.Content)
             {
-                projects.Add(new Project(pair));
+                if (scheduledOnly)
+                {
+                    if (pair["ProjectStateId"] == "4")
+                    {
+                        projects.Add(new Project(pair));
+                    }
+                }
+                else
+                {
+                    projects.Add(new Project(pair));
+                }
             }
 
             return projects;
@@ -267,6 +282,22 @@ namespace napelemrendszerek_frontend
             Communication responseObject = await process.priceCalculator(d, roleID);
 
             return responseObject.Content;
+        }
+
+        public async Task<string> StartProject(List<CompartmentWithPart> modifiedCompartments, int projectID)
+        {
+            Dictionary<string, string> header = new Dictionary<string, string>();
+            header.Add("projectID", projectID.ToString());
+
+            Dictionary<string, string> body = new Dictionary<string, string>();
+            foreach (CompartmentWithPart item in modifiedCompartments)
+            {
+                body.Add(item.Id, item.NumTaken.ToString());
+            }
+
+            Communication responseObject = await process.StartProject(header, body, roleID);
+
+            return responseObject.Message;
         }
     }
 }
