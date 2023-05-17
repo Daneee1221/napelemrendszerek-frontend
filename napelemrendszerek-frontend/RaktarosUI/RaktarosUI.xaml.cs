@@ -83,6 +83,10 @@ namespace napelemrendszerek_frontend
             BTN_kesz.Content = "Kész";
 
             LB_projektLista.SelectedIndex = -1;
+
+            LB_projektLista.IsEnabled = true;
+            BTN_Kilepes.IsEnabled = true;
+            BTN_utvonal.IsEnabled = true;
         }
 
         private async void LB_projektLista_SelectionChanged(object sender, SelectionChangedEventArgs e)
