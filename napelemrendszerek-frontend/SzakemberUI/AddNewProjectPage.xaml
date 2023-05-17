@@ -38,7 +38,7 @@
                 </Button>
             </StackPanel>
 
-            <TextBlock x:Name="TB_ugyfelResponse" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Red"/>
+            <TextBlock x:Name="TB_ugyfelResponse" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Green"/>
 
         </StackPanel>
 
